@@ -29,7 +29,7 @@ export async function runCompare(nav: Nav): Promise<void> {
   root.className = 'compare';
   root.innerHTML = `
     <header>
-      <button class="back">← 三城总览</button>
+      <button class="back">← 经典舆图</button>
       <h1>三城对比</h1>
       <p>同为明代府城，七项规划基因在三座城里各有不同的表达。${done < 3 ? `<span class="warn">（尚有 ${3 - done} 座城未通关）</span>` : ''}</p>
     </header>
@@ -50,7 +50,7 @@ export async function runCompare(nav: Nav): Promise<void> {
     <footer>数据来源：三份府城资料及对应的「明代府城规划基因」StoryMap；标「待核」处见资料问题报告。</footer>
   `;
   document.body.appendChild(root);
-  root.querySelector('.back')!.addEventListener('click', () => void nav.home());
+  root.querySelector('.back')!.addEventListener('click', () => void nav.classic());
   document.body.classList.add('ready');
   await nav.arrive();
 }

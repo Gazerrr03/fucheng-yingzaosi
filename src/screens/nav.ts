@@ -1,4 +1,6 @@
 // 页面之间的跳转：云雾合拢后换页，新页面加载完再散开。
+// 路由：'' 主界面；?view=classic 经典舆图；?view=world 天下舆图；?view=compare 三城对比；
+// ?city= 寻访；?lesson= 营建课；?custom= 自定义营建（从天下舆图进入）。
 
 import { CloudTransition } from '../ui/clouds';
 
@@ -25,7 +27,12 @@ export class Nav {
     location.search = query;
   }
 
+  /** 主界面 */
   home = () => this.go('');
+  /** 经典模式舆图（四城） */
+  classic = () => this.go('?view=classic');
+  /** 自定义模式的天下舆图；focus 为要居中的天下格 */
+  world = (focus?: [number, number]) => this.go(focus ? `?view=world&at=${focus[0]},${focus[1]}` : '?view=world');
   city = (id: string) => this.go(`?city=${id}`);
   compare = () => this.go('?view=compare');
 }

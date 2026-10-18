@@ -4,7 +4,7 @@ import { CITIES } from './game/cities';
 import { Nav } from './screens/nav';
 import { mountMuteButton } from './audio/sound';
 
-// 路由：?city=xxx 进入关卡，?view=compare 三城对比，否则三城总览。
+// 路由见 screens/nav.ts：默认主界面；?view=classic 经典舆图；?view=world 天下舆图。
 async function boot() {
   const nav = new Nav();
   mountMuteButton();
@@ -27,10 +27,17 @@ async function boot() {
     document.body.classList.add('page');
     const { runCompare } = await import('./screens/compare');
     await runCompare(nav);
-  } else {
+  } else if (params.get('view') === 'classic') {
     document.body.classList.add('page');
     const { runOverview } = await import('./screens/overview');
     await runOverview(nav);
+  } else if (params.get('view') === 'world') {
+    const { runWorld } = await import('./world/worldScreen');
+    await runWorld(nav, params.get('at'));
+  } else {
+    document.body.classList.add('page');
+    const { runTitle } = await import('./screens/title');
+    await runTitle(nav);
   }
 }
 

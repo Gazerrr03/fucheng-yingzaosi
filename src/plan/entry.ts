@@ -127,10 +127,10 @@ export async function runLesson(id: string, nav: Nav): Promise<void> {
         <p>风水总评：<b>${v.grade}</b>（${v.total}）</p>
         ${(v.yili ?? []).map((y) => `<p class="kicker">议礼 · ${y.title.replace(/^议礼 · /, '')}：${y.label} —— ${y.note}${y.reputation ? `，得「${y.reputation}」` : ''}</p>`).join('')}
         ${v.modifiers.length ? `<p class="kicker">考成修正：${v.modifiers.map((m) => `${m.name} ${m.delta > 0 ? '+' : ''}${m.delta}`).join('；')}</p>` : ''}`,
-        ...(next ? [`下一课：${next.cityName}`, '留在本城', '返回总览'] : ['返回总览', '留在本城']));
+        ...(next ? [`下一课：${next.cityName}`, '留在本城', '返回舆图'] : ['返回舆图', '留在本城']));
       const label = next ? [`next`, 'stay', 'home'][choice] : ['home', 'stay'][choice];
       if (label === 'next') void nav.go(`?lesson=${next!.id}`);
-      else if (label === 'home') void nav.home();
+      else if (label === 'home') void nav.classic();
     },
     extraButtons: [
       { label: '讲解', title: '重看本课讲解', onClick: (ui) => void openModal(ui.root, intro, '继续营建') },
@@ -145,7 +145,7 @@ export async function runLesson(id: string, nav: Nav): Promise<void> {
         },
       },
     ],
-    onHome: () => void nav.home(),
+    onHome: () => void nav.classic(),
   });
   ui.view.highlight = oldWalls;
   ui.view.invalidate();
@@ -245,7 +245,7 @@ export async function runCustom(mapId: string, nav: Nav): Promise<void> {
         },
       },
     ],
-    onHome: () => void nav.home(),
+    onHome: () => void nav.world(),
   });
   document.body.classList.add('ready');
   await nav.arrive();

@@ -31,7 +31,7 @@ export class Hud {
   constructor(private root: HTMLElement, private level: Level, private genes: Gene[], private cards: CardMap, private actions: HudActions) {
     root.innerHTML = `
       <header class="title-card">
-        <button class="home" title="返回三城总览">← 三城总览</button>
+        <button class="home" title="返回经典舆图">← 经典舆图</button>
         <h1>${level.data.name}</h1>
         <p>${level.data.subtitle}</p>
       </header>
@@ -47,7 +47,7 @@ export class Hud {
       <div class="complete-seal" hidden>
         <div class="seal-stamp"><img src="${assetUrl(`ui/seal_${level.data.id}`)}" alt=""><span>${level.data.name.split('').join('<br>')}</span></div>
         <p>七项城池基因已全部点亮</p>
-        <div class="seal-actions"><button class="continue">继续游览</button><button class="compare" hidden>查看三城对比</button><button class="go-home">返回总览</button></div>
+        <div class="seal-actions"><button class="continue">继续游览</button><button class="compare" hidden>查看三城对比</button><button class="go-home">返回舆图</button></div>
       </div>
     `;
     this.tooltip = root.querySelector('.tooltip')!;

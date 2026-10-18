@@ -79,30 +79,112 @@ body.page { overflow: auto; }
 }
 .compare footer { margin-top: 18px; font-size: 12px; color: var(--ink-soft); }
 
-/* 总览：营建课与自定义模式 */
-.ov-intro { max-height: calc(100vh - 64px); overflow: auto; }
-.ov-sub { margin: 14px 0 6px; padding-top: 10px; border-top: 1px solid rgba(47, 36, 26, 0.2); font-size: 15px; letter-spacing: 0.18em; }
-.ov-lessons { list-style: none; margin: 0; padding: 0; }
-.ov-lessons button {
-  width: 100%; display: flex; gap: 10px; align-items: center; padding: 6px 4px; margin: 0;
-  border: 0; border-bottom: 1px dashed rgba(47, 36, 26, 0.18); background: none; text-align: left; cursor: pointer; font-family: inherit;
+/* ---------- 经典舆图 ---------- */
+.classic .ov-intro { right: auto; left: 32px; max-height: calc(100vh - 64px); overflow: auto; }
+.ov-intro h1 { font-size: 24px; }
+.ov-top { position: absolute; left: 32px; top: 24px; display: flex; align-items: center; gap: 12px; }
+.ov-back, .ts-menu button, .ov-card button { font-family: inherit; cursor: pointer; }
+.ov-back {
+  padding: 6px 14px; border: 1px solid rgba(47, 36, 26, 0.4); background: rgba(236, 226, 202, 0.92);
+  font-size: 13px; letter-spacing: 0.12em; color: var(--ink);
 }
-.ov-lessons button:hover b { color: var(--cinnabar); }
-.ov-lessons i {
-  font-style: normal; display: grid; place-items: center; width: 24px; height: 24px; flex: none;
-  border: 1px solid var(--cinnabar); color: var(--cinnabar); font-size: 13px;
+.ov-back:hover { color: var(--cinnabar); border-color: var(--cinnabar); }
+.ov-top .tag { padding: 3px 10px; background: var(--cinnabar); color: var(--paper); font-size: 13px; letter-spacing: 0.2em; }
+.ov-steps { list-style: none; display: flex; gap: 4px; margin: 6px 0 10px; padding: 0; font-size: 12px; color: var(--ink-soft); }
+.ov-steps li { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.ov-steps li + li::before { content: ''; }
+.ov-steps i {
+  font-style: normal; display: grid; place-items: center; width: 26px; height: 26px;
+  border: 1px dashed rgba(47, 36, 26, 0.35); color: var(--ink-soft);
 }
-.ov-lessons .done i { background: var(--cinnabar); color: var(--paper); }
-.ov-lessons span { display: flex; flex-direction: column; }
-.ov-lessons b { font-weight: normal; font-size: 13px; letter-spacing: 0.06em; color: var(--ink); }
-.ov-lessons em { font-style: normal; font-size: 11px; color: var(--ink-soft); }
-.ov-lessons .done em { color: var(--cinnabar); }
-.ov-custom {
-  width: 100%; margin-top: 12px; padding: 9px; font-family: inherit; font-size: 15px; letter-spacing: 0.16em;
-  border: 1px solid var(--cinnabar); background: var(--cinnabar); color: var(--paper); cursor: pointer;
+.ov-steps .open i { border: 1px solid var(--cinnabar); color: var(--cinnabar); }
+.ov-steps .done i { border: 1px solid var(--cinnabar); background: var(--cinnabar); color: var(--paper); }
+.ov-steps .open, .ov-steps .done { color: var(--ink); }
+
+.ov-city.left { flex-direction: row-reverse; text-align: right; }
+.ov-city.left .ov-label { border-left: 0; border-right: 3px solid var(--cinnabar); }
+.ov-ord {
+  position: absolute; right: -6px; top: -6px; width: 20px; height: 20px; display: grid; place-items: center;
+  font-style: normal; font-size: 12px; background: var(--cinnabar); color: var(--paper); border-radius: 50%;
 }
-.ov-custom small { display: block; font-size: 11px; letter-spacing: 0.05em; margin-top: 3px; opacity: 0.85; }
+.ov-city.open .ov-seal img { filter: none; }
+.ov-city.open .ov-seal { animation: ov-pulse 2.4s ease-in-out infinite; }
+@keyframes ov-pulse { 50% { transform: scale(1.06); } }
+.ov-city.locked { cursor: not-allowed; }
+.ov-city.locked .ov-seal img { filter: grayscale(1) opacity(0.45); }
+.ov-city.locked .ov-seal b, .ov-city.locked .ov-ord { opacity: 0.4; }
+.ov-city.locked .ov-ord { background: var(--ink-soft); }
+.ov-city.locked .ov-label { background: rgba(220, 210, 188, 0.82); border-color: rgba(47, 36, 26, 0.3); }
+.ov-city.locked .ov-label strong { color: var(--ink-soft); }
+.ov-city.locked .ov-progress { color: var(--ink-soft); }
+.ov-city.locked:hover .ov-seal { transform: none; }
+.ov-city.shake { animation: ov-shake 0.4s; }
+@keyframes ov-shake { 25% { margin-left: -5px; } 75% { margin-left: 5px; } }
+.ov-city.fresh .ov-seal { transform: scale(2.4) rotate(-12deg); opacity: 0; }
+.ov-city.stamp .ov-seal { animation: ov-stamp 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) forwards; }
+@keyframes ov-stamp { to { transform: none; opacity: 1; } }
+
+.ov-card { position: fixed; inset: 0; display: grid; place-items: center; background: rgba(47, 36, 26, 0.35); z-index: 5; }
+.ov-card[hidden] { display: none; }
+.ov-card .sheet {
+  width: min(520px, calc(100vw - 40px)); padding: 26px 30px 22px;
+  background: url('/assets/ui/ui_panel_paper.webp') center / cover, var(--paper);
+  box-shadow: 0 16px 40px rgba(47, 36, 26, 0.4); border-top: 4px solid var(--cinnabar);
+}
+.ov-card .kicker { font-size: 12px; letter-spacing: 0.2em; color: var(--cinnabar); }
+.ov-card h2 { margin: 6px 0 10px; font-size: 26px; letter-spacing: 0.12em; }
+.ov-card p { margin: 0 0 8px; font-size: 14px; line-height: 1.8; }
+.ov-card .intro { font-size: 13px; color: var(--ink-soft); }
+.ov-card .status { color: var(--cinnabar); font-size: 13px; letter-spacing: 0.06em; }
+.ov-card .actions { display: flex; gap: 10px; margin-top: 14px; }
+.ov-card .actions button {
+  flex: 1; padding: 9px 8px; border: 1px solid var(--ink); background: transparent; color: var(--ink);
+  font-size: 15px; letter-spacing: 0.14em;
+}
+.ov-card .actions button small { display: block; font-size: 11px; letter-spacing: 0.04em; color: var(--ink-soft); margin-top: 2px; }
+.ov-card .actions .primary { background: var(--cinnabar); border-color: var(--cinnabar); color: var(--paper); }
+.ov-card .actions button[data-act="close"] { flex: 0 0 80px; }
+
+/* ---------- 主界面 ---------- */
+.title-screen { position: fixed; inset: 0; overflow: hidden; background: var(--paper); }
+.ts-bg { position: absolute; inset: -4%; }
+.ts-bg img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.25) saturate(0.8) blur(1.5px); animation: ts-drift 60s ease-in-out infinite alternate; }
+@keyframes ts-drift { to { transform: scale(1.08) translate(-2%, 1%); } }
+.ts-veil { position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(236, 226, 202, 0.92) 0%, rgba(236, 226, 202, 0.7) 40%, rgba(47, 36, 26, 0.25) 100%); }
+.ts-main { position: absolute; left: 9vw; top: 50%; transform: translateY(-50%); width: min(460px, 82vw); }
+.ts-kicker { margin: 0; font-size: 14px; letter-spacing: 0.5em; color: var(--cinnabar); }
+.title-screen h1 { margin: 8px 0 10px; font-size: clamp(44px, 7vw, 76px); letter-spacing: 0.24em; line-height: 1.1; color: var(--ink); }
+.ts-lede { margin: 0 0 34px; font-size: 15px; letter-spacing: 0.12em; color: var(--ink-soft); }
+.ts-menu { display: flex; flex-direction: column; gap: 14px; }
+.ts-menu button {
+  display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 2px 12px; text-align: left;
+  padding: 16px 22px; border: 1px solid rgba(47, 36, 26, 0.5); border-left: 4px solid var(--ink);
+  background: rgba(236, 226, 202, 0.9); color: var(--ink); transition: transform 0.2s, box-shadow 0.2s;
+}
+.ts-menu button:hover { transform: translateX(6px); box-shadow: 0 8px 22px rgba(47, 36, 26, 0.25); }
+.ts-menu b { font-size: 24px; font-weight: normal; letter-spacing: 0.3em; }
+.ts-menu span { grid-column: 1; font-size: 13px; letter-spacing: 0.06em; color: var(--ink-soft); }
+.ts-menu small { grid-row: 1; grid-column: 2; font-size: 12px; color: var(--cinnabar); letter-spacing: 0.06em; }
+.ts-menu .primary { border-left-color: var(--cinnabar); }
+.ts-menu .primary b { color: var(--cinnabar); }
 
 .ov-rep { margin: 8px 0 4px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 12px; }
 .ov-rep b { font-weight: normal; letter-spacing: 0.2em; color: var(--ink-soft); }
 .ov-rep span { padding: 1px 8px; border: 1px solid var(--gold); color: var(--ink); background: rgba(201, 151, 58, 0.12); }
+
+/* 经典舆图：四城都要在画面里（竖屏时不按铺满裁切） */
+.classic .ov-map { width: min(max(100vw, calc(100vh * 1536 / 1024)), 140vw); }
+@media (max-aspect-ratio: 1 / 1) {
+  .classic .ov-map { top: 38%; }
+  .classic .ov-intro { left: 16px; right: 16px; bottom: 16px; width: auto; max-height: 40vh; }
+}
+@media (max-height: 640px) {
+  .classic .ov-intro { width: 250px; padding: 14px 16px; left: 16px; bottom: 16px; }
+  .classic .ov-intro h1 { font-size: 18px; margin-bottom: 6px; }
+  .classic .ov-intro > p:first-of-type { display: none; }
+  .classic .ov-steps i { width: 22px; height: 22px; }
+  .classic .ov-compare { padding: 6px; font-size: 13px; }
+  .classic .ov-seal { width: 56px; height: 56px; }
+  .classic .ov-label strong { font-size: 16px; }
+  .classic .ov-top { left: 16px; top: 14px; }
+}

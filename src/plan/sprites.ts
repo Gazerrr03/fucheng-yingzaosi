@@ -209,6 +209,11 @@ export class PlanSprites {
     gl.uniform3f(t.u.uFogColor, 0.9, 0.87, 0.8);
     gl.uniform2f(t.u.uFogRange, 1e6, 2e6);
     gl.uniform1i(t.u.uTex, 0);
+    // 着色器里还声明了阴影采样器（sampler2DShadow），默认也在 0 号单元；与 uTex 撞在同一单元时
+    // 每次绘制都报 INVALID_OPERATION，只剩描边一层，模型成了黑剪影。精灵不用阴影，挪到别的单元并关掉。
+    gl.uniform1i(t.u.uShadow, 3);
+    gl.uniform1f(t.u.uShadowOn, 0);
+    gl.uniform1i(t.u.uMatKind, 0);
     gl.activeTexture(gl.TEXTURE0);
     for (const { prim, m, n } of parts) {
       gl.uniformMatrix4fv(t.u.uModel, false, m);

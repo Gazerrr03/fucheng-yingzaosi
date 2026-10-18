@@ -50,7 +50,7 @@ export async function runLevel(CITY: string, nav: Nav): Promise<void> {
       hud.setProgress(visited);
       view.setVisited(visited);
     },
-    onHome: () => void nav.home(),
+    onHome: () => void nav.classic(),
     onCompare: () => void nav.compare(),
   });
 
