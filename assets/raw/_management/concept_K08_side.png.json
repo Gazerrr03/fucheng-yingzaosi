@@ -1,0 +1,14 @@
+{
+  "task": "T7",
+  "asset_id": "K08",
+  "label": "衙署院落",
+  "view": "side",
+  "dest": "assets/raw/concepts/K08/concept_K08_side.png",
+  "prompt": "Create a NEW CAMERA VIEW of the EXACT object in input image 1. Produce ONE architectural ORTHOGRAPHIC FRONT ELEVATION at EYE LEVEL. Rotate and lower camera from the reference to look straight and horizontally at the front. Roof ridges, wall tops and bases must be HORIZONTAL, verticals VERTICAL. NO isometric view, NO three-quarter view, NO top-down perspective; no diagonal receding plan visible, no view down onto roof or floor surfaces. Preserve the precise number of floors, roof tiers, bays, arches, overall width-to-height proportions, materials and colors. Do not invent extra parts. Pure SOLID WHITE background, soft even light, no shadow patch or ground plane, no people, plants unless this asset IS a tree, text, labels or multiple panels. Single isolated centered object with margin. Asset identity: K08 衙署院落. One narrow elongated Ming local government courtyard compound about 60 wide x120 deep. Along central axis FRONT TO BACK: main gate, ceremonial gate, main hall, second hall, with side offices and a freestanding spirit screen in front. Single-storey halls, muted red-brown pillars, grey-blue roofs, pale plaster walls. No text plaques.",
+  "status": "generated_pending_pair_review",
+  "references": [
+    "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-e2335288-6a53-4823-a8d8-200b2ac3732c.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-88df969f-4de5-49d3-812a-3de04080848f.png",
+  "visual_review": "Concept generated, awaiting pair review; PNG actual size and original hash recorded. No GLB generated."
+}

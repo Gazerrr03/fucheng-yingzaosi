@@ -1,0 +1,14 @@
+{
+  "task": "T7",
+  "asset_id": "B01",
+  "label": "保定府署",
+  "view": "main",
+  "dest": "assets/raw/concepts/B01/concept_B01_main_v2.png",
+  "prompt": "One restrained Ming Baoding prefectural government compound, elongated narrow rectangular plan, FIVE clearly separated consecutive COURTYARDS along front-to-back axis. Six modest single-storey axial structures bound five courts: main gate, ceremonial gate, main hall, second hall, residence, rear rooms. Low pale plaster perimeter walls, symmetric low side rooms; plain simple grey-blue gable roofs, muted red-brown wood. NO palace grandeur, NO watchtowers or corner towers, NO two-storey halls, NO pavilions, NO plants, NO gold ornament or dragons, NO signs or text. Isolated whole compound, pure white, no exterior terrain or shadow. 45-degree downward three-quarter view, hand-painted low-poly, same reference palette.",
+  "status": "revision_pending_review",
+  "references": [
+    "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-7db78575-f308-436b-b0d4-4936fc4de9a6.png",
+  "visual_review": "Targeted structural revision; awaiting visual inspection."
+}

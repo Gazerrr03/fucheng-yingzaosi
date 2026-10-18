@@ -1,0 +1,14 @@
+{
+  "task": "T7",
+  "asset_id": "K12a",
+  "label": "柳树",
+  "view": "side",
+  "dest": "assets/raw/concepts/K12a/concept_K12a_side.png",
+  "prompt": "Create a NEW CAMERA VIEW of the EXACT object in input image 1. Produce ONE architectural ORTHOGRAPHIC FRONT ELEVATION at EYE LEVEL. Rotate and lower camera from the reference to look straight and horizontally at the front. Roof ridges, wall tops and bases must be HORIZONTAL, verticals VERTICAL. NO isometric view, NO three-quarter view, NO top-down perspective; no diagonal receding plan visible, no view down onto roof or floor surfaces. Preserve the precise number of floors, roof tiers, bays, arches, overall width-to-height proportions, materials and colors. Do not invent extra parts. Pure SOLID WHITE background, soft even light, no shadow patch or ground plane, no people, plants unless this asset IS a tree, text, labels or multiple panels. Single isolated centered object with margin. Asset identity: K12a 柳树. One isolated willow tree, curved brown trunk and drooping branch structure, clusters of long hanging grey-green leaves, low-poly foliage masses with hand-painted detail, about 9 units high. No terrain, pot, building or base island.",
+  "status": "generated_pending_pair_review",
+  "references": [
+    "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-bb9968f0-a26b-4bbe-96b2-d6db12714ffe.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-6652e64c-d3df-48d1-b957-e6107c72d364.png",
+  "visual_review": "Concept generated, awaiting pair review; PNG actual size and original hash recorded. No GLB generated."
+}

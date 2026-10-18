@@ -1,0 +1,14 @@
+{
+  "task": "T7",
+  "asset_id": "K03",
+  "label": "马面敌台",
+  "view": "side",
+  "dest": "assets/raw/concepts/K03/concept_K03_side.png",
+  "prompt": "Create a NEW CAMERA VIEW of the EXACT object in input image 1. Produce ONE architectural ORTHOGRAPHIC FRONT ELEVATION at EYE LEVEL. Rotate and lower camera from the reference to look straight and horizontally at the front. Roof ridges, wall tops and bases must be HORIZONTAL, verticals VERTICAL. NO isometric view, NO three-quarter view, NO top-down perspective; no diagonal receding plan visible, no view down onto roof or floor surfaces. Preserve the precise number of floors, roof tiers, bays, arches, overall width-to-height proportions, materials and colors. Do not invent extra parts. Pure SOLID WHITE background, soft even light, no shadow patch or ground plane, no people, plants unless this asset IS a tree, text, labels or multiple panels. Single isolated centered object with margin. Asset identity: K03 马面敌台. One square solid grey-brick bastion projecting outward from a short straight wall segment, projection roughly 10 relative units, top at same height as wall, crenellated outer parapet, NO roof, tower or gate.",
+  "status": "generated_pending_pair_review",
+  "references": [
+    "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-43e68986-706d-4af1-95fe-98d5a81546db.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-43df4ad7-cac3-4eb9-9ead-b2ffdb7a71ca.png",
+  "visual_review": "Concept generated, awaiting pair review; PNG actual size and original hash recorded. No GLB generated."
+}

@@ -1,0 +1,19 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+
+# 可由脚本重新生成的中间产物
+assets/model_refs/
+assets/blender/
+*.blend
+*.blend1
+__pycache__/
+*.pyc
+
+# 本机工具配置
+.claude/settings.local.json
+
+# 用户提供的原始资料与内部策划文档：只留在本地，不进公开仓库
+*.docx
+/襄阳府资料/

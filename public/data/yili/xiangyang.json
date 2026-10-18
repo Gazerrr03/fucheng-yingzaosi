@@ -1,0 +1,64 @@
+{
+  "_note": "议礼事件（docs/玩法需求_v3_议礼.md §1.4）。trigger.kind = place：放下某构件时判定；finish：考成前判定。place 的条件：构件落在 accept 列出的方位（不是礼制的 ideal 方位），且 ideal 方位的城外近郊没有可建陆地（被水或山阻断）。options[].requires 为探索模式里需已点亮的拾遗卡（lore:xxx）。effect：exempt = 该构件方位改判地形豁免；reputation = 获得的声望名目；modifier = 考成修正分；highlight = 在地图上标出的范围；retry = 说完回到选项。",
+  "city": "xiangyang",
+  "events": [
+    {
+      "id": "xiangyang-sheji",
+      "title": "议礼 · 社稷坛",
+      "trigger": {
+        "kind": "place",
+        "building": "sheji",
+        "ideal": "NW",
+        "accept": [
+          "W",
+          "N"
+        ],
+        "outside": true
+      },
+      "clerk": "府社稷坛当在城西北，今置于西门外，何也？",
+      "options": [
+        {
+          "key": "A",
+          "label": "引方志为证",
+          "say": "城北濒汉，无地可设。",
+          "requires": "lore:sheji_xiyi",
+          "locked": "此条方志载于「探索 · 襄阳 · 社稷坛」，点亮该地即可查得。",
+          "reply": "府志可考：坛在西门外一里，洪武以来即然。城北濒汉，所言合乎地势，准予存案。",
+          "effect": {
+            "exempt": "sheji",
+            "reputation": "通晓礼制"
+          }
+        },
+        {
+          "key": "B",
+          "label": "依礼制改建于西北",
+          "say": "谨遵坛壝之制，移建西北。",
+          "reply": "城北濒汉。西北城外非水即滩，汛期水至即没，无高燥之地可以设坛。此路不通。",
+          "effect": {
+            "highlight": "ideal-outside",
+            "retry": true
+          }
+        },
+        {
+          "key": "C",
+          "label": "强辩",
+          "say": "地势使然，不必拘礼。",
+          "reply": "无据而违制，记过一次。",
+          "effect": {
+            "modifier": -5
+          }
+        }
+      ],
+      "exemptNote": "地形豁免 · 有据：坛在西门外一里，洪武以来即然",
+      "quote": {
+        "text": "风云雷雨山川坛，在郡城南门外一里。社稷坛，在郡城西门外一里。二坛俱洪武间建。",
+        "source": "《古今图书集成·方舆汇编·职方典》卷一千一百五十三〈襄阳府祠庙考一〉引《府志》"
+      },
+      "chronicle": {
+        "A": "社稷坛设于西门之外，部臣诘之，引府志「在郡城西门外一里，洪武间建」，并陈城北濒汉之势以对，事得寝。",
+        "C": "社稷坛不在乾位，部臣诘之，强辩以地势，议者非之。"
+      },
+      "flag": "18"
+    }
+  ]
+}

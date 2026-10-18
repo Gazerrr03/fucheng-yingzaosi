@@ -1,0 +1,14 @@
+{
+  "task": "T7",
+  "asset_id": "X03",
+  "label": "夫人城",
+  "view": "main",
+  "dest": "assets/raw/concepts/X03/concept_X03_main_v2.png",
+  "prompt": "Edit reference fortification. REMOVE EVERY roofed building: all five turrets/pavilions and their wooden walls and roofs. Keep ONLY masonry crenellated square outer enclosure, corner platforms, short connecting wall and main wall corner. At locations of removed turrets show plain paved flat terrace behind crenellated parapet. Preserve wall geometry and brick palette. Entire subject isolated on pure white, same three-quarter camera, no foliage, no buildings or roofs anywhere, no text.",
+  "status": "revision_pending_review",
+  "references": [
+    "/Users/qizhi_dong/Projects/demo/assets/raw/concepts/X03/concept_X03_main.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-89045f61-c805-454f-a2cd-76f84e2b9739.png",
+  "visual_review": "Targeted structural revision; awaiting visual inspection."
+}

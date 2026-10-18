@@ -1,0 +1,14 @@
+{
+  "task": "T7",
+  "asset_id": "J03",
+  "label": "公安水门",
+  "view": "main",
+  "dest": "assets/raw/concepts/J03/concept_J03_main_v2.png",
+  "prompt": "Ming Gong'an water gate isolated module. A short tall main grey-brick wall across BACK with ONE arched gate. A SINGLE SEMICIRCULAR BARBICAN WALL extends forward, joined to main wall at its two ends, enclosing a visibly open HALF-DISC COURTYARD. Outer curved wall lower than main wall. A side-facing arch opening in RIGHT part of curved wall connects to a SMALL stone-stair wharf immediately outside. Exactly ONE semicircular enclosure; NO cylindrical towers, NO pair of curved bastions, NO wooden building, NO roofs. Grey brick, ochre stone, no water plane. Pure white background, soft light no ground shadows, no text. 45-degree downward three-quarter view, hand-painted low-poly.",
+  "status": "revision_pending_review",
+  "references": [
+    "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-32f4748f-a290-499a-95b4-f38acd29d51a.png",
+  "visual_review": "Targeted structural revision; awaiting visual inspection."
+}

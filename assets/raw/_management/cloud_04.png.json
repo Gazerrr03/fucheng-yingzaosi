@@ -1,0 +1,8 @@
+{
+  "task": "T5",
+  "dest": "assets/raw/clouds/cloud_04.png",
+  "prompt": "Use case: stylized-concept. Production 2D game transition sprite, one isolated cloud, requested square 2048x2048 PNG with genuinely transparent background and soft semitransparent alpha edges. Traditional Chinese auspicious scrolling cloud motifs combined with soft ink wash. White and very pale warm ivory, delicate fine muted grey curl outlines, hand-painted pale watercolor texture matching supplied reference's fine linework, NOT its map scene or paper background. Cloud fully contained with transparent padding on all sides, feathered irregular edges, no rectangular cutoff, no text, watermark, people, landscape, buildings, border or background paper. cloud_04: second THIN mist band, asymmetric diagonal ribbon rising gently from lower left toward upper right, extremely airy translucent watercolor haze, a few subtle pale grey traditional curl contours, tapering feathered ends, no dense cloud mass. Entire ribbon centered with 15% fully transparent padding all sides.",
+  "status": "generated_pending_alpha_and_composite_test",
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-941faeab-68de-4774-971d-6ef51d31155a.png",
+  "visual_review": "Thin diagonal mist ribbon, tips contained; visually distinct from cloud03, alpha/composite pending."
+}

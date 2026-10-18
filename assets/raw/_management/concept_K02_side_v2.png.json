@@ -1,0 +1,10 @@
+{
+  "task": "T7",
+  "asset_id": "K02",
+  "view": "side",
+  "dest": "assets/raw/concepts/K02/concept_K02_side_v2.png",
+  "prompt": "Create a NEW CAMERA VIEW of the EXACT wall corner in the reference. Output an architectural ORTHOGRAPHIC RIGHT-SIDE ELEVATION at EYE LEVEL, camera perpendicular to ONE wall arm. ROTATE the object/camera 45 degrees horizontally from reference and lower camera to horizontal. The wall arm nearest camera must appear as a HORIZONTAL RECTANGLE with flat horizontal top and base lines. The perpendicular arm recedes directly behind and is mostly hidden. NO diagonal V-shaped plan visible, NO view down onto top paving, NO isometric view, NO three-quarter view. Preserve grey brick material, battered base, crenellations and projecting corner platform. No plants. Pure white background, soft even light, no cast ground shadow, no text or labels. Single isolated object.",
+  "status": "generated_pending_pair_review",
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-e931f7c3-8144-4e5d-8ec7-a762df0cc3cd.png",
+  "visual_review": "Viewed: new level right-side elevation differs from main, vegetation removed. Broad masonry proportions consistent; not a mathematically exact orthographic model."
+}

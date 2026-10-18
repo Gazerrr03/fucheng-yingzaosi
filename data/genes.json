@@ -1,0 +1,9 @@
+[
+  { "id": "shanshui", "name": "山水格局", "icon": "icon_gene_1" },
+  { "id": "xingzhuang", "name": "平面形状", "icon": "icon_gene_2" },
+  { "id": "zhouhui", "name": "城墙周回", "icon": "icon_gene_3" },
+  { "id": "chengmen", "name": "城门数量", "icon": "icon_gene_4" },
+  { "id": "tanmiao", "name": "坛庙位置", "icon": "icon_gene_5" },
+  { "id": "fushu", "name": "府署位置", "icon": "icon_gene_6" },
+  { "id": "gaohou", "name": "城墙高厚", "icon": "icon_gene_7" }
+]

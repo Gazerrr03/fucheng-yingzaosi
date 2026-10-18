@@ -1,0 +1,14 @@
+{
+  "task": "T7",
+  "asset_id": "K09",
+  "label": "方坛",
+  "view": "main",
+  "dest": "assets/raw/concepts/K09/concept_K09_main_v2.png",
+  "prompt": "Generate one simple Ming EARTH ALTAR compound. Center is ONE low square rammed-earth platform with ochre earthen sides and flat plain top, stairs on four sides. A SEPARATE LOW SQUARE ENCLOSURE WALL stands on ground AROUND the altar, visibly separated from platform by a broad empty walkway. Four gaps, one at center of each enclosure side. The outer wall is a low plastered earth wall, NOT a railing attached to platform. NO ornate stone balusters, finial columns, temples or roofs. Isolated object assembly on pure white background. 45-degree downward three-quarter view. Muted ochre earth and pale grey-blue coping, hand-painted low-poly. No scenic ground outside boundary, no shadows or text.",
+  "status": "revision_pending_review",
+  "references": [
+    "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-58da162d-d178-4a27-8f2f-f106c400418a.png",
+  "visual_review": "Targeted structural revision; awaiting visual inspection."
+}

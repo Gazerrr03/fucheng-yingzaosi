@@ -1,0 +1,348 @@
+{
+  "id": "jingzhou",
+  "name": "荆州府",
+  "subtitle": "长江中游北岸 · 城绕水、水护城",
+  "map": "maps/jingzhou",
+  "calibration": {
+    "note": "以主城四角为参考点，主城按东西 3600 m、南北 1200 m 的矩形近似（今测东西约 3.75 km、南北约 1.2 km）。画面为示意级地理。",
+    "imageSize": [1586, 992],
+    "points": [
+      {
+        "img": [270, 190],
+        "world": [-1800, 600],
+        "label": "西北角"
+      },
+      {
+        "img": [1500, 410],
+        "world": [1800, 600],
+        "label": "东北角"
+      },
+      {
+        "img": [1490, 615],
+        "world": [1800, -600],
+        "label": "东南角"
+      },
+      {
+        "img": [125, 415],
+        "world": [-1800, -600],
+        "label": "西南角"
+      }
+    ]
+  },
+  "grid": {
+    "hexAcross": 200,
+    "bounds": [-2700, -2800, 2700, 2400]
+  },
+  "terrainNames": {
+    "R": "长江",
+    "M": "护城河"
+  },
+  "genes": {
+    "shanshui": {
+      "rule": "all",
+      "sites": [
+        "changjiang",
+        "beijiao"
+      ]
+    },
+    "xingzhuang": {
+      "rule": "any",
+      "sites": [
+        "dongzhe"
+      ]
+    },
+    "zhouhui": {
+      "rule": "any",
+      "sites": [
+        "chengqiang"
+      ]
+    },
+    "chengmen": {
+      "rule": "all",
+      "sites": [
+        "binyang",
+        "gongan",
+        "nanji",
+        "ximen",
+        "gucao",
+        "gongchen"
+      ]
+    },
+    "tanmiao": {
+      "rule": "any",
+      "sites": [
+        "sheji"
+      ]
+    },
+    "fushu": {
+      "rule": "all",
+      "sites": [
+        "fushu_old",
+        "fushu"
+      ]
+    },
+    "gaohou": {
+      "rule": "any",
+      "sites": [
+        "nanji"
+      ]
+    }
+  },
+  "lore": [
+    {
+      "id": "hongwu",
+      "name": "洪武砖铭"
+    },
+    {
+      "id": "lidai",
+      "name": "历代城墙"
+    },
+    {
+      "id": "huchenghe",
+      "name": "护城河"
+    },
+    {
+      "id": "shuimen",
+      "name": "公安门 · 水门"
+    },
+    {
+      "id": "chengzhi",
+      "name": "历代城址"
+    },
+    {
+      "id": "xiangwangfu",
+      "name": "湘王府"
+    },
+    {
+      "id": "yicheng",
+      "name": "一城二名"
+    }
+  ],
+  "sites": [
+    {
+      "id": "binyang",
+      "name": "东门 · 镇流门",
+      "kind": "gate",
+      "img": [1335, 455],
+      "model": "J01",
+      "cards": [
+        "gene:chengmen"
+      ]
+    },
+    {
+      "id": "gongan",
+      "name": "公安门",
+      "kind": "gate",
+      "img": [1195, 622],
+      "model": "J03",
+      "cards": [
+        "gene:chengmen",
+        "lore:shuimen"
+      ]
+    },
+    {
+      "id": "nanji",
+      "name": "南纪门",
+      "kind": "gate",
+      "img": [740, 565],
+      "model": "J04",
+      "cards": [
+        "gene:chengmen",
+        "gene:gaohou"
+      ]
+    },
+    {
+      "id": "ximen",
+      "name": "西门",
+      "kind": "gate",
+      "img": [158, 385],
+      "model": "K05a",
+      "cards": [
+        "gene:chengmen"
+      ]
+    },
+    {
+      "id": "gucao",
+      "name": "小北门 · 古漕门",
+      "kind": "gate",
+      "img": [950, 330],
+      "model": "K04a",
+      "cards": [
+        "gene:chengmen"
+      ]
+    },
+    {
+      "id": "gongchen",
+      "name": "大北门 · 拱辰门",
+      "kind": "gate",
+      "img": [600, 268],
+      "model": "J02",
+      "cards": [
+        "gene:chengmen"
+      ]
+    },
+    {
+      "id": "dongzhe",
+      "name": "东城墙弯折处",
+      "kind": "landmark",
+      "img": [1450, 520],
+      "model": "K02",
+      "rotY": 90,
+      "cards": [
+        "gene:xingzhuang"
+      ]
+    },
+    {
+      "id": "chengqiang",
+      "name": "南城墙",
+      "kind": "landmark",
+      "img": [420, 478],
+      "model": "K01",
+      "cards": [
+        "gene:zhouhui"
+      ]
+    },
+    {
+      "id": "hongwu",
+      "name": "洪武砖墙",
+      "kind": "landmark",
+      "img": [1140, 400],
+      "model": "J05",
+      "cards": [
+        "lore:hongwu"
+      ]
+    },
+    {
+      "id": "lidai",
+      "name": "西城墙",
+      "kind": "landmark",
+      "img": [215, 300],
+      "model": "K01",
+      "cards": [
+        "lore:lidai"
+      ]
+    },
+    {
+      "id": "huchenghe",
+      "name": "北护城河",
+      "kind": "water",
+      "img": [640, 175],
+      "model": "K11b",
+      "cards": [
+        "lore:huchenghe"
+      ]
+    },
+    {
+      "id": "changjiang",
+      "name": "长江",
+      "kind": "water",
+      "img": [700, 760],
+      "model": "K13c",
+      "cards": [
+        "gene:shanshui"
+      ]
+    },
+    {
+      "id": "beijiao",
+      "name": "北郊陵阜",
+      "kind": "mountain",
+      "img": [880, 70],
+      "model": "K12b",
+      "cards": [
+        "gene:shanshui",
+        "lore:chengzhi"
+      ]
+    },
+    {
+      "id": "sheji",
+      "name": "社稷坛",
+      "kind": "temple",
+      "img": [120, 190],
+      "model": "K09",
+      "cards": [
+        "gene:tanmiao"
+      ]
+    },
+    {
+      "id": "fushu_old",
+      "name": "府署旧址",
+      "kind": "office",
+      "img": [390, 310],
+      "model": "K09",
+      "cards": [
+        "gene:fushu"
+      ]
+    },
+    {
+      "id": "fushu",
+      "name": "荆州府署",
+      "kind": "office",
+      "img": [1100, 520],
+      "model": "K08",
+      "cards": [
+        "gene:fushu"
+      ]
+    },
+    {
+      "id": "xiangwangfu",
+      "name": "湘王府",
+      "kind": "landmark",
+      "img": [500, 390],
+      "model": "K08",
+      "cards": [
+        "lore:xiangwangfu"
+      ]
+    },
+    {
+      "id": "xianshu",
+      "name": "江陵县署",
+      "kind": "office",
+      "img": [815, 425],
+      "model": "K08",
+      "cards": [
+        "lore:yicheng"
+      ]
+    }
+  ],
+  "labels": [],
+  "terrain": {
+    "qMin": -22,
+    "rMin": -17,
+    "rows": [
+      "............................................",
+      "............................................",
+      ".......................TTTT.................",
+      "......................TTGGGGTTTTT...........",
+      ".....................TTTTTTTGTTTTTTTTTT.....",
+      ".....................TTTGTTTTRRRRRTTTTT.....",
+      "....................GTTTTTRRRRRRRRRRTT......",
+      "...................TTTRRRRRRRRRRRTRTTT......",
+      "..................TTRTTTRRRTTTRTTTTTT.......",
+      "..................TTTTTTTTTTTTTTTTTTT.......",
+      ".................GTGTTTTTTTTTTTGTTGT........",
+      "................GTTTTTMMMMTTTTGTMTTT........",
+      "...............TTMMTTTTTTTTTGGMMTTT.........",
+      "...............MMTTGGTGGTTGGMMTTTTM.........",
+      "..............TCCCCCCCCCCCCCCCCCCM..........",
+      ".............TCBBBBBBBBBBBBBBBBBCT..........",
+      "............TMCBBBBBBBBBBBBBBBBCT...........",
+      "...........TTCBBBBBBBBBBBBBBBBBCT...........",
+      "...........TGCBBBBBBBBBBBBBBBBCT............",
+      "..........TTCBBBBBBBBBBBBBBBBBCT............",
+      ".........TTMCCCCCCCCCCCCCCCCCCT.............",
+      "........TGTGTTMTTTTTTTGTTTTTTTT.............",
+      "........TTTTTTGTTTTGGTTTTTTTTT..............",
+      ".......TTTTTMMGGMTTTTTTGTTTTTT..............",
+      "......TTTGTTTWTGWTTTTTGTTTTGT...............",
+      ".......TTTTTWWTWTGTTGTTTWTGTT...............",
+      "........TTTTTGGTTTTTTTTGWTGT................",
+      ".........TTGTTGTGGTTTTTTTTTT................",
+      "..........TTTTTTTTTTGTTGTTT.................",
+      "...........TTTTTTTTTGTTTTTT.................",
+      "............TTTTTTTTTTTTTT..................",
+      "............................................",
+      "............................................"
+    ],
+    "note": "由 tools/prefill_terrain.py 预填，之后在标定工具里人工修正"
+  }
+}

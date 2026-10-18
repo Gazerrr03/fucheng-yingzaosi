@@ -1,0 +1,8 @@
+{
+  "task": "T5",
+  "dest": "assets/raw/clouds/cloud_02.png",
+  "prompt": "Use case: stylized-concept. Production 2D game transition sprite, one isolated cloud, requested square 2048x2048 PNG with genuinely transparent background and soft semitransparent alpha edges. Traditional Chinese auspicious scrolling cloud motifs combined with soft ink wash. White and very pale warm ivory, delicate fine muted grey curl outlines, hand-painted pale watercolor texture matching supplied reference's fine linework, NOT its map scene or paper background. Cloud fully contained with transparent padding on all sides, feathered irregular edges, no rectangular cutoff, no text, watermark, people, landscape, buildings, border or background paper. cloud_02: second distinct large thick cloud cluster, broad horizontal crescent-like mass of overlapping lobes, dense opaque white middle, curling left and upper-right tendrils, balanced asymmetry. Reserve fully transparent padding on EVERY side, cloud within central 75 percent canvas, no contact with edges.",
+  "status": "generated_pending_alpha_and_composite_test",
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-67b347b4-e676-47ed-80bb-2210a60866bf.png",
+  "visual_review": "Asymmetric broad thick cloud, curls and muted cream match cloud01; side padding narrow but no obvious cutoff. Alpha and runtime coverage pending."
+}

@@ -1,0 +1,14 @@
+{
+  "task": "T7",
+  "asset_id": "X01",
+  "label": "昭明台",
+  "view": "side",
+  "dest": "assets/raw/concepts/X01/concept_X01_side.png",
+  "prompt": "Create a NEW CAMERA VIEW of the EXACT object in input image 1. Produce ONE architectural ORTHOGRAPHIC FRONT ELEVATION at EYE LEVEL. Rotate and lower camera from the reference to look straight and horizontally at the front. Roof ridges, wall tops and bases must be HORIZONTAL, verticals VERTICAL. NO isometric view, NO three-quarter view, NO top-down perspective; no diagonal receding plan visible, no view down onto roof or floor surfaces. Preserve the precise number of floors, roof tiers, bays, arches, overall width-to-height proportions, materials and colors. Do not invent extra parts. Pure SOLID WHITE background, soft even light, no shadow patch or ground plane, no people, plants unless this asset IS a tree, text, labels or multiple panels. Single isolated centered object with margin. Asset identity: X01 昭明台. Zhaoming Terrace main complex: tall rectangular masonry platform with one central arched gateway, THREE-STOREY central pavilion facing front, flanked symmetrically by a smaller bell tower and drum tower, one on each side. Central pavilion exactly three storeys per Ming description; reconstructed photo is detail reference ONLY. Grey-blue roofs, muted red-brown columns, ochre-grey platform. No trees, city or terrain.",
+  "status": "generated_pending_pair_review",
+  "references": [
+    "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-c4b40f62-35e1-4ae5-b65a-0f2868eb5e20.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-aa037067-2a35-42f5-8139-84ec146280e7.png",
+  "visual_review": "Concept generated, awaiting pair review; PNG actual size and original hash recorded. No GLB generated."
+}

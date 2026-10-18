@@ -1,0 +1,108 @@
+/* 总览页与对比页（没有画布的 DOM 页面） */
+
+body.page #map { display: none; }
+body.page { overflow: auto; }
+
+/* ---------- 总览 ---------- */
+.overview { position: fixed; inset: 0; overflow: hidden; background: var(--paper); }
+.ov-map {
+  position: absolute; left: 50%; top: 50%;
+  width: max(100vw, calc(100vh * 1536 / 1024)); transform: translate(-50%, -50%);
+}
+.ov-map > img { width: 100%; height: 100%; display: block; }
+.ov-city {
+  position: absolute; transform: translate(-50%, -50%);
+  display: flex; align-items: center; gap: 12px;
+  padding: 0; border: 0; background: none; cursor: pointer; font-family: inherit; text-align: left;
+}
+.ov-seal { position: relative; width: 74px; height: 74px; flex: none; transition: transform 0.25s; }
+.ov-seal img { width: 100%; height: 100%; filter: grayscale(0.6) opacity(0.85); transition: filter 0.3s; }
+.ov-seal b {
+  position: absolute; inset: 0; display: grid; place-content: center; text-align: center;
+  font-size: 19px; line-height: 1.05; color: var(--cinnabar); opacity: 0.85;
+}
+.ov-city.done .ov-seal img, .ov-city:hover .ov-seal img { filter: none; }
+.ov-city:hover .ov-seal { transform: scale(1.08) rotate(-4deg); }
+.ov-label {
+  display: flex; flex-direction: column; gap: 2px; padding: 8px 14px 9px;
+  background: rgba(236, 226, 202, 0.92); border-left: 3px solid var(--cinnabar);
+  box-shadow: 0 6px 20px rgba(47, 36, 26, 0.22);
+}
+.ov-label strong { font-size: 20px; letter-spacing: 0.14em; color: var(--ink); }
+.ov-label em { font-style: normal; font-size: 12px; color: var(--ink-soft); letter-spacing: 0.05em; }
+.ov-progress { font-size: 12px; color: var(--cinnabar); letter-spacing: 0.08em; margin-top: 2px; }
+
+.ov-intro {
+  position: absolute; right: 32px; bottom: 32px; width: 300px; padding: 22px 24px 22px;
+  background: url('/assets/ui/ui_panel_paper.webp') center / cover, var(--paper);
+  box-shadow: 0 10px 30px rgba(47, 36, 26, 0.28);
+}
+.ov-intro h1 { margin: 0 0 12px; font-size: 30px; line-height: 1.25; letter-spacing: 0.16em; }
+.ov-intro p { margin: 0 0 8px; font-size: 13px; line-height: 1.8; color: var(--ink); }
+.ov-intro .ov-hint { color: var(--cinnabar); letter-spacing: 0.06em; }
+.ov-compare {
+  width: 100%; margin-top: 10px; padding: 9px; font-family: inherit; font-size: 15px; letter-spacing: 0.2em;
+  border: 1px solid var(--ink); background: var(--ink); color: var(--paper); cursor: pointer;
+}
+.ov-compare small { display: block; font-size: 11px; letter-spacing: 0.05em; margin-top: 3px; }
+.ov-compare:disabled { background: transparent; color: var(--ink-soft); border-color: rgba(47, 36, 26, 0.3); cursor: not-allowed; }
+
+/* ---------- 对比 ---------- */
+.compare { max-width: 1080px; margin: 0 auto; padding: 36px 32px 60px; }
+.compare header { margin-bottom: 20px; }
+.compare .back {
+  padding: 0; border: 0; background: none; cursor: pointer; font-family: inherit;
+  font-size: 13px; letter-spacing: 0.12em; color: var(--ink-soft);
+}
+.compare .back:hover { color: var(--cinnabar); }
+.compare h1 { margin: 8px 0 6px; font-size: 34px; letter-spacing: 0.2em; }
+.compare header p { margin: 0; font-size: 14px; color: var(--ink-soft); }
+.compare .warn { color: var(--cinnabar); }
+.compare table {
+  width: 100%; border-collapse: collapse; table-layout: fixed;
+  background: url('/assets/ui/ui_panel_paper.webp') center / cover, var(--paper);
+  box-shadow: 0 10px 30px rgba(47, 36, 26, 0.2);
+}
+.compare th, .compare td { padding: 14px 16px; border-bottom: 1px solid rgba(47, 36, 26, 0.15); vertical-align: top; text-align: left; }
+.compare thead th { text-align: center; font-size: 20px; letter-spacing: 0.16em; padding-top: 18px; }
+.compare thead th img { display: block; width: 56px; height: 56px; margin: 0 auto 6px; }
+.compare thead th:first-child { width: 150px; }
+.compare tbody th { font-weight: normal; font-size: 15px; letter-spacing: 0.1em; white-space: nowrap; }
+.compare tbody th img { width: 30px; height: 30px; vertical-align: middle; margin-right: 8px; }
+.compare td strong { display: block; font-size: 18px; letter-spacing: 0.06em; }
+.compare td small { display: block; margin-top: 2px; font-size: 12px; color: var(--ink-soft); }
+.compare td p { margin: 6px 0 0; font-size: 13px; line-height: 1.7; }
+.compare td.same { font-size: 14px; color: var(--ink-soft); text-align: center; }
+.compare i {
+  display: inline-block; margin-top: 6px; padding: 1px 6px; font-style: normal; font-size: 11px;
+  color: #9a6a1c; background: rgba(201, 151, 58, 0.15);
+}
+.compare footer { margin-top: 18px; font-size: 12px; color: var(--ink-soft); }
+
+/* 总览：营建课与自定义模式 */
+.ov-intro { max-height: calc(100vh - 64px); overflow: auto; }
+.ov-sub { margin: 14px 0 6px; padding-top: 10px; border-top: 1px solid rgba(47, 36, 26, 0.2); font-size: 15px; letter-spacing: 0.18em; }
+.ov-lessons { list-style: none; margin: 0; padding: 0; }
+.ov-lessons button {
+  width: 100%; display: flex; gap: 10px; align-items: center; padding: 6px 4px; margin: 0;
+  border: 0; border-bottom: 1px dashed rgba(47, 36, 26, 0.18); background: none; text-align: left; cursor: pointer; font-family: inherit;
+}
+.ov-lessons button:hover b { color: var(--cinnabar); }
+.ov-lessons i {
+  font-style: normal; display: grid; place-items: center; width: 24px; height: 24px; flex: none;
+  border: 1px solid var(--cinnabar); color: var(--cinnabar); font-size: 13px;
+}
+.ov-lessons .done i { background: var(--cinnabar); color: var(--paper); }
+.ov-lessons span { display: flex; flex-direction: column; }
+.ov-lessons b { font-weight: normal; font-size: 13px; letter-spacing: 0.06em; color: var(--ink); }
+.ov-lessons em { font-style: normal; font-size: 11px; color: var(--ink-soft); }
+.ov-lessons .done em { color: var(--cinnabar); }
+.ov-custom {
+  width: 100%; margin-top: 12px; padding: 9px; font-family: inherit; font-size: 15px; letter-spacing: 0.16em;
+  border: 1px solid var(--cinnabar); background: var(--cinnabar); color: var(--paper); cursor: pointer;
+}
+.ov-custom small { display: block; font-size: 11px; letter-spacing: 0.05em; margin-top: 3px; opacity: 0.85; }
+
+.ov-rep { margin: 8px 0 4px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 12px; }
+.ov-rep b { font-weight: normal; letter-spacing: 0.2em; color: var(--ink-soft); }
+.ov-rep span { padding: 1px 8px; border: 1px solid var(--gold); color: var(--ink); background: rgba(201, 151, 58, 0.12); }

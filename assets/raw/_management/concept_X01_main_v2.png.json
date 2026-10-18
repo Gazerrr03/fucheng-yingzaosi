@@ -1,0 +1,14 @@
+{
+  "task": "T7",
+  "asset_id": "X01",
+  "label": "昭明台",
+  "view": "main",
+  "dest": "assets/raw/concepts/X01/concept_X01_main_v2.png",
+  "prompt": "Edit the reference building. Add ONE entire new middle STOREY to the CENTRAL pavilion only. It must have EXACTLY THREE distinct habitable floors above the brick terrace, each with its own continuous window/column band and balcony: lower floor, NEW middle floor, upper floor. Show THREE distinct roof/eave levels; do NOT count brick platform as a floor. Preserve flanking small bell and drum pavilions, terrace dimensions and muted palette. Change terrace's central entry to a rounded STONE ARCH tunnel (not rectangular lintel). Keep three-quarter front-right camera, pure white background, no ground shadow, no labels, no text.",
+  "status": "revision_pending_review",
+  "references": [
+    "/Users/qizhi_dong/Projects/demo/assets/raw/concepts/X01/concept_X01_main.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-7cc457c6-1757-4cfc-922e-f7f76be83b78.png",
+  "visual_review": "Targeted structural revision; awaiting visual inspection."
+}

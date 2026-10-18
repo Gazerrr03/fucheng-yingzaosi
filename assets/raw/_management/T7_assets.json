@@ -1,0 +1,187 @@
+[
+  [
+    "K01",
+    "城墙直段",
+    "One straight Ming grey-brick city wall module, length 40 relative units, height 10, base width 10 and top width 5, battered sides, exterior crenellations and low interior parapet, flat walkable wall-top. No tower, gate, plants or ground slab."
+  ],
+  [
+    "K02",
+    "城墙转角与角台",
+    "One L-shaped 90-degree grey-brick city-wall corner with an outward-projecting square corner platform, same battered wall cross section as K01; exterior crenellations and inner low parapet. No roofed tower."
+  ],
+  [
+    "K03",
+    "马面敌台",
+    "One square solid grey-brick bastion projecting outward from a short straight wall segment, projection roughly 10 relative units, top at same height as wall, crenellated outer parapet, NO roof, tower or gate."
+  ],
+  [
+    "K04a",
+    "单檐城楼",
+    "One grey-brick city-gate terrace, a SINGLE central arched tunnel, topped by a THREE-BAY wooden gate hall with ONE SINGLE-EAVE hip-and-gable xieshan tiled roof. Terrace height 10, wooden hall height 8 relative units. Clear red-brown columns, grey-blue tiles. No extra storeys."
+  ],
+  [
+    "K04b",
+    "重檐城楼",
+    "One main city-gate brick terrace with a SINGLE central arched tunnel, FIVE-BAY wooden gate hall above, DOUBLE-EAVE hip-and-gable xieshan roof, hall height about 12 on terrace height 10 relative units. Grey-blue tiles and muted red-brown columns."
+  ],
+  [
+    "K05a",
+    "方形瓮城",
+    "One rectangular barbican enclosure about 40x30 relative units, connected at back to short taller main wall with central inner gate; outer enclosure walls lower than main wall, outer entry on RIGHT SIDE at 90 degrees to inner gate for a bent approach. Open empty courtyard visible, grey brick crenellations, no extra towers."
+  ],
+  [
+    "K05b",
+    "半圆瓮城",
+    "One semicircular barbican enclosure about 40 relative units diameter, flat back joined to short main wall with inner gate, lower curved outer wall, outer entry on SIDE so approach bends. Empty courtyard, grey-brick crenellations, no extra buildings."
+  ],
+  [
+    "K06",
+    "角楼",
+    "One small TWO-STOREY Ming wooden corner tower on a minimal L-shaped brick corner terrace, grey-blue hip-and-gable roof, restrained red-brown columns, wooden tower about 10 relative units high. Clearly two storeys; no extra floors."
+  ],
+  [
+    "K07a",
+    "南方民居群",
+    "One compact group of FOUR southern Ming courtyard houses, grey-brick plaster walls, grey tiled hard-gable roofs, horse-head/fireproof gable walls, narrow lanes and small courtyards. Entire group roughly square 40x40 units; no enclosing city wall, no tower."
+  ],
+  [
+    "K07b",
+    "北方合院群",
+    "One compact square group of THREE northern Ming siheyuan courtyard compounds, regular square courtyards, muted grey walls, low gently sloping grey-tile roofs, orthogonal arrangement. Entire group roughly 40x40 units; no city walls or tower."
+  ],
+  [
+    "K08",
+    "衙署院落",
+    "One narrow elongated Ming local government courtyard compound about 60 wide x120 deep. Along central axis FRONT TO BACK: main gate, ceremonial gate, main hall, second hall, with side offices and a freestanding spirit screen in front. Single-storey halls, muted red-brown pillars, grey-blue roofs, pale plaster walls. No text plaques."
+  ],
+  [
+    "K09",
+    "方坛",
+    "One SIMPLE SINGLE-LEVEL square earth altar platform about 15x15 units, stairs on all FOUR sides, enclosed by a low square wall with FOUR central entrances. No building, roof, columns, ornaments or multiple stepped terraces."
+  ],
+  [
+    "K10",
+    "庙宇",
+    "One modest single-courtyard Ming temple compound, front mountain gate and main hall to rear, small side rooms, grey-blue tiled roofs, muted red-brown wood and pale walls. One courtyard only, no pagoda."
+  ],
+  [
+    "K11a",
+    "单孔石拱桥",
+    "One simple SINGLE-ARCH stone bridge about 20 units long, gentle curved deck, low plain stone railings, grey rough-cut blocks. One arch opening ONLY, no river, terrain, boat or people."
+  ],
+  [
+    "K11b",
+    "双孔石拱桥",
+    "One simple TWO-ARCH stone bridge about 20 units long, two equal arch openings and a central pier, gently curved deck, low plain railings, grey stone blocks. No river, terrain, boat or people."
+  ],
+  [
+    "K12a",
+    "柳树",
+    "One isolated willow tree, curved brown trunk and drooping branch structure, clusters of long hanging grey-green leaves, low-poly foliage masses with hand-painted detail, about 9 units high. No terrain, pot, building or base island."
+  ],
+  [
+    "K12b",
+    "松树",
+    "One isolated mature Chinese pine tree, angular brown trunk, tiered horizontal branch structure and flat dark muted green needle canopy masses, low-poly hand-painted foliage, about 10 units tall. No terrain or decorative base."
+  ],
+  [
+    "K12c",
+    "杂木团",
+    "One small cluster of THREE deciduous trees as one asset group, irregular rounded muted grey-green canopies at varying heights, brown trunks visible, hand-painted low-poly foliage, no terrain, ground slab, pot or rocks."
+  ],
+  [
+    "K12d",
+    "银杏树",
+    "One isolated ginkgo tree, tall sturdy trunk and spreading rounded canopy, fan-shaped leaf texture in muted yellow-green (not saturated gold), low-poly hand-painted foliage, about 12 units tall. No terrain, pot or base island."
+  ],
+  [
+    "K13a",
+    "石阶码头",
+    "One small Ming stone stair wharf module, wide worn grey steps descending from a rectangular stone landing toward an implied waterline, short side masonry retaining walls and two simple timber mooring posts. Dry isolated object: no water plane, boats or terrain."
+  ],
+  [
+    "K13b",
+    "敞口木船",
+    "One small Ming river wooden skiff, open low narrow hull, exposed interior ribs and simple bench seats, one wooden oar laid inside, muted weathered brown wood. No sail, canopy, water or people."
+  ],
+  [
+    "K13c",
+    "篷顶木船",
+    "One small Ming wooden river boat with curved woven-bamboo canopy over central cabin, open bow and stern, low narrow hull in weathered muted brown. No sail, water or people."
+  ],
+  [
+    "K14",
+    "关厢街屋",
+    "One long ROW of SIX single-storey Ming street shops, grey tiled roofs, projecting lean-to eave awnings, modest timber fronts and plaster party walls, about 60 units long. No hanging text signs, people, street ground or city wall."
+  ],
+  [
+    "X01",
+    "昭明台",
+    "Zhaoming Terrace main complex: tall rectangular masonry platform with one central arched gateway, THREE-STOREY central pavilion facing front, flanked symmetrically by a smaller bell tower and drum tower, one on each side. Central pavilion exactly three storeys per Ming description; reconstructed photo is detail reference ONLY. Grey-blue roofs, muted red-brown columns, ochre-grey platform. No trees, city or terrain."
+  ],
+  [
+    "X02",
+    "临汉门",
+    "Linhan Gate small north gate of Xiangyang: grey-brick battered city-gate platform with one central arched opening, modest wooden gate tower above, restrained grey-blue hip-and-gable roof and red-brown framing, short attached city-wall stubs on both sides. Photo detail reference; exclude river, plaza, modern signs and people."
+  ],
+  [
+    "X03",
+    "夫人城",
+    "Lady's City: small projecting SQUARE outer fortified enclosure connected to an L-shaped main-city northwest wall corner; enclosed square platform with crenellated parapets, battered grey-brick facing over earth core, about 70 relative units perimeter and 11 high. No grand tower, garden, stele or river; show wall geometry clearly."
+  ],
+  [
+    "X04",
+    "仲宣楼",
+    "Zhongxuan Tower: southeast corner tower with THREE readable parts, short corner wall, raised brick terrace and TWO-STOREY DOUBLE-EAVE hip-and-gable pavilion. Total height about 17 relative units, grey-blue tiled roofs, restrained red-brown timber, ochre-grey brick. No extra storeys, terrain or text."
+  ],
+  [
+    "X05",
+    "绿影壁",
+    "Ming Green Spirit Screen: one long STRAIGHT freestanding ornamental screen wall about 26 units wide x7.6 high, four engaged columns dividing THREE bays, green carved stone panels with subtle dragon relief, pale white-stone carved borders, three connected hip-roof-like crowns, central crown higher. Not a gateway: panels solid, no through-openings. Muted green stone and ivory, no courtyard or text."
+  ],
+  [
+    "X06",
+    "府儒学",
+    "One Ming Confucian temple complex along front-back axis: two modest freestanding entrance archways in front, Lingxing lattice gate, halberd gate then Dacheng main hall, side covered halls on both sides. Symmetric elongated plan, grey-blue tiles, muted red-brown columns, pale stone; no plaques, characters, people, water or terrain."
+  ],
+  [
+    "X07",
+    "东北外城与震华门",
+    "Xiangyang northeastern outer-city junction module: short main grey-brick city wall meets a lower outward-bulging RECTANGULAR outer enclosure at its corner, one long-gate tower (Zhenhua) with a single arch in outer wall. Clearly distinguish main and outer wall junction, crenellations, modest grey-blue tiled tower. Not a whole city, no water, terrain or houses."
+  ],
+  [
+    "J01",
+    "宾阳楼与瓮城",
+    "Jingzhou east gate Binyang complex: tall rectangular brick gate platform topped by modest double-eave Ming hip-and-gable gate tower, attached roughly SQUARE barbican courtyard, outer gate offset at about 45 degrees to main gate, creating bent approach. Grey bricks, grey-blue tiles, red-brown columns, no water, city or terrain."
+  ],
+  [
+    "J02",
+    "朝宗楼",
+    "Jingzhou north gate Chaozong concept: brick platform with single central arched gateway, tower FIVE bays wide and THREE bays deep, double-eave hip-and-gable roof, tower footprint about 18x12 relative units. Ming game concept using later surviving form only as reference, restrained ornament; grey-blue tiles, muted red-brown wood, grey brick. No text or terrain."
+  ],
+  [
+    "J03",
+    "公安水门",
+    "Jingzhou Gong'an water-gate complex: brick gate platform and SEMICIRCULAR lower barbican, connected outside to an isolated stone-stair river wharf. No wooden gate tower (lost), one arch gate to implied inner river. Dry module without water plane, boats, city or terrain."
+  ],
+  [
+    "J04",
+    "南纪门",
+    "Jingzhou Nanji gate complex: main gate platform and separate arrow-tower platform aligned on one straight front-back axis; side doors to left and right create a CROSS-shaped circulation through the barbican passage. Modest wooden gate hall with grey-blue tiled roof on main platform, grey-brick crenellated outer platform. No city, water or terrain."
+  ],
+  [
+    "J05",
+    "洪武砖墙段",
+    "Hongwu-era grey-brick city wall straight module, battered wide base narrow top, crenellated exterior parapet, short walkable top. Large grey bricks with a few faint worn incised seal-like brick-maker marks, deliberately illegible erosion, NO readable characters or text. No gate, tower, terrain or people."
+  ],
+  [
+    "B01",
+    "保定府署",
+    "One large elongated Baoding prefectural government complex, axial sequence main gate, ceremonial gate, main hall, second hall, rear residence and upper rooms, FIVE consecutive courtyards, symmetric side offices and pale perimeter walls. Ming restrained styling; later Qing plan is spatial reference only. Grey-blue roofs, pale walls, muted red-brown timber. No city, modern plaza or text plaques."
+  ],
+  [
+    "B03",
+    "引水渠与水磨",
+    "One compact historic spring canal and water-powered stone mill module: low stone canal trough leads to one timber undershot water wheel at side of a modest grey-tiled mill hut; wheel axle connected to visible circular stone millstones via simple wooden shaft. No flowing water surface (added by program), no terrain island, people or city."
+  ]
+]

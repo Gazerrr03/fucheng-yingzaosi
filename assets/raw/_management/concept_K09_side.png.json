@@ -1,0 +1,14 @@
+{
+  "task": "T7",
+  "asset_id": "K09",
+  "label": "方坛",
+  "view": "side",
+  "dest": "assets/raw/concepts/K09/concept_K09_side.png",
+  "prompt": "Create a NEW CAMERA VIEW of the EXACT object in input image 1. Produce ONE architectural ORTHOGRAPHIC FRONT ELEVATION at EYE LEVEL. Rotate and lower camera from the reference to look straight and horizontally at the front. Roof ridges, wall tops and bases must be HORIZONTAL, verticals VERTICAL. NO isometric view, NO three-quarter view, NO top-down perspective; no diagonal receding plan visible, no view down onto roof or floor surfaces. Preserve the precise number of floors, roof tiers, bays, arches, overall width-to-height proportions, materials and colors. Do not invent extra parts. Pure SOLID WHITE background, soft even light, no shadow patch or ground plane, no people, plants unless this asset IS a tree, text, labels or multiple panels. Single isolated centered object with margin. Asset identity: K09 方坛. One SIMPLE SINGLE-LEVEL square earth altar platform about 15x15 units, stairs on all FOUR sides, enclosed by a low square wall with FOUR central entrances. No building, roof, columns, ornaments or multiple stepped terraces.",
+  "status": "generated_pending_pair_review",
+  "references": [
+    "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-3a653596-c9fc-470d-8387-3eddc5798c9a.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-7a05d681-6ca5-4fe5-bd03-04ab84185e8c.png",
+  "visual_review": "Concept generated, awaiting pair review; PNG actual size and original hash recorded. No GLB generated."
+}

@@ -1,0 +1,2163 @@
+[
+  {
+    "task": "T0",
+    "key": "style_master",
+    "path": "assets/raw/style/style_master.png",
+    "label": "已选主风格 01",
+    "status": "user_selected"
+  },
+  {
+    "task": "T1",
+    "status": "concept_pending_control_map",
+    "visual_review": "Palette consistent; broad northern river and southern hills present. Gate count, northeast extension and 5% edge fade not accepted; control calibration pending.",
+    "path": "assets/raw/maps/candidates/map_xiangyang.png",
+    "dimensions": [
+      1448,
+      1086
+    ],
+    "sha256": "1395071be23e2c2668d07ec859d9d2c36adbfa8e301fcf64df299a036ec1be3d",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-8ad5504a-54f4-4baa-8455-b6cd47da0c09.png",
+    "prompt_file": "assets/raw/_management/prompts/map_xiangyang.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "map_xiangyang"
+  },
+  {
+    "task": "T2",
+    "status": "concept_pending_control_map",
+    "visual_review": "Elongated city and southern river present; no obvious text/grid. Gate count, water gate topology and northern terrain require control calibration. Size below requested final.",
+    "path": "assets/raw/maps/candidates/map_jingzhou.png",
+    "dimensions": [
+      1586,
+      992
+    ],
+    "sha256": "adb1a98e028d5736203c81fcd4f2cd97a6849509dcdcbf0831735c79057a56bd",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-18930562-4856-447a-bac6-a53a31a3706b.png",
+    "prompt_file": "assets/raw/_management/prompts/map_jingzhou.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "map_jingzhou"
+  },
+  {
+    "task": "T3",
+    "status": "concept_pending_control_map",
+    "visual_review": "Southwest westward bulge and internal ponds present. Western hills too prominent, southern hills unwanted; gate count, canals and edge fading require calibration. No obvious text/grid. Size below final requirement.",
+    "path": "assets/raw/maps/candidates/map_baoding.png",
+    "dimensions": [
+      1340,
+      1174
+    ],
+    "sha256": "8c99ffee7afbb23fec6adc8d4840fe32435abbd500ac18d8cc5a5ee3740cca67",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-bcc1c88d-f1fb-4be3-ab68-b74f08400f87.png",
+    "prompt_file": "assets/raw/_management/prompts/map_baoding.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "map_baoding"
+  },
+  {
+    "task": "T4",
+    "status": "concept_pending_location_sketch",
+    "visual_review": "Three city silhouettes and east coast present, approximate north/south arrangement. River confluence and geography are illustrative and need location-sketch correction; too dense for requested large negative space. No obvious text/grid. Below requested dimensions.",
+    "path": "assets/raw/maps/candidates/map_overview.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "sha256": "7e571ac1ba298dad7f1a1b67dc235143155909f011a8ffefc4a90fb2eebfb7ee",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-dd733d31-221a-4300-b5b9-dbd536e97776.png",
+    "prompt_file": "assets/raw/_management/prompts/map_overview.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "map_overview"
+  },
+  {
+    "task": "T5",
+    "status": "reviewed_raw_pending_resolution_and_runtime",
+    "visual_review": "Viewed: two thick clouds and two thin ribbons, transparent RGBA verified. Thick cloud centers alpha 252-253; screen coverage and target 2048 resolution pending.",
+    "path": "assets/raw/clouds/cloud_01.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "c8cd9f38f399f11a17680cfbd3ce6ad3dc1a6cea0abf452250aea1d9369e9bc3",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-7dd1b87d-85ae-4233-83e1-d224612e0e57.png",
+    "prompt_file": "assets/raw/_management/prompts/cloud_01.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "cloud_01"
+  },
+  {
+    "task": "T5",
+    "status": "reviewed_raw_pending_resolution_and_runtime",
+    "visual_review": "Viewed: two thick clouds and two thin ribbons, transparent RGBA verified. Thick cloud centers alpha 252-253; screen coverage and target 2048 resolution pending.",
+    "path": "assets/raw/clouds/cloud_02.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "a9205e2cd1107c03f91bb386f6caddb2c975e57a44356ecfe0e6fe51d9811ad0",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-67b347b4-e676-47ed-80bb-2210a60866bf.png",
+    "prompt_file": "assets/raw/_management/prompts/cloud_02.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "cloud_02"
+  },
+  {
+    "task": "T5",
+    "status": "reviewed_raw_pending_resolution_and_runtime",
+    "visual_review": "Viewed: two thick clouds and two thin ribbons, transparent RGBA verified. Thick cloud centers alpha 252-253; screen coverage and target 2048 resolution pending.",
+    "path": "assets/raw/clouds/cloud_03.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "02b0aa9cde07b2209fdb61775cecbd858840336096186c2fa081c6bef19d22c4",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-1af9c478-1ade-43e3-a96a-6a94a004a95a.png",
+    "prompt_file": "assets/raw/_management/prompts/cloud_03.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "cloud_03"
+  },
+  {
+    "task": "T5",
+    "status": "reviewed_raw_pending_resolution_and_runtime",
+    "visual_review": "Viewed: two thick clouds and two thin ribbons, transparent RGBA verified. Thick cloud centers alpha 252-253; screen coverage and target 2048 resolution pending.",
+    "path": "assets/raw/clouds/cloud_04.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "0d2253fc412a70d9e7ac1750dcc676d73c660500112ec9fb24e470d54c367e08",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-941faeab-68de-4774-971d-6ef51d31155a.png",
+    "prompt_file": "assets/raw/_management/prompts/cloud_04.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "cloud_04"
+  },
+  {
+    "task": "T6",
+    "status": "reviewed_raw_pending_delivery_size",
+    "requested_size": "1024x1536 portrait",
+    "visual_review": "Viewed: intended UI subject present, no obvious text. Raw high-resolution output; target delivery size not normalized.",
+    "path": "assets/raw/ui/ui_panel_paper.png",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sha256": "3fc3f71b10e4e23ffe2582f901edbee62d670d8cd93a1892ca025be4ec2dcebb",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-907e1af1-adda-41f9-8c9c-75a67fac66d4.png",
+    "prompt_file": "assets/raw/_management/prompts/ui_panel_paper.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "ui_panel_paper"
+  },
+  {
+    "task": "T6",
+    "status": "reviewed_raw_pending_delivery_size",
+    "requested_size": "512x512 square",
+    "visual_review": "Viewed: intended UI subject present, no obvious text. Raw high-resolution output; target delivery size not normalized.",
+    "path": "assets/raw/ui/icon_gene_1.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "0310095903240243094deeaa5cff7ca6ce244c716dd423c0da702f07c4eda6e4",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-890c5794-d518-4b28-b48a-b339fefd7bc7.png",
+    "prompt_file": "assets/raw/_management/prompts/icon_gene_1.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "icon_gene_1"
+  },
+  {
+    "task": "T6",
+    "status": "reviewed_raw_pending_delivery_size",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/ui/icon_gene_2.png"
+    ],
+    "visual_review": "Viewed: simplified city footprint, no internal houses/streets; red seal style retained.",
+    "path": "assets/raw/ui/icon_gene_2_v2.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "eeee05cf25e4b779c3caca023f887541e76f019e0c23bde255dd9d76f5e498cf",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-81510293-c869-46c6-a40f-eb3893ba8289.png",
+    "prompt_file": "assets/raw/_management/prompts/icon_gene_2_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "icon_gene_2"
+  },
+  {
+    "task": "T6",
+    "status": "reviewed_raw_pending_delivery_size",
+    "requested_size": "512x512 square",
+    "visual_review": "Viewed: intended UI subject present, no obvious text. Raw high-resolution output; target delivery size not normalized.",
+    "path": "assets/raw/ui/icon_gene_3.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "55de02aa264255abe9923b00faac3c9b204b0592f3f79cd2841a1ec7feb5eabc",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-f2406e99-847f-4b27-b22a-06405123894f.png",
+    "prompt_file": "assets/raw/_management/prompts/icon_gene_3.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "icon_gene_3"
+  },
+  {
+    "task": "T6",
+    "status": "reviewed_raw_pending_delivery_size",
+    "requested_size": "512x512 square",
+    "visual_review": "Viewed: intended UI subject present, no obvious text. Raw high-resolution output; target delivery size not normalized.",
+    "path": "assets/raw/ui/icon_gene_4.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "e7fc11fe3e7a34ef684279732e6206af16f2de313692a4f1572b9e765fd5ee24",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-be10d3e0-b8d2-44a8-adcb-3dd4f640c607.png",
+    "prompt_file": "assets/raw/_management/prompts/icon_gene_4.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "icon_gene_4"
+  },
+  {
+    "task": "T6",
+    "status": "reviewed_raw_pending_delivery_size",
+    "requested_size": "512x512 square",
+    "visual_review": "Viewed: intended UI subject present, no obvious text. Raw high-resolution output; target delivery size not normalized.",
+    "path": "assets/raw/ui/icon_gene_5.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "ec375947acbc2876e0516d04c28338bcd359fad2ddc94e37c7cfb063a11d84d8",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-ffc9c0eb-dd42-4abc-852f-ac20106a4fff.png",
+    "prompt_file": "assets/raw/_management/prompts/icon_gene_5.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "icon_gene_5"
+  },
+  {
+    "task": "T6",
+    "status": "reviewed_raw_pending_delivery_size",
+    "requested_size": "512x512 square",
+    "visual_review": "Viewed: intended UI subject present, no obvious text. Raw high-resolution output; target delivery size not normalized.",
+    "path": "assets/raw/ui/icon_gene_6.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "9be9c81f19af3c0e56cdf7d7dc58c6829c210cedf7bc3689d1b492b04a7cb497",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-c4d6761f-a2de-4660-92af-99374dfa8187.png",
+    "prompt_file": "assets/raw/_management/prompts/icon_gene_6.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "icon_gene_6"
+  },
+  {
+    "task": "T6",
+    "status": "reviewed_raw_pending_delivery_size",
+    "requested_size": "512x512 square",
+    "visual_review": "Viewed: intended UI subject present, no obvious text. Raw high-resolution output; target delivery size not normalized.",
+    "path": "assets/raw/ui/icon_gene_7.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "367d25c6fb9e1ccda1ad08f8046a037fa406874a70195884c452dffb2fb91c82",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-9e17a41e-6bf6-45da-87fb-008d62d236e3.png",
+    "prompt_file": "assets/raw/_management/prompts/icon_gene_7.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "icon_gene_7"
+  },
+  {
+    "task": "T6",
+    "status": "reviewed_raw_pending_delivery_size",
+    "requested_size": "512x512 square",
+    "visual_review": "Viewed: intended UI subject present, no obvious text. Raw high-resolution output; target delivery size not normalized.",
+    "path": "assets/raw/ui/icon_gene_off.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "d77b1b18c3cd529deb3133421a320c214402ec2ae1eb035e1a8fac16b9345270",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-b9abe510-0ad2-469e-a97d-fbb610b54535.png",
+    "prompt_file": "assets/raw/_management/prompts/icon_gene_off.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "icon_gene_off"
+  },
+  {
+    "task": "T6",
+    "status": "reviewed_raw_pending_delivery_size",
+    "requested_size": "512x512 square",
+    "visual_review": "Viewed: intended UI subject present, no obvious text. Raw high-resolution output; target delivery size not normalized.",
+    "path": "assets/raw/ui/seal_xiangyang.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "83153aabb1f465e7add7ad6196e54006a68a305c778baaca7871524753b05596",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-e97dbaa7-f60e-419c-82f8-bc66b52eba36.png",
+    "prompt_file": "assets/raw/_management/prompts/seal_xiangyang.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "seal_xiangyang"
+  },
+  {
+    "task": "T6",
+    "status": "reviewed_raw_pending_delivery_size",
+    "requested_size": "512x512 square",
+    "visual_review": "Viewed: intended UI subject present, no obvious text. Raw high-resolution output; target delivery size not normalized.",
+    "path": "assets/raw/ui/seal_jingzhou.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "7de323a14bb3534a70e9c81f3156500ac43378b6e50e975b5373a5268e0fd846",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-d5578db3-6998-4347-abe2-86de83e79779.png",
+    "prompt_file": "assets/raw/_management/prompts/seal_jingzhou.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "seal_jingzhou"
+  },
+  {
+    "task": "T6",
+    "status": "reviewed_raw_pending_delivery_size",
+    "requested_size": "512x512 square",
+    "visual_review": "Viewed: intended UI subject present, no obvious text. Raw high-resolution output; target delivery size not normalized.",
+    "path": "assets/raw/ui/seal_baoding.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "f7ec978f584b7e357e4e3860b10d56d23dbf75b4c19dbdd86645be16cab5b035",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-71226b3f-99ca-4153-aa83-6c6a635a7100.png",
+    "prompt_file": "assets/raw/_management/prompts/seal_baoding.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "seal_baoding"
+  },
+  {
+    "task": "T6",
+    "status": "reviewed_raw_pending_delivery_size",
+    "requested_size": "256x256 square",
+    "visual_review": "Viewed: intended UI subject present, no obvious text. Raw high-resolution output; target delivery size not normalized.",
+    "path": "assets/raw/ui/icon_marker_gate.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "a771f59975e61c6ba6b7979de0799e63ae9f83b60e2c20376a29e27c73e170ca",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-40ebbefe-66a5-430c-bbc0-2a04ee0ce5b2.png",
+    "prompt_file": "assets/raw/_management/prompts/icon_marker_gate.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "icon_marker_gate"
+  },
+  {
+    "task": "T6",
+    "status": "reviewed_raw_pending_delivery_size",
+    "requested_size": "256x256 square",
+    "visual_review": "Viewed: intended UI subject present, no obvious text. Raw high-resolution output; target delivery size not normalized.",
+    "path": "assets/raw/ui/icon_marker_landmark.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "b1f596f2ae54e16bd38a42b2b06e9585fe1d2534b601176d245189b9a5419435",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-c171ee20-c8cf-4bb2-b101-d8e2e30274f4.png",
+    "prompt_file": "assets/raw/_management/prompts/icon_marker_landmark.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "icon_marker_landmark"
+  },
+  {
+    "task": "T6",
+    "status": "reviewed_raw_pending_delivery_size",
+    "requested_size": "256x256 square",
+    "visual_review": "Viewed: intended UI subject present, no obvious text. Raw high-resolution output; target delivery size not normalized.",
+    "path": "assets/raw/ui/icon_marker_temple.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "7e58df22674d0bf45fb29cda5ffe692b893d7e996c5dee4af4ac6d7bd81badf1",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-456e72df-3985-45d0-8235-c2773d61e463.png",
+    "prompt_file": "assets/raw/_management/prompts/icon_marker_temple.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "icon_marker_temple"
+  },
+  {
+    "task": "T6",
+    "status": "reviewed_raw_pending_delivery_size",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/ui/icon_marker_office.png"
+    ],
+    "visual_review": "Viewed: single-eave hall plus low spirit screen; distinct from double-eave temple marker.",
+    "path": "assets/raw/ui/icon_marker_office_v2.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "f44516accce41dbb36b93da8c339904174d6dcc8cbc4943676181540140aa3bf",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-c9d2c3b8-9704-46a2-b22b-d80c6d604834.png",
+    "prompt_file": "assets/raw/_management/prompts/icon_marker_office_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "icon_marker_office"
+  },
+  {
+    "task": "T6",
+    "status": "reviewed_raw_pending_delivery_size",
+    "requested_size": "256x256 square",
+    "visual_review": "Viewed: intended UI subject present, no obvious text. Raw high-resolution output; target delivery size not normalized.",
+    "path": "assets/raw/ui/icon_marker_water.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "1bc57f082c321f67f7d0437a7485333858db9dea6ff8dceaa6d1a5755f4ff718",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-5d04c5fa-3cb7-4a95-a058-75292d3294d1.png",
+    "prompt_file": "assets/raw/_management/prompts/icon_marker_water.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "icon_marker_water"
+  },
+  {
+    "task": "T6",
+    "status": "reviewed_raw_pending_delivery_size",
+    "requested_size": "256x256 square",
+    "visual_review": "Viewed: intended UI subject present, no obvious text. Raw high-resolution output; target delivery size not normalized.",
+    "path": "assets/raw/ui/icon_marker_mountain.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "4c71d52a6c31ae3ac133685ddd1b41f53897a8f8fac4230de76d284ebc8d2d56",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-bd972217-5baa-4278-8869-a9e9cb5c1591.png",
+    "prompt_file": "assets/raw/_management/prompts/icon_marker_mountain.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "icon_marker_mountain"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K01",
+    "label": "城墙直段",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: isolated subject, no obvious text/scenery; main and elevation have broadly consistent major geometry. Concept only; exact geometry not verified.",
+    "path": "assets/raw/concepts/K01/concept_K01_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "532b30b66265975aa1e7e38e35e56c4d2b1c7954d227c1330cb710ce6b90c78b",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-9d79f54d-b98e-4769-b49e-0005d574cdd2.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K01_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K01_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K01",
+    "label": "城墙直段",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-9d79f54d-b98e-4769-b49e-0005d574cdd2.png",
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: isolated subject, no obvious text/scenery; main and elevation have broadly consistent major geometry. Concept only; exact geometry not verified.",
+    "path": "assets/raw/concepts/K01/concept_K01_side.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "ce9d1e5e288cd79e425decfecd1ff110eeaf31024bba3db03160cb89c199440f",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-6ce9c34a-36f9-49ec-bb27-bf9457e5581f.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K01_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K01_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K02",
+    "view": "main",
+    "status": "reviewed_concept",
+    "visual_review": "Viewed revised pair: foliage removed; side camera changed to level elevation.",
+    "path": "assets/raw/concepts/K02/concept_K02_main_v2.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "be7b9173754f6a941a3063792b61c8184e46c82e31a2a1e32956929264e64146",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-d7a0054c-d1bd-47d2-8a90-5866b75f2df4.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K02_main_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K02_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K02",
+    "view": "side",
+    "status": "reviewed_concept",
+    "visual_review": "Viewed revised pair: foliage removed; side camera changed to level elevation.",
+    "path": "assets/raw/concepts/K02/concept_K02_side_v2.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "a27a5d1bbff50cdbe0ad5410ab227170896341c897486db88ecd76be5e33afd3",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-e931f7c3-8144-4e5d-8ec7-a762df0cc3cd.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K02_side_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K02_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K03",
+    "label": "马面敌台",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: isolated subject, no obvious text/scenery; main and elevation have broadly consistent major geometry. Concept only; exact geometry not verified.",
+    "path": "assets/raw/concepts/K03/concept_K03_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "35128a5f879e61ab9b196bb5684e884a46c7cab6b955bfe43562caf80fbea691",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-43e68986-706d-4af1-95fe-98d5a81546db.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K03_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K03_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K03",
+    "label": "马面敌台",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-43e68986-706d-4af1-95fe-98d5a81546db.png"
+    ],
+    "visual_review": "Viewed: isolated subject, no obvious text/scenery; main and elevation have broadly consistent major geometry. Concept only; exact geometry not verified.",
+    "path": "assets/raw/concepts/K03/concept_K03_side.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "a7bb697ac72ed98d6d8564b343b3c5d7ea1e8174a123286adaa7d8b4d213e0cb",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-43df4ad7-cac3-4eb9-9ead-b2ffdb7a71ca.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K03_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K03_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K04a",
+    "label": "单檐城楼",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: isolated subject, no obvious text/scenery; main and elevation have broadly consistent major geometry. Concept only; exact geometry not verified.",
+    "path": "assets/raw/concepts/K04a/concept_K04a_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "e88816b0b75d08b89714e93c5e657d4faa2d381e2a38361a4f0e0906aff12751",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-d39a522d-93fc-47de-a538-36e73670610d.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K04a_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K04a_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K04a",
+    "label": "单檐城楼",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-d39a522d-93fc-47de-a538-36e73670610d.png"
+    ],
+    "visual_review": "Viewed: isolated subject, no obvious text/scenery; main and elevation have broadly consistent major geometry. Concept only; exact geometry not verified.",
+    "path": "assets/raw/concepts/K04a/concept_K04a_side.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "9ec32072ad6849a37671a395386b708be4a08be45f85f6d242de4711e80f4391",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-a9eb1399-77c9-40a3-838d-2ec44f411f95.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K04a_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K04a_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K04b",
+    "label": "重檐城楼",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: isolated subject, no obvious text/scenery; main and elevation have broadly consistent major geometry. Concept only; exact geometry not verified.",
+    "path": "assets/raw/concepts/K04b/concept_K04b_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "7f45df542dcd564aca7ee40a0d868428254150c972958dfdeb06ab0dcc13325e",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-fb51894c-ceb3-4bac-b1e0-c5ed224801a4.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K04b_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K04b_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K04b",
+    "label": "重檐城楼",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-fb51894c-ceb3-4bac-b1e0-c5ed224801a4.png"
+    ],
+    "visual_review": "Viewed: isolated subject, no obvious text/scenery; main and elevation have broadly consistent major geometry. Concept only; exact geometry not verified.",
+    "path": "assets/raw/concepts/K04b/concept_K04b_side.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "fcd4bc3c77200239042383a475797188f5a456bce354a0a025b732d2e558f6cb",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-8f61a793-03cb-4e46-9921-9b4281d52aea.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K04b_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K04b_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K05a",
+    "label": "方形瓮城",
+    "view": "main",
+    "status": "needs_elevation_refinement",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Main shows intended enclosure and bent approach; supplementary image still slightly elevated rather than strict orthographic.",
+    "path": "assets/raw/concepts/K05a/concept_K05a_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "793e388eadf1d974ebd41f1d990c868e8a5eee7b68be4c08cf207e5d7a748e0a",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-5bb4e0f7-5d71-486d-a120-520aa4bdee80.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K05a_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K05a_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K05a",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/concepts/K05a/concept_K05a_main.png"
+    ],
+    "visual_review": "Viewed: revised level-facing side silhouette, no fully exposed courtyard floor; exact multi-view geometry remains unverified.",
+    "path": "assets/raw/concepts/K05a/concept_K05a_side_v2.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "7f5ee6e51af5b1754cfa85a831f56414fcc48952e66e018db1771230fdd8a5fe",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-e5da9108-422f-4ccd-803a-e78d7dc43717.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K05a_side_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K05a_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K05b",
+    "label": "半圆瓮城",
+    "view": "main",
+    "status": "needs_elevation_refinement",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Main shows intended enclosure and bent approach; supplementary image still slightly elevated rather than strict orthographic.",
+    "path": "assets/raw/concepts/K05b/concept_K05b_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "72cca276595d960cee7303f8f88e1ecc65780e6ad18f751237c1ff7a2000316b",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-287f4161-a971-4885-9ff7-2fa23caa0fb0.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K05b_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K05b_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K05b",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/concepts/K05b/concept_K05b_main.png"
+    ],
+    "visual_review": "Viewed: revised level-facing side silhouette, no fully exposed courtyard floor; exact multi-view geometry remains unverified.",
+    "path": "assets/raw/concepts/K05b/concept_K05b_side_v2.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "b975e5cd7d285f21d75648bb58d3920652b9a601d83cbbf82addd782ef6f7950",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-30153eb8-3dd2-486a-9d69-40f0bc5097ce.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K05b_side_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K05b_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K06",
+    "label": "角楼",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: isolated subject, no obvious text/scenery; main and elevation have broadly consistent major geometry. Concept only; exact geometry not verified.",
+    "path": "assets/raw/concepts/K06/concept_K06_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "e3566395e2b33ffa8c43c6b067683124605f1faf2228bef96c63c2bcdb314bfd",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-9e9c9400-616c-4413-bcdb-7f46f0f6b0cc.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K06_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K06_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K06",
+    "label": "角楼",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-9e9c9400-616c-4413-bcdb-7f46f0f6b0cc.png"
+    ],
+    "visual_review": "Viewed: isolated subject, no obvious text/scenery; main and elevation have broadly consistent major geometry. Concept only; exact geometry not verified.",
+    "path": "assets/raw/concepts/K06/concept_K06_side.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "43a048a10e19d169f28cb2c5fd6d0bfcdb919357d7d1ddfa225077e2305f11fd",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-d05cf63f-03ca-4eee-ba2b-12af3a83835e.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K06_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K06_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K07a",
+    "label": "南方民居群",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: intended compound present, isolated on white, no obvious text. Supplementary camera still elevated; not strict orthographic.",
+    "path": "assets/raw/concepts/K07a/concept_K07a_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "1f532fe3d437ae155918a66f93d4cc44611ca711a6429f117672d253bd3e7900",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-0ceacfae-844b-40b0-81ce-177812d8780b.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K07a_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K07a_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K07a",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/concepts/K07a/concept_K07a_main.png"
+    ],
+    "visual_review": "Viewed: revised level-facing side silhouette, no fully exposed courtyard floor; exact multi-view geometry remains unverified.",
+    "path": "assets/raw/concepts/K07a/concept_K07a_side_v2.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "428127c6aad95e07132a4ec62ed61266097259fd0aefb08da27addcdb85e0b34",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-2d191b89-72ce-47fc-af2e-05f90f9b60b9.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K07a_side_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K07a_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K07b",
+    "label": "北方合院群",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: intended compound present, isolated on white, no obvious text. Supplementary camera still elevated; not strict orthographic.",
+    "path": "assets/raw/concepts/K07b/concept_K07b_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "43b7cfa58c12b0ec5b81abd26c654235311078e1397d6f1f0aa9b798426a3679",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-6d37ad92-2536-4116-9c8e-67899376e0ae.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K07b_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K07b_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K07b",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/concepts/K07b/concept_K07b_main.png"
+    ],
+    "visual_review": "Viewed: revised level-facing side silhouette, no fully exposed courtyard floor; exact multi-view geometry remains unverified.",
+    "path": "assets/raw/concepts/K07b/concept_K07b_side_v2.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "sha256": "4b3d20d7778345daca533a693b0801945f9fda2e50e0419baa995dbd126385bf",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-dac03e08-7c17-4d85-8023-2ffca2cd4c52.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K07b_side_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K07b_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K08",
+    "label": "衙署院落",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: intended compound present, isolated on white, no obvious text. Supplementary camera still elevated; not strict orthographic.",
+    "path": "assets/raw/concepts/K08/concept_K08_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "b555cf0794f45fc274fa6fe68ec0a30e2bdf08c00a1813fb8d5c74479fff57d8",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-e2335288-6a53-4823-a8d8-200b2ac3732c.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K08_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K08_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K08",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/concepts/K08/concept_K08_main.png"
+    ],
+    "visual_review": "Viewed: revised level-facing side silhouette, no fully exposed courtyard floor; exact multi-view geometry remains unverified.",
+    "path": "assets/raw/concepts/K08/concept_K08_side_v2.png",
+    "dimensions": [
+      1774,
+      887
+    ],
+    "sha256": "655d92d3cc34baf442012c311eee0a7baa849df8ebe9a11c18a7a2e14b89e60f",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-8e0b1943-7d39-42a0-b573-f0d7cb3d0d08.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K08_side_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K08_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K09",
+    "label": "方坛",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: low earth altar, four stairs, separate low enclosure with four gaps.",
+    "path": "assets/raw/concepts/K09/concept_K09_main_v2.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "sha256": "b7e6ad7117f4d645a2d886e09041f551fef4dbe4b0c049ae8dd4e915e4ffd267",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-58da162d-d178-4a27-8f2f-f106c400418a.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K09_main_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K09_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K09",
+    "label": "方坛",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-58da162d-d178-4a27-8f2f-f106c400418a.png"
+    ],
+    "visual_review": "Viewed: low earth altar, four stairs, separate low enclosure with four gaps.",
+    "path": "assets/raw/concepts/K09/concept_K09_side_v2.png",
+    "dimensions": [
+      1774,
+      887
+    ],
+    "sha256": "8b60afb41a75718a800e0aac5f3364e6cf6bdf62a3e7dcbc60136e7e7845b31c",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-bca3e8c6-8489-4b9b-9cbe-93a78adf287d.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K09_side_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K09_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K10",
+    "label": "庙宇",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: intended compound present, isolated on white, no obvious text. Supplementary camera still elevated; not strict orthographic.",
+    "path": "assets/raw/concepts/K10/concept_K10_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "31761f10d39756bada3335dfa8274f37e59219b1dd77585a394207389d39a7d5",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-2c81bf6e-7a59-4178-ac53-5bd5ddf52864.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K10_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K10_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K10",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/concepts/K10/concept_K10_main.png"
+    ],
+    "visual_review": "Viewed: revised level-facing side silhouette, no fully exposed courtyard floor; exact multi-view geometry remains unverified.",
+    "path": "assets/raw/concepts/K10/concept_K10_side_v2.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "sha256": "594713acf189f498d72c6006e94fdda7db192e05b904feab517f8c2eb6e5adbf",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-b1ebd4ad-cb53-42fe-aed9-2a86efa186de.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K10_side_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K10_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K11a",
+    "label": "单孔石拱桥",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: correct one/two arches, isolated bridge, complementary elevation and matching broad proportions.",
+    "path": "assets/raw/concepts/K11a/concept_K11a_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "801a1c382b23199dfa809046c8356a81ad7a8d87404b275d3c4fb7a6750659a8",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-f79b76bf-3a73-493a-a8d9-1f9e953b6ce5.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K11a_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K11a_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K11a",
+    "label": "单孔石拱桥",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-f79b76bf-3a73-493a-a8d9-1f9e953b6ce5.png"
+    ],
+    "visual_review": "Viewed: correct one/two arches, isolated bridge, complementary elevation and matching broad proportions.",
+    "path": "assets/raw/concepts/K11a/concept_K11a_side.png",
+    "dimensions": [
+      1774,
+      887
+    ],
+    "sha256": "b0d425597194a6a4597505a6a48fdc644b52f1f8fb75ec36d9ab16e38c83ba81",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-866799b3-f5e9-416d-86bf-79527692ca0f.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K11a_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K11a_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K11b",
+    "label": "双孔石拱桥",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: correct one/two arches, isolated bridge, complementary elevation and matching broad proportions.",
+    "path": "assets/raw/concepts/K11b/concept_K11b_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "1b8aaf6d12813af00f87d7f04264994b1863534ce182f0712124baa9778b3ed7",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-e6a966a1-1925-40d5-883c-4358b34b21b0.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K11b_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K11b_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K11b",
+    "label": "双孔石拱桥",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-e6a966a1-1925-40d5-883c-4358b34b21b0.png"
+    ],
+    "visual_review": "Viewed: correct one/two arches, isolated bridge, complementary elevation and matching broad proportions.",
+    "path": "assets/raw/concepts/K11b/concept_K11b_side.png",
+    "dimensions": [
+      1774,
+      887
+    ],
+    "sha256": "d248354f59acfba5de5c2416805f5c45e31de8df4a8f07e8f462cfb74f0e7a8b",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-ce6a5845-b8fa-4915-b056-0e7681cc88aa.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K11b_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K11b_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K12a",
+    "label": "柳树",
+    "view": "main",
+    "status": "reviewed_concept_limited_view_separation",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: species and low-poly style distinguishable, isolated on white. Main/side camera difference limited; exact multi-view geometry not verified.",
+    "path": "assets/raw/concepts/K12a/concept_K12a_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "3cb13a4eb8ba23dba5b018a3292c042faac667de908059f73cc12e091ccb5bf0",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-bb9968f0-a26b-4bbe-96b2-d6db12714ffe.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K12a_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K12a_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K12a",
+    "label": "柳树",
+    "view": "side",
+    "status": "reviewed_concept_limited_view_separation",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-bb9968f0-a26b-4bbe-96b2-d6db12714ffe.png"
+    ],
+    "visual_review": "Viewed: species and low-poly style distinguishable, isolated on white. Main/side camera difference limited; exact multi-view geometry not verified.",
+    "path": "assets/raw/concepts/K12a/concept_K12a_side.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "513c98068a1f74d607bb7e92ee9300e84c0897f32e93b6b3bc5eb048f17d3243",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-6652e64c-d3df-48d1-b957-e6107c72d364.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K12a_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K12a_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K12b",
+    "label": "松树",
+    "view": "main",
+    "status": "reviewed_concept_limited_view_separation",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: species and low-poly style distinguishable, isolated on white. Main/side camera difference limited; exact multi-view geometry not verified.",
+    "path": "assets/raw/concepts/K12b/concept_K12b_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "55e58a921194c9091879df7db1d1614ba118f5b1aa4c01049b870344d9f21878",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-d94101b1-b053-4562-9874-b86ccfcd01a9.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K12b_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K12b_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K12b",
+    "label": "松树",
+    "view": "side",
+    "status": "reviewed_concept_limited_view_separation",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-d94101b1-b053-4562-9874-b86ccfcd01a9.png"
+    ],
+    "visual_review": "Viewed: species and low-poly style distinguishable, isolated on white. Main/side camera difference limited; exact multi-view geometry not verified.",
+    "path": "assets/raw/concepts/K12b/concept_K12b_side.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "5122a6b78a6f8b458f2e6f05349ff12e2309cfaca3d304b4c7d5e3a595feba53",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-502f26b8-e877-4635-a9d8-d5d42dfd5625.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K12b_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K12b_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K12c",
+    "label": "杂木团",
+    "view": "main",
+    "status": "reviewed_concept_limited_view_separation",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: species and low-poly style distinguishable, isolated on white. Main/side camera difference limited; exact multi-view geometry not verified.",
+    "path": "assets/raw/concepts/K12c/concept_K12c_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "9dc551cc73fea91384fb842a843767132d43165f6b9fe3f0e0cc576d675c6098",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-e5cdf0e1-cac5-4ec5-8fc4-a34690802f20.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K12c_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K12c_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K12c",
+    "label": "杂木团",
+    "view": "side",
+    "status": "reviewed_concept_limited_view_separation",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-e5cdf0e1-cac5-4ec5-8fc4-a34690802f20.png"
+    ],
+    "visual_review": "Viewed: species and low-poly style distinguishable, isolated on white. Main/side camera difference limited; exact multi-view geometry not verified.",
+    "path": "assets/raw/concepts/K12c/concept_K12c_side.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "9a203bd1c45f01fb197034bd59933e34c8a01437390b21af1d78b928f6917394",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-1e2c7cd8-8243-4a61-87df-40f9978d7b38.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K12c_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K12c_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K12d",
+    "label": "银杏树",
+    "view": "main",
+    "status": "reviewed_concept_limited_view_separation",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: species and low-poly style distinguishable, isolated on white. Main/side camera difference limited; exact multi-view geometry not verified.",
+    "path": "assets/raw/concepts/K12d/concept_K12d_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "b6469eeabc429184d3f0d815fc32cbd2eafc566f8dff4c4acd6fe33ea07a0cf2",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-e6df3e38-818b-44da-a9a3-993f82b17114.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K12d_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K12d_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K12d",
+    "label": "银杏树",
+    "view": "side",
+    "status": "reviewed_concept_limited_view_separation",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-e6df3e38-818b-44da-a9a3-993f82b17114.png"
+    ],
+    "visual_review": "Viewed: species and low-poly style distinguishable, isolated on white. Main/side camera difference limited; exact multi-view geometry not verified.",
+    "path": "assets/raw/concepts/K12d/concept_K12d_side.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "d341d94ddbd8fefdd66355908e50f56e808965c28bf58ab6f086fd3050f95d28",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-9ecb563a-b5e9-42f1-a5b4-a624cbec0b07.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K12d_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K12d_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K13a",
+    "label": "石阶码头",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: intended isolated object and supplementary facing view; broadly matching proportions, no obvious readable text or extra scenery.",
+    "path": "assets/raw/concepts/K13a/concept_K13a_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "612d85ece39204c3f09a178a8c3470da42b8a8d7ac0064936745411927ccb65e",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-f04e79de-eccc-434b-b548-1564b2fb8a48.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K13a_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K13a_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K13a",
+    "label": "石阶码头",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-f04e79de-eccc-434b-b548-1564b2fb8a48.png"
+    ],
+    "visual_review": "Viewed: intended isolated object and supplementary facing view; broadly matching proportions, no obvious readable text or extra scenery.",
+    "path": "assets/raw/concepts/K13a/concept_K13a_side.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "bc174fc2ed59a6e97a53533bf0c2373c3fc7e28e8e93f240349024420ebdecae",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-f8e8ec7b-b8e9-4da4-ac4d-84a4417b0830.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K13a_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K13a_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K13b",
+    "label": "敞口木船",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: intended isolated object and supplementary facing view; broadly matching proportions, no obvious readable text or extra scenery.",
+    "path": "assets/raw/concepts/K13b/concept_K13b_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "6cc02f1e4bfc99d29d46cd5accfced2d2eef315006994be40d9aea6570d89622",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-1578c5fb-3a1f-43af-a185-afe46aa12a14.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K13b_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K13b_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K13b",
+    "label": "敞口木船",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-1578c5fb-3a1f-43af-a185-afe46aa12a14.png"
+    ],
+    "visual_review": "Viewed: intended isolated object and supplementary facing view; broadly matching proportions, no obvious readable text or extra scenery.",
+    "path": "assets/raw/concepts/K13b/concept_K13b_side.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "c76b280a0fc002a852737b111729976807607b43da3ae6db03e7920ba77a7584",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-a2679d7d-b2ea-4780-9a40-1c74b8a0bc0c.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K13b_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K13b_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K13c",
+    "label": "篷顶木船",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: intended isolated object and supplementary facing view; broadly matching proportions, no obvious readable text or extra scenery.",
+    "path": "assets/raw/concepts/K13c/concept_K13c_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "d1d08ed8c3b54338196866c38be223867fe08c3bfcdb9968bc9e76d101de61c7",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-d2029c91-0e85-405b-96ae-aa703aff9712.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K13c_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K13c_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K13c",
+    "label": "篷顶木船",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-d2029c91-0e85-405b-96ae-aa703aff9712.png"
+    ],
+    "visual_review": "Viewed: intended isolated object and supplementary facing view; broadly matching proportions, no obvious readable text or extra scenery.",
+    "path": "assets/raw/concepts/K13c/concept_K13c_side.png",
+    "dimensions": [
+      1774,
+      887
+    ],
+    "sha256": "1521e252c72c31e40a92fe59d06264fc0723268b0aa46ff0de2b8c0ceaf9cf69",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-b8564fec-2a0b-4ad3-afe5-f1868357c8f2.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K13c_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K13c_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K14",
+    "label": "关厢街屋",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: intended isolated object and supplementary facing view; broadly matching proportions, no obvious readable text or extra scenery.",
+    "path": "assets/raw/concepts/K14/concept_K14_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "9b7877c95b7465e1325154132889c5078e02a7048e07f760eb5b8ff721999ffe",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-574a4aa9-91b3-40d4-a8e3-171595d5691b.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K14_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K14_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "K14",
+    "label": "关厢街屋",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-574a4aa9-91b3-40d4-a8e3-171595d5691b.png"
+    ],
+    "visual_review": "Viewed: intended isolated object and supplementary facing view; broadly matching proportions, no obvious readable text or extra scenery.",
+    "path": "assets/raw/concepts/K14/concept_K14_side.png",
+    "dimensions": [
+      1774,
+      887
+    ],
+    "sha256": "e091642fa0b4c10c5d8770d5065dac4b4706ca2989ef9af4915b100491cd7554",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-a382c597-11b6-44d7-a6e4-3aa0ecb84a45.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_K14_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "K14_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "X01",
+    "label": "昭明台",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/concepts/X01/concept_X01_main.png"
+    ],
+    "visual_review": "Viewed: central pavilion THREE storeys, stone arch, two side pavilions; complementary elevation.",
+    "path": "assets/raw/concepts/X01/concept_X01_main_v2.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "de92d64b79bec7bc6fcff018535ad85d87168ea2570ae0816aa2a74c0a9278b9",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-7cc457c6-1757-4cfc-922e-f7f76be83b78.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_X01_main_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "X01_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "X01",
+    "label": "昭明台",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-7cc457c6-1757-4cfc-922e-f7f76be83b78.png"
+    ],
+    "visual_review": "Viewed: central pavilion THREE storeys, stone arch, two side pavilions; complementary elevation.",
+    "path": "assets/raw/concepts/X01/concept_X01_side_v2.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "f522448fce5fc364362bebe281048e2968a6356cc7b2455d2e4439b5c89d9a80",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-c518c334-87de-4cbe-8da6-f75073eba455.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_X01_side_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "X01_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "X02",
+    "label": "临汉门",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png",
+      "/Users/qizhi_dong/Projects/demo/襄阳府资料/图片/实拍/临汉门城楼城墙.png"
+    ],
+    "visual_review": "Viewed: major silhouette, material palette and paired view consistent; no obvious text/scenery; historical exactness not established.",
+    "path": "assets/raw/concepts/X02/concept_X02_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "3880767de0d12d51edf1d10096a4a50c35826b6b3e23f967afa187784bab5e2b",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-1bc8cadb-38d5-4919-b3b5-f449d4cbfa5d.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_X02_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "X02_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "X02",
+    "label": "临汉门",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-1bc8cadb-38d5-4919-b3b5-f449d4cbfa5d.png"
+    ],
+    "visual_review": "Viewed: major silhouette, material palette and paired view consistent; no obvious text/scenery; historical exactness not established.",
+    "path": "assets/raw/concepts/X02/concept_X02_side.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "854a9b091f0a84d62ab243f210e4bde8c7351fd50aae9bd5b5578f494f7d232a",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-65ec251e-7ec1-4b43-b88c-c2d3149e6cf9.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_X02_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "X02_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "X03",
+    "label": "夫人城",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/concepts/X03/concept_X03_main.png"
+    ],
+    "visual_review": "Viewed: all roofed turrets removed; masonry enclosure and connected main wall retained.",
+    "path": "assets/raw/concepts/X03/concept_X03_main_v2.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "08f68d1566bb3ce7f634d2a8d0b0704b8d66295176fe99eed298cee6ce1bb8bc",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-89045f61-c805-454f-a2cd-76f84e2b9739.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_X03_main_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "X03_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "X03",
+    "label": "夫人城",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-89045f61-c805-454f-a2cd-76f84e2b9739.png"
+    ],
+    "visual_review": "Viewed: all roofed turrets removed; masonry enclosure and connected main wall retained.",
+    "path": "assets/raw/concepts/X03/concept_X03_side_v2.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "1ca6d074e8f6fe76f33a0dcfa59b3e1194071644cd7a936a9097948c1c6bda81",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-e29844f0-3d7f-4fce-b7ec-a0c49d2579a2.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_X03_side_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "X03_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "X04",
+    "label": "仲宣楼",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: major silhouette, material palette and paired view consistent; no obvious text/scenery; historical exactness not established.",
+    "path": "assets/raw/concepts/X04/concept_X04_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "fd3b7738aeeafd173d60daf7debad1ae6dd45a33112b279966e2111e70a79584",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-ebb01514-8d31-48c7-a708-475198b2a7c1.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_X04_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "X04_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "X04",
+    "label": "仲宣楼",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-ebb01514-8d31-48c7-a708-475198b2a7c1.png"
+    ],
+    "visual_review": "Viewed: major silhouette, material palette and paired view consistent; no obvious text/scenery; historical exactness not established.",
+    "path": "assets/raw/concepts/X04/concept_X04_side.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "5ba3dfbdb957e0f70855e5ac5e800ccf03fc12c4a600a1f0b53017f5538b5eb0",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-ab8fc45c-8228-4694-8372-aadc2cf50fb6.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_X04_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "X04_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "X05",
+    "label": "绿影壁",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: major silhouette, material palette and paired view consistent; no obvious text/scenery; historical exactness not established.",
+    "path": "assets/raw/concepts/X05/concept_X05_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "8d0466ee564d6defcd7399e700fdb4233cecd56c0e59cf5a2059cefb3048c37f",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-91d4c536-dd1a-4c58-9e25-b649db9ad11a.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_X05_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "X05_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "X05",
+    "label": "绿影壁",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-91d4c536-dd1a-4c58-9e25-b649db9ad11a.png"
+    ],
+    "visual_review": "Viewed: major silhouette, material palette and paired view consistent; no obvious text/scenery; historical exactness not established.",
+    "path": "assets/raw/concepts/X05/concept_X05_side.png",
+    "dimensions": [
+      1610,
+      977
+    ],
+    "sha256": "6e746988b4c23c1048b9ec37f5a7532822c833e273c48d48ddf15beb836f2cf3",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-93733267-0f4f-4273-8e9d-39f5cc088298.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_X05_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "X05_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "X06",
+    "label": "府儒学",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: axial temple compound and two entrance archways present; supplementary view remains somewhat elevated.",
+    "path": "assets/raw/concepts/X06/concept_X06_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "eb39d609bd45f12e506870112dadcf16d5ea8b7f12a78240cf6c5836fcb18aa5",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-43692f8e-4317-4876-93cb-130ee51a08de.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_X06_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "X06_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "X06",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/concepts/X06/concept_X06_main.png"
+    ],
+    "visual_review": "Viewed: revised level-facing side silhouette, no fully exposed courtyard floor; exact multi-view geometry remains unverified.",
+    "path": "assets/raw/concepts/X06/concept_X06_side_v2.png",
+    "dimensions": [
+      1774,
+      887
+    ],
+    "sha256": "17a87610db0f42a84eac9df940347dc1182ca1ad611a24ec91a1fa350e693900",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-6f194d98-08dc-4998-aaa5-dafc44aac951.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_X06_side_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "X06_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "X07",
+    "label": "东北外城与震华门",
+    "view": "main",
+    "status": "concept_pending_geometry_review",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png",
+      "/Users/qizhi_dong/Projects/demo/襄阳府资料/图片/平面图/明代府城地图2.jpg"
+    ],
+    "visual_review": "Viewed: rectangular outer enclosure and main wall join; location/junction interpretation needs historical control reference review.",
+    "path": "assets/raw/concepts/X07/concept_X07_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "2babd5dc0ff6b6c4d6ca6df1429e2ea24ef16d8475f5d2ae14798a164b078c02",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-9b54eab3-02a1-40ae-a3a4-3e11e448918e.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_X07_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "X07_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "X07",
+    "label": "东北外城与震华门",
+    "view": "side",
+    "status": "concept_pending_geometry_review",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-9b54eab3-02a1-40ae-a3a4-3e11e448918e.png"
+    ],
+    "visual_review": "Viewed: rectangular outer enclosure and main wall join; location/junction interpretation needs historical control reference review.",
+    "path": "assets/raw/concepts/X07/concept_X07_side.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "20ab40c8117f266e1757de1261efe549c958631acc4257b28dc7ef7020a410b7",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-0c00c91d-5f50-4489-9995-4c5f02c23e68.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_X07_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "X07_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "J01",
+    "label": "宾阳楼与瓮城",
+    "view": "main",
+    "status": "concept_pending_gate_angle_review",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: outer gate moved to corner; exact 45-degree orientation and invented turrets still require reference review.",
+    "path": "assets/raw/concepts/J01/concept_J01_main_v2.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "sha256": "bbbd0f46a3507e556987ad1af5cfe860ecf03a73ecdf259578fde4f1ecc91a31",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-85b9d31c-9856-4119-ae4d-485218467106.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_J01_main_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "J01_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "J01",
+    "label": "宾阳楼与瓮城",
+    "view": "side",
+    "status": "concept_pending_gate_angle_review",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-85b9d31c-9856-4119-ae4d-485218467106.png"
+    ],
+    "visual_review": "Viewed: outer gate moved to corner; exact 45-degree orientation and invented turrets still require reference review.",
+    "path": "assets/raw/concepts/J01/concept_J01_side_v2.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "sha256": "46479360004345e0af326a0326d8c66307b7ec92a63701f45ada440a4beddba8",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-e62be4c2-dd8d-4402-b4de-ee758e93c374.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_J01_side_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "J01_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "J02",
+    "label": "朝宗楼",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: intended isolated subject, supplementary facing view. Historical exactness and engineering geometry not verified.",
+    "path": "assets/raw/concepts/J02/concept_J02_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "10c9bd05fd9209f25362749226159b0db845b0274e72db821e99f4d480a60339",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-e82419f6-c153-40e0-83c5-3feda4ae58c5.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_J02_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "J02_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "J02",
+    "label": "朝宗楼",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-e82419f6-c153-40e0-83c5-3feda4ae58c5.png"
+    ],
+    "visual_review": "Viewed: intended isolated subject, supplementary facing view. Historical exactness and engineering geometry not verified.",
+    "path": "assets/raw/concepts/J02/concept_J02_side.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "5ec2fcb54fe902f9c9a6dcb6b226b89df4d2379adf1798a8251ef5fb4d2b4a08",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-db162219-8962-4b0c-bf8b-0ae2870aba8f.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_J02_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "J02_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "J03",
+    "label": "公安水门",
+    "view": "main",
+    "status": "concept_pending_gate_passage_review",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: one semicircular enclosure and side wharf now present; supplementary arch passage looks blocked and needs verification.",
+    "path": "assets/raw/concepts/J03/concept_J03_main_v2.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "sha256": "a7f17320feccc01b311e717795b5b06ca1e126e4e8cba1e5c50da226c33e47e1",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-32f4748f-a290-499a-95b4-f38acd29d51a.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_J03_main_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "J03_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "J03",
+    "label": "公安水门",
+    "view": "side",
+    "status": "concept_pending_gate_passage_review",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-32f4748f-a290-499a-95b4-f38acd29d51a.png"
+    ],
+    "visual_review": "Viewed: one semicircular enclosure and side wharf now present; supplementary arch passage looks blocked and needs verification.",
+    "path": "assets/raw/concepts/J03/concept_J03_side_v2.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "sha256": "f8fd6022a5dff3ba6a8038141fb01137b2ab374a908de63c0482f4b078d639c3",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-42729118-1e90-4a61-8df2-851d643acf5a.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_J03_side_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "J03_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "J04",
+    "label": "南纪门",
+    "view": "main",
+    "status": "concept_pending_geometry_review",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: axial platforms and lateral gates present; exact cross-shaped circulation needs review.",
+    "path": "assets/raw/concepts/J04/concept_J04_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "d9b3d817123095253c8e79fbe1460bb5e2fa4b9d4b93f9b71ae9208ad7e2f332",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-03f940b7-9144-4a1d-8af0-0bdc80c7b756.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_J04_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "J04_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "J04",
+    "label": "南纪门",
+    "view": "side",
+    "status": "concept_pending_geometry_review",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-03f940b7-9144-4a1d-8af0-0bdc80c7b756.png"
+    ],
+    "visual_review": "Viewed: axial platforms and lateral gates present; exact cross-shaped circulation needs review.",
+    "path": "assets/raw/concepts/J04/concept_J04_side.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "sha256": "0f449d6714314a637d593d9d42a80321d197f1345b8cf0c9552b4ea2495ecc21",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-6e51c0db-0ceb-4abd-bcd3-bd81249ec308.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_J04_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "J04_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "J05",
+    "label": "洪武砖墙段",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: intended isolated subject, supplementary facing view. Historical exactness and engineering geometry not verified.",
+    "path": "assets/raw/concepts/J05/concept_J05_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "7c0e88a27583a158ab43a8fd52433b3792c316e987587625ce3ce514f6d57504",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-b21ae245-371b-4ee4-84d6-c7b04419fc66.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_J05_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "J05_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "J05",
+    "label": "洪武砖墙段",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-b21ae245-371b-4ee4-84d6-c7b04419fc66.png"
+    ],
+    "visual_review": "Viewed: intended isolated subject, supplementary facing view. Historical exactness and engineering geometry not verified.",
+    "path": "assets/raw/concepts/J05/concept_J05_side.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "3329b1887bd2b02b56545f944a1354c489ee52d3656e195c7834c7f5c63d4a8c",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-0c3f8d96-a353-4d71-a270-c534364169a6.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_J05_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "J05_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "B01",
+    "label": "保定府署",
+    "view": "main",
+    "status": "concept_pending_courtyard_count_review",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: simplified single-storey compound, no corner towers/plants; exact five-courtyard count and paired side geometry need review.",
+    "path": "assets/raw/concepts/B01/concept_B01_main_v2.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "sha256": "78a312866152d606d7cf45fa22f5fccc6fe095aac296128fa2b9111191d9e32b",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-7db78575-f308-436b-b0d4-4936fc4de9a6.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_B01_main_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "B01_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "B01",
+    "label": "保定府署",
+    "view": "side",
+    "status": "concept_pending_courtyard_count_review",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-7db78575-f308-436b-b0d4-4936fc4de9a6.png"
+    ],
+    "visual_review": "Viewed: simplified single-storey compound, no corner towers/plants; exact five-courtyard count and paired side geometry need review.",
+    "path": "assets/raw/concepts/B01/concept_B01_side_v2.png",
+    "dimensions": [
+      2172,
+      724
+    ],
+    "sha256": "c4f26da9515e7cdc417110f0d54f87d33ea1c9e1b9fb90ec4c0f6c1790d8632c",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-b19e63c2-54d1-4fbb-98aa-1c6e351c850e.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_B01_side_v2.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "B01_side"
+  },
+  {
+    "task": "T7",
+    "asset_id": "B03",
+    "label": "引水渠与水磨",
+    "view": "main",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+    ],
+    "visual_review": "Viewed: intended isolated subject, supplementary facing view. Historical exactness and engineering geometry not verified.",
+    "path": "assets/raw/concepts/B03/concept_B03_main.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "b7d597bdde9349050d72c623f7b2cedfb9bbd53058a687a7e6017bb1e246134d",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-f4aeeec0-3ec4-4ce6-9a0a-8dee23cb0e5d.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_B03_main.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "B03_main"
+  },
+  {
+    "task": "T7",
+    "asset_id": "B03",
+    "label": "引水渠与水磨",
+    "view": "side",
+    "status": "reviewed_concept",
+    "references": [
+      "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-f4aeeec0-3ec4-4ce6-9a0a-8dee23cb0e5d.png"
+    ],
+    "visual_review": "Viewed: intended isolated subject, supplementary facing view. Historical exactness and engineering geometry not verified.",
+    "path": "assets/raw/concepts/B03/concept_B03_side.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "sha256": "8d428a679b0dd38ae6d0f9f05e76c93c4bc50219d4d02e8f6526b63ec70e9fd5",
+    "source_original": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-ec836387-7580-4eea-8d3a-dee8e2320ef4.png",
+    "prompt_file": "assets/raw/_management/prompts/concept_B03_side.txt",
+    "generator": "built-in image_gen",
+    "copy_verified": true,
+    "current_recommended": true,
+    "key": "B03_side"
+  }
+]

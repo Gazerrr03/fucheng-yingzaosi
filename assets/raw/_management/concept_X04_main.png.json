@@ -1,0 +1,14 @@
+{
+  "task": "T7",
+  "asset_id": "X04",
+  "label": "仲宣楼",
+  "view": "main",
+  "dest": "assets/raw/concepts/X04/concept_X04_main.png",
+  "prompt": "Use case: stylized-concept. T7 image-to-3D concept asset. One isolated object/module centered, full object visible with generous white margin, PURE SOLID WHITE background, soft even diffuse light, NO cast ground shadow or ambient shadow patch, NO ground plane or scenic base. Stylized LOW-POLY geometry, simplified planar forms, hand-painted texture feel, Ming dynasty architecture. Match style_master ONLY for muted ochre brick, slate-blue roof, grey-green foliage, red-brown columns, ivory walls and restrained ink/watercolor material feel. This is a model-ready object concept, not a paper map or photorealistic building. No text, labels, Chinese characters, numbers, watermark, people, presentation frame or multiple views on a single sheet. Requested 1536x1536 square. For masonry and buildings, absolutely NO incidental vegetation, shrubs, trees, moss, grass, decorative rocks or scenery unless explicitly part of asset. Avoid photographic realism and excessive surface microdetail. Asset X04 (仲宣楼). Zhongxuan Tower: southeast corner tower with THREE readable parts, short corner wall, raised brick terrace and TWO-STOREY DOUBLE-EAVE hip-and-gable pavilion. Total height about 17 relative units, grey-blue tiled roofs, restrained red-brown timber, ochre-grey brick. No extra storeys, terrain or text. MAIN VIEW: front-right three-quarter camera, 45-degree downward elevation, one object fully visible.",
+  "status": "generated_pending_pair_review",
+  "references": [
+    "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-ebb01514-8d31-48c7-a708-475198b2a7c1.png",
+  "visual_review": "Concept generated, awaiting pair review; PNG actual size and original hash recorded. No GLB generated."
+}

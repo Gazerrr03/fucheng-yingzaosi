@@ -1,0 +1,82 @@
+[
+  {
+    "file": "assets/raw/clouds/cloud_01.png",
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_bbox": [
+      0,
+      17,
+      1234,
+      1254
+    ],
+    "transparent_fraction": 0.6550502506810741,
+    "partial_alpha_fraction": 0.34494211823599885
+  },
+  {
+    "file": "assets/raw/clouds/cloud_02.png",
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_bbox": [
+      0,
+      15,
+      1244,
+      1254
+    ],
+    "transparent_fraction": 0.6507259703557865,
+    "partial_alpha_fraction": 0.3491850003433987
+  },
+  {
+    "file": "assets/raw/clouds/cloud_03.png",
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      253
+    ],
+    "alpha_bbox": [
+      47,
+      37,
+      1210,
+      1229
+    ],
+    "transparent_fraction": 0.8770982298431304,
+    "partial_alpha_fraction": 0.12290177015686962
+  },
+  {
+    "file": "assets/raw/clouds/cloud_04.png",
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_bbox": [
+      0,
+      23,
+      1240,
+      1230
+    ],
+    "transparent_fraction": 0.8040096253392652,
+    "partial_alpha_fraction": 0.19598592319569402
+  }
+]

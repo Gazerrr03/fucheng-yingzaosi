@@ -1,0 +1,579 @@
+{
+  "id": "xiangyang",
+  "name": "襄阳府",
+  "subtitle": "汉水中游南岸 · 三面临水，一面接山",
+  "map": "maps/xiangyang",
+  "calibration": {
+    "note": "以主城四角角楼为参考点，主城按东西 2200 m、南北 1600 m 的矩形近似（画面为示意级地理，见 docs/资料问题报告.md）。",
+    "imageSize": [
+      1448,
+      1086
+    ],
+    "points": [
+      {
+        "img": [
+          400,
+          205
+        ],
+        "world": [
+          -1100,
+          800
+        ],
+        "label": "西北角"
+      },
+      {
+        "img": [
+          1107,
+          238
+        ],
+        "world": [
+          1100,
+          800
+        ],
+        "label": "东北角"
+      },
+      {
+        "img": [
+          1066,
+          712
+        ],
+        "world": [
+          1100,
+          -800
+        ],
+        "label": "东南角"
+      },
+      {
+        "img": [
+          302,
+          560
+        ],
+        "world": [
+          -1100,
+          -800
+        ],
+        "label": "西南角"
+      }
+    ]
+  },
+  "grid": {
+    "hexAcross": 200
+  },
+  "terrainNames": {
+    "R": "汉江",
+    "M": "护城河",
+    "S": "岘山"
+  },
+  "genes": {
+    "shanshui": {
+      "rule": "atLeast",
+      "n": 2,
+      "sites": [
+        "hanjiang",
+        "xianshan",
+        "tanxi"
+      ]
+    },
+    "xingzhuang": {
+      "rule": "any",
+      "sites": [
+        "waicheng"
+      ]
+    },
+    "zhouhui": {
+      "rule": "any",
+      "sites": [
+        "chengqiang"
+      ]
+    },
+    "chengmen": {
+      "rule": "all",
+      "sites": [
+        "linhan",
+        "wenchang",
+        "xicheng",
+        "yangchun",
+        "gongchen",
+        "zhenhua"
+      ]
+    },
+    "tanmiao": {
+      "rule": "any",
+      "sites": [
+        "sheji",
+        "fengyun"
+      ]
+    },
+    "fushu": {
+      "rule": "any",
+      "sites": [
+        "fushu"
+      ]
+    },
+    "gaohou": {
+      "rule": "any",
+      "sites": [
+        "linhan"
+      ]
+    }
+  },
+  "lore": [
+    {
+      "id": "furencheng",
+      "name": "夫人城"
+    },
+    {
+      "id": "zhaoming",
+      "name": "昭明台"
+    },
+    {
+      "id": "zhongxuan",
+      "name": "仲宣楼"
+    },
+    {
+      "id": "huchenghe",
+      "name": "护城河"
+    },
+    {
+      "id": "xiangwangfu",
+      "name": "襄王府 · 绿影壁"
+    },
+    {
+      "id": "ruxue",
+      "name": "府儒学"
+    },
+    {
+      "id": "wengcheng",
+      "name": "城门与瓮城沿革"
+    },
+    {
+      "id": "guanxiang",
+      "name": "关厢与敌台"
+    },
+    {
+      "id": "hanjiangdi",
+      "name": "汉江堤"
+    },
+    {
+      "id": "sheji_xiyi",
+      "name": "社稷坛西移"
+    }
+  ],
+  "sites": [
+    {
+      "id": "linhan",
+      "name": "临汉门",
+      "kind": "gate",
+      "img": [
+        770,
+        222
+      ],
+      "model": "X02",
+      "cards": [
+        "gene:chengmen",
+        "gene:gaohou"
+      ]
+    },
+    {
+      "id": "wenchang",
+      "name": "文昌门",
+      "kind": "gate",
+      "img": [
+        668,
+        640
+      ],
+      "model": "K05a",
+      "cards": [
+        "gene:chengmen",
+        "lore:wengcheng"
+      ]
+    },
+    {
+      "id": "xicheng",
+      "name": "西成门",
+      "kind": "gate",
+      "img": [
+        352,
+        372
+      ],
+      "model": "K04a",
+      "cards": [
+        "gene:chengmen"
+      ]
+    },
+    {
+      "id": "yangchun",
+      "name": "阳春门",
+      "kind": "gate",
+      "img": [
+        1100,
+        486
+      ],
+      "model": "K04a",
+      "cards": [
+        "gene:chengmen"
+      ]
+    },
+    {
+      "id": "gongchen",
+      "name": "拱辰门",
+      "kind": "gate",
+      "img": [
+        1128,
+        258
+      ],
+      "model": "K04b",
+      "cards": [
+        "gene:chengmen"
+      ]
+    },
+    {
+      "id": "zhenhua",
+      "name": "震华门",
+      "kind": "gate",
+      "img": [
+        1236,
+        300
+      ],
+      "model": "K05b",
+      "cards": [
+        "gene:chengmen"
+      ]
+    },
+    {
+      "id": "waicheng",
+      "name": "东北外城",
+      "kind": "landmark",
+      "img": [
+        1190,
+        330
+      ],
+      "model": "X07",
+      "cards": [
+        "gene:xingzhuang"
+      ]
+    },
+    {
+      "id": "furencheng",
+      "name": "夫人城",
+      "kind": "landmark",
+      "img": [
+        362,
+        160
+      ],
+      "model": "X03",
+      "rotY": -90,
+      "cards": [
+        "lore:furencheng"
+      ]
+    },
+    {
+      "id": "zhaoming",
+      "name": "昭明台",
+      "kind": "landmark",
+      "img": [
+        664,
+        392
+      ],
+      "model": "X01",
+      "cards": [
+        "lore:zhaoming"
+      ]
+    },
+    {
+      "id": "zhongxuan",
+      "name": "仲宣楼",
+      "kind": "landmark",
+      "img": [
+        1062,
+        708
+      ],
+      "model": "X04",
+      "rotY": 0,
+      "cards": [
+        "lore:zhongxuan"
+      ]
+    },
+    {
+      "id": "fushu",
+      "name": "襄阳府署",
+      "kind": "office",
+      "img": [
+        455,
+        505
+      ],
+      "model": "K08",
+      "cards": [
+        "gene:fushu"
+      ]
+    },
+    {
+      "id": "xiangwangfu",
+      "name": "襄王府 · 绿影壁",
+      "kind": "landmark",
+      "img": [
+        905,
+        602
+      ],
+      "model": "X05",
+      "cards": [
+        "lore:xiangwangfu"
+      ]
+    },
+    {
+      "id": "ruxue",
+      "name": "府儒学",
+      "kind": "temple",
+      "img": [
+        930,
+        508
+      ],
+      "model": "X06",
+      "cards": [
+        "lore:ruxue"
+      ]
+    },
+    {
+      "id": "chengqiang",
+      "name": "西城墙",
+      "kind": "landmark",
+      "img": [
+        330,
+        470
+      ],
+      "model": "K01",
+      "cards": [
+        "gene:zhouhui"
+      ]
+    },
+    {
+      "id": "huchenghe",
+      "name": "护城河",
+      "kind": "water",
+      "img": [
+        880,
+        745
+      ],
+      "model": "K11b",
+      "cards": [
+        "lore:huchenghe"
+      ]
+    },
+    {
+      "id": "hanjiang",
+      "name": "汉江",
+      "kind": "water",
+      "img": [
+        700,
+        75
+      ],
+      "model": "K13c",
+      "cards": [
+        "gene:shanshui"
+      ]
+    },
+    {
+      "id": "xianshan",
+      "name": "岘山",
+      "kind": "mountain",
+      "img": [
+        470,
+        930
+      ],
+      "model": "K12b",
+      "cards": [
+        "gene:shanshui"
+      ]
+    },
+    {
+      "id": "tanxi",
+      "name": "檀溪",
+      "kind": "water",
+      "img": [
+        118,
+        300
+      ],
+      "model": "K11a",
+      "cards": [
+        "gene:shanshui"
+      ]
+    },
+    {
+      "id": "sheji",
+      "name": "社稷坛",
+      "kind": "temple",
+      "img": [
+        175,
+        205
+      ],
+      "model": "K09",
+      "cards": [
+        "gene:tanmiao",
+        "lore:sheji_xiyi"
+      ]
+    },
+    {
+      "id": "fengyun",
+      "name": "风云雷雨坛",
+      "kind": "temple",
+      "img": [
+        150,
+        650
+      ],
+      "model": "K09",
+      "cards": [
+        "gene:tanmiao"
+      ]
+    },
+    {
+      "id": "hanjiangdi",
+      "name": "汉江堤",
+      "kind": "water",
+      "img": [
+        960,
+        185
+      ],
+      "model": "K12a",
+      "cards": [
+        "lore:hanjiangdi"
+      ]
+    },
+    {
+      "id": "guanxiang",
+      "name": "南关厢",
+      "kind": "landmark",
+      "img": [
+        640,
+        790
+      ],
+      "model": "K14",
+      "cards": [
+        "lore:guanxiang"
+      ]
+    }
+  ],
+  "labels": [
+    {
+      "hex": [
+        -4,
+        1
+      ],
+      "name": "攀桂坊"
+    },
+    {
+      "hex": [
+        -2,
+        2
+      ],
+      "name": "冠英坊"
+    },
+    {
+      "hex": [
+        1,
+        2
+      ],
+      "name": "思荣坊"
+    },
+    {
+      "hex": [
+        3,
+        1
+      ],
+      "name": "攀龙坊"
+    },
+    {
+      "hex": [
+        -3,
+        -1
+      ],
+      "name": "腾霄坊"
+    },
+    {
+      "hex": [
+        2,
+        -1
+      ],
+      "name": "科第坊"
+    },
+    {
+      "hex": [
+        -1,
+        -3
+      ],
+      "name": "育贤坊"
+    },
+    {
+      "hex": [
+        3,
+        -2
+      ],
+      "name": "世科坊"
+    },
+    {
+      "hex": [
+        1,
+        -2
+      ],
+      "name": "魏清坊"
+    },
+    {
+      "hex": [
+        0,
+        9
+      ],
+      "name": "樊城（汉江北岸）"
+    },
+    {
+      "hex": [
+        4,
+        -6
+      ],
+      "name": "通济桥"
+    },
+    {
+      "hex": [
+        6,
+        -13
+      ],
+      "name": "延生桥（城南三里，示意）"
+    }
+  ],
+  "terrain": {
+    "qMin": -25,
+    "rMin": -18,
+    "rows": [
+      "..............................................",
+      "..............................................",
+      "..............................................",
+      ".........................TTT..................",
+      "........................TTTTTT................",
+      ".......................TTSTTSTTT..............",
+      "......................TSSSSSSSSTT.............",
+      ".....................TTTTSSSGSSSSST...........",
+      ".....................TSSSTSSTSSSSSSTT.........",
+      "....................TTTTTTSSTSSSSTSSTT........",
+      "...................TTTSGSTTTTTTTTGTTTTT.......",
+      "..................TTTTSTSTTTTTSSTTTTTT........",
+      ".................TTGTMMMTMMMTTTMMMMTTT........",
+      ".................TTGTMTTTTTTGGTTTCMTT.........",
+      "................TTGMMMCCCCCCCCCCCMMTT.........",
+      "...............TTGMTMCBBBBBBBBBBCMGT..........",
+      "..............TGTGMMMCBBBBBBBBBCMMTT..........",
+      ".............TTTTMTMCBBBBBBBBBBCMTT...........",
+      "............TGGGWTMGCBBBBBBBBBCMTGT...........",
+      "............TGTTGTMCBBBBBBBBBBCMTT............",
+      "...........TTTTTTTMCBBBBBBBBBCGTGT............",
+      "..........TTTTTMMMCBBBBBBBBBBCCTT.............",
+      ".........TTTTTTMTMCCCCCCCCCCCCTTT.............",
+      "........TTTTTTGRTGTTTTTGGTRTRRRR..............",
+      "........TTTTTGTCTTTTRRRTRRRRRRRT..............",
+      ".......TGTTTTRRRRTRRRRRRRRRRRTT...............",
+      "......TTTTTTTRRRRRRRRRRRRRTTGTT...............",
+      ".....TTTGGTTTRRRTRRRRRTTTGTTTT................",
+      "....TTTGTTTTTTRRTT............................",
+      "..............................................",
+      ".............................................."
+    ],
+    "note": "由 tools/prefill_terrain.py 预填，之后在标定工具里人工修正"
+  }
+}

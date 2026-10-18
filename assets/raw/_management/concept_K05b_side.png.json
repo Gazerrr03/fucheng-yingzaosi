@@ -1,0 +1,14 @@
+{
+  "task": "T7",
+  "asset_id": "K05b",
+  "label": "半圆瓮城",
+  "view": "side",
+  "dest": "assets/raw/concepts/K05b/concept_K05b_side.png",
+  "prompt": "Create a NEW CAMERA VIEW of the EXACT object in input image 1. Produce ONE architectural ORTHOGRAPHIC FRONT ELEVATION at EYE LEVEL. Rotate and lower camera from the reference to look straight and horizontally at the front. Roof ridges, wall tops and bases must be HORIZONTAL, verticals VERTICAL. NO isometric view, NO three-quarter view, NO top-down perspective; no diagonal receding plan visible, no view down onto roof or floor surfaces. Preserve the precise number of floors, roof tiers, bays, arches, overall width-to-height proportions, materials and colors. Do not invent extra parts. Pure SOLID WHITE background, soft even light, no shadow patch or ground plane, no people, plants unless this asset IS a tree, text, labels or multiple panels. Single isolated centered object with margin. Asset identity: K05b 半圆瓮城. One semicircular barbican enclosure about 40 relative units diameter, flat back joined to short main wall with inner gate, lower curved outer wall, outer entry on SIDE so approach bends. Empty courtyard, grey-brick crenellations, no extra buildings.",
+  "status": "generated_pending_pair_review",
+  "references": [
+    "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-287f4161-a971-4885-9ff7-2fa23caa0fb0.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-cfe05421-48fe-4bd8-900e-926af08b6156.png",
+  "visual_review": "Concept generated, awaiting pair review; PNG actual size and original hash recorded. No GLB generated."
+}

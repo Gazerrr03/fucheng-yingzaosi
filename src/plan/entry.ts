@@ -1,0 +1,252 @@
+// 营建模式入口：?lesson=<课> 经典营建课、?custom=<图> 自定义模式、?plan=<城> 沙盘（开发用）。
+
+import './plan.css';
+import { fetchJSON, fetchLevel } from '../game/assets';
+import type { Nav } from '../screens/nav';
+import { LESSON_BY_ID, LESSONS, oldWallKeys, saveLessonResult, type Lesson } from './lessons';
+import { PlanMap, type PlanMapJSON } from './planMap';
+import { openModal, runPlan, type PlanUI } from './planScreen';
+import { decodeShare, setOrigin } from './share';
+import { fetchYili } from './yili';
+import { Progress, addReputation, cardUnlocked, loadYili, saveYili } from '../game/progress';
+import type { YiliHooks } from './planScreen';
+
+export const fetchPlanMap = (id: string) => fetchJSON<PlanMapJSON>(`data/plan/${id}.json`);
+
+/** 经典关卡的议礼：读该城的议礼数据，按探索模式的进度判断方志是否已点亮。 */
+async function lessonYili(lesson: Lesson, sites: { id: string; cards: string[] }[], oldWalls: Set<string>): Promise<YiliHooks | undefined> {
+  if (lesson.source.kind !== 'level') return undefined;
+  const city = lesson.source.city;
+  const file = await fetchYili(city);
+  if (!file?.events.length) return undefined;
+  const scope = `lesson:${lesson.id}`;
+  return {
+    events: file.events,
+    records: loadYili(scope),
+    unlocked: (card) => cardUnlocked(sites, new Progress().visited(city), card),
+    exploreHref: `?city=${city}`,
+    oldWalls,
+    save: (records) => saveYili(scope, records),
+    onReputation: (name, ev) => void addReputation({ name, source: ev.title, city }),
+  };
+}
+
+async function lessonMap(lesson: Lesson): Promise<{ map: PlanMap; oldWalls: Set<string>; sites: { id: string; cards: string[] }[] }> {
+  if (lesson.source.kind === 'plan') return { map: new PlanMap(await fetchPlanMap(lesson.source.map)), oldWalls: new Set(), sites: [] };
+  const data = await fetchLevel(lesson.source.city);
+  const t = data.terrain!;
+  const json = PlanMap.fromLevel(lesson.id, data.name, t, {
+    hexAcross: data.grid.hexAcross, keepWalls: lesson.keepWalls, lockWalls: true, terrainNames: data.terrainNames,
+  });
+  json.subtitle = data.subtitle;
+  return { map: new PlanMap(json), oldWalls: lesson.showOldWalls ? oldWallKeys(t.rows, t.qMin, t.rMin) : new Set(), sites: data.sites };
+}
+
+const bookButton = {
+  label: '史书', title: '翻阅历次营建记、更改名号',
+  onClick: async (ui: PlanUI) => (await import('./chronicleUI')).showBook(ui.root),
+};
+
+async function importShare(ui: PlanUI, mapId: string, map: PlanMap, nav: Nav): Promise<void> {
+  const html = `<span class="kicker">城池码</span><h2>导入他人的城</h2>
+    <p>粘贴同好分享的城池码（以 SF1 开头）。导入后会<b>替换</b>这张图上现有的营建，之后修成的史书会记作「续修」。</p>
+    <textarea class="share-in" rows="4" placeholder="SF1.chongqing.…"></textarea>`;
+  if ((await openModal(ui.root, html, '导入', '取消')) !== 0) return;
+  const code = ui.root.querySelector<HTMLTextAreaElement>('.share-in')?.value ?? '';
+  try {
+    const shared = decodeShare(code);
+    if (!CUSTOM_MAPS.some((m) => m.id === shared.mapId)) throw new Error(`不认识的地图：${shared.mapId}`);
+    setOrigin(shared.mapId, shared.author);
+    if (shared.mapId !== mapId) {
+      localStorage.setItem(layoutKey('custom', shared.mapId), JSON.stringify(shared.layout));
+      void nav.go(`?custom=${shared.mapId}`);
+      return;
+    }
+    map.restore(shared.layout);
+    saveLayout('custom', mapId, map);
+    ui.refresh();
+    ui.toast(`已导入${shared.author}所营之城，共 ${shared.layout.length} 处营建`);
+  } catch (err) {
+    ui.toast(`导入失败：${(err as Error).message}`);
+  }
+}
+
+const layoutKey = (kind: string, id: string) => `sanfu.plan.${kind}.${id}`;
+
+export function loadLayout(kind: string, id: string): [number, number, string][] | null {
+  try {
+    return JSON.parse(localStorage.getItem(layoutKey(kind, id)) ?? 'null');
+  } catch {
+    return null;
+  }
+}
+
+export function saveLayout(kind: string, id: string, map: PlanMap): void {
+  try {
+    localStorage.setItem(layoutKey(kind, id), JSON.stringify(map.snapshot()));
+  } catch {
+    // 忽略
+  }
+}
+
+export async function runLesson(id: string, nav: Nav): Promise<void> {
+  const lesson = LESSON_BY_ID.get(id);
+  if (!lesson) throw new Error(`没有这一课：${id}`);
+  const { map, oldWalls, sites } = await lessonMap(lesson);
+  const yili = await lessonYili(lesson, sites, oldWalls);
+  const saved = loadLayout('lesson', id);
+  if (saved) map.restore(saved);
+  const next = LESSONS.find((l) => l.order === lesson.order + 1);
+
+  const intro = `
+    <span class="kicker">经典模式 · 第${lesson.ordinal}课</span>
+    <h2>${lesson.cityName} · ${lesson.title}</h2>
+    ${lesson.intro.map((p) => `<p>${p}</p>`).join('')}
+    <p class="kicker">右侧「本课目标」全部达成即可过关。鼠标悬停可以预览每一处的风水评价。</p>`;
+
+  const ui = runPlan({
+    map,
+    title: lesson.cityName,
+    subtitle: lesson.title,
+    tag: `经典 · 第${lesson.ordinal}课`,
+    palette: lesson.palette,
+    goals: lesson.goals,
+    yili,
+    intro: saved ? undefined : intro,
+    finishLabel: '过　关',
+    canFinish: (m, v) => lesson.goals(m, v).every((g) => g.done),
+    onChange: (m) => saveLayout('lesson', id, m),
+    onFinish: async (_m, v, ui) => {
+      saveLessonResult(id, { done: true, grade: v.grade, total: v.total });
+      const { writeChronicle } = await import('./chronicleUI');
+      await writeChronicle(ui, { map, verdict: v, mode: 'lesson', lesson });
+      const choice = await openModal(ui.root, `
+        <span class="kicker">第${lesson.ordinal}课 · 已过关</span>
+        <h2>${lesson.title}</h2>
+        <p>${lesson.takeaway}</p>
+        <p>风水总评：<b>${v.grade}</b>（${v.total}）</p>
+        ${(v.yili ?? []).map((y) => `<p class="kicker">议礼 · ${y.title.replace(/^议礼 · /, '')}：${y.label} —— ${y.note}${y.reputation ? `，得「${y.reputation}」` : ''}</p>`).join('')}
+        ${v.modifiers.length ? `<p class="kicker">考成修正：${v.modifiers.map((m) => `${m.name} ${m.delta > 0 ? '+' : ''}${m.delta}`).join('；')}</p>` : ''}`,
+        ...(next ? [`下一课：${next.cityName}`, '留在本城', '返回总览'] : ['返回总览', '留在本城']));
+      const label = next ? [`next`, 'stay', 'home'][choice] : ['home', 'stay'][choice];
+      if (label === 'next') void nav.go(`?lesson=${next!.id}`);
+      else if (label === 'home') void nav.home();
+    },
+    extraButtons: [
+      { label: '讲解', title: '重看本课讲解', onClick: (ui) => void openModal(ui.root, intro, '继续营建') },
+      bookButton,
+      {
+        label: '重来', title: '清空本课的营建',
+        onClick: (ui) => {
+          if (!confirm('清空本课的营建，从头再来？')) return;
+          map.restore([]);
+          saveLayout('lesson', id, map);
+          ui.refresh();
+        },
+      },
+    ],
+    onHome: () => void nav.home(),
+  });
+  ui.view.highlight = oldWalls;
+  ui.view.invalidate();
+  document.body.classList.add('ready');
+  await nav.arrive();
+}
+
+export async function runSandbox(city: string, nav: Nav): Promise<void> {
+  const data = await fetchLevel(city);
+  const map = new PlanMap(PlanMap.fromLevel(city, data.name, data.terrain!, { hexAcross: data.grid.hexAcross, keepWalls: true, terrainNames: data.terrainNames }));
+  runPlan({
+    map,
+    title: data.name,
+    subtitle: data.subtitle,
+    tag: '沙盘',
+    finishLabel: '完成',
+    onFinish: (_m, v, ui) => ui.toast(`风水总评 ${v.grade}（${v.total}）`),
+    onHome: () => void nav.home(),
+  });
+  document.body.classList.add('ready');
+  await nav.arrive();
+}
+
+
+/** 自定义模式可选的地图：营建地图（data/plan）或 v1 关卡地形（自由营建，不预置城墙） */
+export const CUSTOM_MAPS: { id: string; name: string; blurb: string; source: 'plan' | 'level' }[] = [
+  { id: 'chongqing', name: '重庆', blurb: '绕城高速以内 · 两江交汇、两山夹峙（示意）', source: 'plan' },
+  { id: 'wuchang', name: '武昌', blurb: '蛇山横贯、西临大江（示意）', source: 'plan' },
+  { id: 'xiangyang', name: '襄阳', blurb: '汉水南岸、岘山之北', source: 'level' },
+  { id: 'jingzhou', name: '荆州', blurb: '长江北岸、湖网之间', source: 'level' },
+  { id: 'baoding', name: '保定', blurb: '冀中平原、西望太行', source: 'level' },
+];
+
+export async function customMap(id: string): Promise<PlanMap> {
+  const entry = CUSTOM_MAPS.find((m) => m.id === id);
+  if (!entry) throw new Error(`没有这张地图：${id}`);
+  if (entry.source === 'plan') return new PlanMap(await fetchPlanMap(id));
+  const data = await fetchLevel(id);
+  const json = PlanMap.fromLevel(id, data.name, data.terrain!, { hexAcross: data.grid.hexAcross, keepWalls: false, terrainNames: data.terrainNames });
+  json.subtitle = data.subtitle;
+  return new PlanMap(json);
+}
+
+function mapPickerHtml(current: string): string {
+  return `<span class="kicker">自定义模式</span><h2>择地筑城</h2>
+    <p>选一处山水，从一片空地开始营建。每张图的营建各自保存。</p>
+    <ul class="map-pick">${CUSTOM_MAPS.map((m) => `<li><label><input type="radio" name="map" value="${m.id}" ${m.id === current ? 'checked' : ''}>
+      <b>${m.name}</b><small>${m.blurb}${loadLayout('custom', m.id)?.length ? ' · 已有营建' : ''}</small></label></li>`).join('')}</ul>`;
+}
+
+export async function runCustom(mapId: string, nav: Nav): Promise<void> {
+  const map = await customMap(mapId);
+  const json = map.data;
+  const saved = loadLayout('custom', mapId);
+  if (saved) map.restore(saved);
+  const intro = `<span class="kicker">自定义模式 · ${json.kind === 'real' ? '真实地图' : '示意地图'}</span>
+    <h2>${json.name}</h2>
+    <p>${json.subtitle ?? ''}</p>
+    ${json.ring ? `<p>红色虚线是${json.ringName ?? '可建范围'}，只能在线内营建。</p>` : ''}
+    <p>自由摆放城墙、城门、官署、坛庙、市井。鼠标悬停预览风水评价，右侧随时看全城格局。营建满意后点「修成史书」，会写下一卷营建记，并生成可以分享的城池码。</p>
+    ${json.note ? `<p><small>${json.note}</small></p>` : ''}`;
+
+  runPlan({
+    map,
+    title: json.name,
+    subtitle: json.subtitle ?? '',
+    tag: json.kind === 'real' ? '自定义 · 真实地图' : '自定义 · 示意地图',
+    intro: saved?.length ? undefined : intro,
+    finishLabel: '修成史书',
+    canFinish: (_m, v) => v.buildings.some((b) => b.def.id !== 'wall'),
+    onChange: (m) => saveLayout('custom', mapId, m),
+    onFinish: async (_m, v, ui) => {
+      const { writeChronicle } = await import('./chronicleUI');
+      await writeChronicle(ui, { map, verdict: v, mode: 'custom' });
+    },
+    extraButtons: [
+      {
+        label: '换地图',
+        onClick: async (ui) => {
+          const { openModal } = await import('./planScreen');
+          const pick = await openModal(ui.root, mapPickerHtml(mapId), '前往', '取消');
+          const id = ui.root.querySelector<HTMLInputElement>('.map-pick input:checked')?.value;
+          if (pick === 0 && id && id !== mapId) void nav.go(`?custom=${id}`);
+        },
+      },
+      { label: '导入城池码', onClick: (ui) => void importShare(ui, mapId, map, nav) },
+      bookButton,
+      {
+        label: '清空',
+        title: '拆掉本图的全部营建',
+        onClick: (ui) => {
+          if (!confirm(`拆掉${json.name}的全部营建？（史书里的记载不受影响）`)) return;
+          setOrigin(mapId, null);
+          map.restore([]);
+          saveLayout('custom', mapId, map);
+          ui.refresh();
+        },
+      },
+    ],
+    onHome: () => void nav.home(),
+  });
+  document.body.classList.add('ready');
+  await nav.arrive();
+}

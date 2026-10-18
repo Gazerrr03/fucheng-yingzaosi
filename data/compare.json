@@ -1,0 +1,59 @@
+{
+  "_note": "三城对比页数据。数值与说明均来自三份府城资料与对应 StoryMap；flag 对应 docs/资料问题报告.md 编号。换算按明营造尺约 0.32 m，1 里约 576 m，均为约数。",
+  "cities": ["baoding", "jingzhou", "xiangyang"],
+  "rows": [
+    {
+      "gene": "shanshui",
+      "cells": {
+        "baoding": { "value": "依山傍水", "note": "西倚太行余脉，东有众水与「水长城」。" },
+        "jingzhou": { "value": "傍水", "note": "近州无高山，北有陵阜，南临长江。" },
+        "xiangyang": { "value": "依山傍水", "note": "三面临水，一面接山：北汉江、南岘山、西檀溪。" }
+      }
+    },
+    {
+      "gene": "xingzhuang",
+      "cells": {
+        "baoding": { "value": "近方形 · 靴城", "note": "西城墙南段外凸约 500 米，为扩大射界。" },
+        "jingzhou": { "value": "不规则形", "note": "夹在江河之间，依水随形，东西长、南北窄。" },
+        "xiangyang": { "value": "近方形", "note": "明初在旧城上扩建，轴线与城门偏离中心。" }
+      }
+    },
+    {
+      "gene": "zhouhui",
+      "cells": {
+        "baoding": { "value": "12.92 里", "sub": "约 7.4 千米" },
+        "jingzhou": { "value": "18 里 381 步", "sub": "约 11 千米" },
+        "xiangyang": { "value": "12 里", "sub": "约 6.9 千米" }
+      }
+    },
+    {
+      "gene": "chengmen",
+      "cells": {
+        "baoding": { "value": "4 门", "note": "门名资料未载。", "flag": "12" },
+        "jingzhou": { "value": "6 门", "note": "镇流、公安、南纪、西门、古漕、拱辰。" },
+        "xiangyang": { "value": "6 门", "note": "阳春、文昌、西成、拱辰、临汉、震华，俱有子城。" }
+      }
+    },
+    {
+      "gene": "tanmiao",
+      "same": "三城资料同为：社稷坛居西北，风云雷雨坛居西南，郡厉坛居北而设。",
+      "flag": "1"
+    },
+    {
+      "gene": "fushu",
+      "cells": {
+        "baoding": { "value": "城正中" },
+        "jingzhou": { "value": "西北 → 东南", "note": "洪武年间迁建。" },
+        "xiangyang": { "value": "城西南", "note": "临近襄王府。", "flag": "6" }
+      }
+    },
+    {
+      "gene": "gaohou",
+      "cells": {
+        "baoding": { "value": "高 3.5 丈", "sub": "约 11.2 米 · 上厚 1.5 丈、下厚 3.5 丈" },
+        "jingzhou": { "value": "高 2.6 丈", "sub": "约 8.3 米 · 厚度不详" },
+        "xiangyang": { "value": "高 2.5 丈", "sub": "约 8 米 · 上阔 1.5 丈、脚阔 3 丈" }
+      }
+    }
+  ]
+}

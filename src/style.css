@@ -1,0 +1,245 @@
+:root {
+  --paper: #ece2ca;
+  --paper-deep: #dfd0ad;
+  --ink: #2f241a;
+  --ink-soft: #6b5a45;
+  --cinnabar: #b8322a;
+  --gold: #c9973a;
+  --serif: 'Songti SC', 'STSong', 'Noto Serif SC', 'Source Han Serif SC', serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+#map {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+  touch-action: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+#map.dragging { cursor: grabbing; }
+body.ready #map { opacity: 1; }
+
+#hud { position: fixed; inset: 0; pointer-events: none; }
+#hud > * { pointer-events: auto; }
+
+#fatal:empty { display: none; }
+#fatal {
+  position: fixed; inset: 0; display: grid; place-items: center;
+  font-size: 18px; color: var(--cinnabar);
+}
+
+/* 城名 */
+.title-card {
+  position: absolute; top: 24px; left: 28px;
+  padding: 14px 22px 14px 18px;
+  background: linear-gradient(90deg, rgba(236, 226, 202, 0.94), rgba(236, 226, 202, 0.78));
+  border-left: 4px solid var(--cinnabar);
+  box-shadow: 0 6px 24px rgba(47, 36, 26, 0.18);
+}
+.title-card h1 { margin: 0; font-size: 30px; letter-spacing: 0.18em; font-weight: 700; }
+.title-card p { margin: 6px 0 0; font-size: 13px; letter-spacing: 0.08em; color: var(--ink-soft); }
+
+/* 基因面板 */
+.gene-panel {
+  position: absolute; top: 24px; right: 24px; width: 168px;
+  padding: 14px 14px 10px;
+  background: rgba(236, 226, 202, 0.92);
+  border: 1px solid rgba(47, 36, 26, 0.25);
+  box-shadow: 0 6px 24px rgba(47, 36, 26, 0.18);
+}
+.gene-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 14px; letter-spacing: 0.15em; padding-bottom: 8px; margin-bottom: 6px;
+  border-bottom: 1px solid rgba(47, 36, 26, 0.2);
+}
+.gene-head b { font-size: 13px; color: var(--cinnabar); letter-spacing: 0.05em; }
+.gene-list { list-style: none; margin: 0; padding: 0; }
+.gene { display: flex; align-items: center; gap: 10px; padding: 5px 0; }
+.seal { position: relative; width: 30px; height: 30px; flex: none; }
+.seal img { position: absolute; inset: 0; width: 100%; height: 100%; transition: opacity 0.4s, transform 0.4s; }
+.seal .on { opacity: 0; transform: scale(1.4); }
+.gene.lit .seal .on { opacity: 1; transform: scale(1); }
+.gene.lit .seal .off { opacity: 0; }
+.gene-name { font-size: 14px; letter-spacing: 0.08em; color: var(--ink-soft); }
+.gene.lit .gene-name { color: var(--ink); }
+
+/* 底部提示 */
+.hint {
+  position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+  font-size: 12px; letter-spacing: 0.12em; color: var(--ink-soft);
+  background: rgba(236, 226, 202, 0.8); padding: 6px 14px; border-radius: 2px;
+  pointer-events: none;
+}
+
+/* 悬停提示 */
+.tooltip {
+  position: fixed; top: 0; left: 0;
+  display: flex; gap: 8px; align-items: baseline;
+  padding: 6px 10px; font-size: 13px;
+  background: rgba(47, 36, 26, 0.88); color: var(--paper);
+  border-radius: 2px; pointer-events: none; white-space: nowrap;
+}
+.tooltip b { font-size: 15px; letter-spacing: 0.1em; }
+.tooltip span { font-size: 12px; opacity: 0.75; }
+.tooltip .coord { opacity: 0.6; }
+.tooltip[hidden] { display: none; }
+
+/* 地点卡片（P3 前的占位） */
+.site-card {
+  position: absolute; left: 28px; bottom: 28px; width: 280px;
+  padding: 18px 20px 20px;
+  background: url('/assets/ui/ui_panel_paper.webp') center / cover, var(--paper);
+  box-shadow: 0 10px 30px rgba(47, 36, 26, 0.28);
+}
+.site-card[hidden] { display: none; }
+.site-card .kind { font-size: 12px; letter-spacing: 0.2em; color: var(--cinnabar); }
+.site-card .blurb { margin: 0 0 12px; font-size: 14px; line-height: 1.7; color: var(--ink); }
+.site-card h2 { margin: 4px 0 10px; font-size: 24px; letter-spacing: 0.12em; }
+.site-card .refs { list-style: none; margin: 0 0 14px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.site-card .refs li { font-size: 12px; padding: 3px 8px; border: 1px solid currentColor; letter-spacing: 0.06em; }
+.site-card .gene-ref { color: var(--cinnabar); }
+.site-card .lore-ref { color: var(--ink-soft); }
+.site-card .close {
+  position: absolute; top: 8px; right: 10px; border: 0; background: none;
+  font-size: 22px; color: var(--ink-soft); cursor: pointer;
+}
+.site-card .enter {
+  width: 100%; padding: 8px; font-family: inherit; font-size: 14px; letter-spacing: 0.15em;
+  border: 1px solid var(--ink-soft); background: transparent; color: var(--ink-soft);
+}
+.site-card .enter:disabled { opacity: 0.55; cursor: not-allowed; }
+
+#hud.hidden > * { opacity: 0; pointer-events: none; }
+#hud > * { transition: opacity 0.3s ease; }
+
+/* 基因面板：进度、拾遗、重置 */
+.gene-count { margin-left: auto; font-size: 11px; color: var(--ink-soft); letter-spacing: 0.05em; }
+.gene.stamping .seal .on { animation: seal-stamp 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.2); }
+@keyframes seal-stamp {
+  0% { opacity: 0; transform: scale(2.2) rotate(-12deg); }
+  60% { opacity: 1; transform: scale(0.92) rotate(2deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
+}
+.lore-count {
+  margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(47, 36, 26, 0.2);
+  font-size: 13px; letter-spacing: 0.12em; color: var(--ink-soft);
+}
+.reset {
+  margin-top: 6px; padding: 0; border: 0; background: none; font-family: inherit;
+  font-size: 11px; color: var(--ink-soft); opacity: 0.6; cursor: pointer; text-decoration: underline;
+}
+.reset:hover { opacity: 1; }
+.site-card .enter:not(:disabled) { cursor: pointer; color: var(--paper); background: var(--ink); border-color: var(--ink); }
+.site-card .enter:not(:disabled):hover { background: var(--cinnabar); border-color: var(--cinnabar); }
+.site-card .gene-ref.is-lit { background: var(--cinnabar); color: var(--paper); border-color: var(--cinnabar); }
+
+/* 云雾过渡 */
+.clouds { position: fixed; inset: 0; z-index: 50; pointer-events: all; overflow: hidden; }
+.clouds[hidden] { display: none; }
+.clouds-backdrop { position: absolute; inset: 0; background: var(--paper); opacity: 0; }
+.clouds .puff { position: absolute; left: 50%; top: 50%; opacity: 0; will-change: transform, opacity; filter: drop-shadow(0 12px 24px rgba(80, 60, 30, 0.12)); }
+.clouds .puff.wisp { mix-blend-mode: normal; }
+
+/* 3D 地块浮窗 */
+.info-panel {
+  position: fixed; top: 0; right: 0; bottom: 0; width: min(440px, 42vw); z-index: 20;
+  overflow-y: auto; padding: 28px 30px 40px;
+  background: url('/assets/ui/ui_panel_paper.webp') center / cover, var(--paper);
+  box-shadow: -12px 0 40px rgba(47, 36, 26, 0.22);
+}
+.info-panel[hidden] { display: none; }
+.info-panel.enter { animation: panel-in 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+@keyframes panel-in { from { transform: translateX(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+.info-panel .back {
+  border: 1px solid rgba(47, 36, 26, 0.35); background: transparent; color: var(--ink-soft);
+  font-family: inherit; font-size: 13px; letter-spacing: 0.1em; padding: 5px 12px; cursor: pointer; margin-bottom: 18px;
+}
+.info-panel .back:hover { color: var(--ink); border-color: var(--ink); }
+.info-panel .kind { display: block; font-size: 12px; letter-spacing: 0.2em; color: var(--cinnabar); }
+.info-panel h2 { margin: 6px 0 10px; font-size: 32px; letter-spacing: 0.14em; }
+.info-panel .lead { margin: 0 0 8px; font-size: 15px; line-height: 1.85; }
+.info-panel section {
+  position: relative; margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(47, 36, 26, 0.2);
+}
+.info-panel .tag { font-size: 12px; letter-spacing: 0.14em; display: flex; gap: 10px; align-items: baseline; }
+.info-panel .tag.gene { color: var(--cinnabar); }
+.info-panel .tag.lore { color: var(--ink-soft); }
+.info-panel .progress { font-size: 11px; color: var(--ink-soft); letter-spacing: 0.05em; }
+.info-panel h3 { margin: 6px 0 8px; font-size: 20px; letter-spacing: 0.1em; padding-right: 64px; }
+.info-panel section p { margin: 0 0 10px; font-size: 14px; line-height: 1.85; }
+.info-panel blockquote {
+  margin: 12px 0; padding: 10px 14px; border-left: 3px solid var(--cinnabar);
+  background: rgba(184, 50, 42, 0.05); font-size: 15px; line-height: 1.8; letter-spacing: 0.04em;
+}
+.info-panel cite { display: block; margin-top: 6px; font-style: normal; font-size: 12px; color: var(--ink-soft); text-align: right; }
+.info-panel .later { font-size: 13px; color: var(--ink-soft); }
+.info-panel .later b { margin-right: 8px; padding: 1px 6px; border: 1px solid currentColor; font-weight: normal; font-size: 11px; letter-spacing: 0.1em; }
+.info-panel .flag { font-size: 12px; color: #9a6a1c; background: rgba(201, 151, 58, 0.12); padding: 6px 10px; }
+.info-panel .sources { font-size: 11px; color: var(--ink-soft); opacity: 0.8; }
+.info-panel .stamp {
+  position: absolute; top: 14px; right: 0; width: 56px; height: 56px; opacity: 0; transform: scale(2) rotate(-14deg);
+  pointer-events: none;
+}
+.info-panel section.done .stamp { opacity: 0.9; transform: rotate(-6deg); }
+.info-panel section.stamped:not(.done) .stamp { animation: panel-stamp 0.75s cubic-bezier(0.2, 0.9, 0.3, 1.2) forwards; }
+@keyframes panel-stamp {
+  0% { opacity: 0; transform: scale(2.4) rotate(-18deg); }
+  60% { opacity: 1; transform: scale(0.9) rotate(-4deg); }
+  100% { opacity: 0.9; transform: scale(1) rotate(-6deg); }
+}
+.info-panel section[data-lore]::after {
+  content: '已收入拾遗'; position: absolute; top: 20px; right: 0; font-size: 11px; letter-spacing: 0.12em;
+  color: var(--ink-soft); opacity: 0; transition: opacity 0.5s;
+}
+.info-panel section.collected::after { opacity: 0.8; }
+.info-panel .read-hint { margin-top: 26px; font-size: 12px; letter-spacing: 0.12em; color: var(--cinnabar); text-align: center; }
+
+/* 通关印章 */
+.complete-seal {
+  position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 18px;
+  background: rgba(236, 226, 202, 0.72); backdrop-filter: blur(2px); z-index: 30;
+}
+.complete-seal[hidden] { display: none; }
+.seal-stamp { position: relative; width: 220px; height: 220px; }
+.seal-stamp img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.seal-stamp span {
+  position: absolute; inset: 0; display: grid; place-content: center; text-align: center;
+  font-size: 44px; line-height: 1.1; font-weight: 700; color: var(--cinnabar); letter-spacing: 0;
+}
+.complete-seal.show .seal-stamp { animation: seal-stamp 0.9s cubic-bezier(0.2, 0.9, 0.3, 1.2); }
+.complete-seal p { margin: 0; font-size: 18px; letter-spacing: 0.3em; }
+.complete-seal button {
+  font-family: inherit; font-size: 14px; letter-spacing: 0.2em; padding: 8px 24px;
+  border: 1px solid var(--ink); background: transparent; cursor: pointer;
+}
+
+.title-card .home {
+  display: block; margin: 0 0 6px; padding: 0; border: 0; background: none; cursor: pointer;
+  font-family: inherit; font-size: 12px; letter-spacing: 0.12em; color: var(--ink-soft);
+}
+.title-card .home:hover { color: var(--cinnabar); }
+.seal-actions { display: flex; gap: 10px; }
+.seal-actions .compare { background: var(--cinnabar); color: var(--paper); border-color: var(--cinnabar); }
+.seal-actions [hidden] { display: none; }
+
+.mute-toggle {
+  position: fixed; right: 18px; bottom: 16px; z-index: 40;
+  padding: 5px 10px; font-family: var(--serif); font-size: 12px; letter-spacing: 0.15em;
+  color: var(--ink-soft); background: rgba(236, 226, 202, 0.85); border: 1px solid rgba(47, 36, 26, 0.25); cursor: pointer;
+}
+.mute-toggle:hover { color: var(--ink); }

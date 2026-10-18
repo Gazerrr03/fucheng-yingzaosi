@@ -1,0 +1,38 @@
+[
+  [
+    "X01",
+    "昭明台",
+    "Edit the reference building. Add ONE entire new middle STOREY to the CENTRAL pavilion only. It must have EXACTLY THREE distinct habitable floors above the brick terrace, each with its own continuous window/column band and balcony: lower floor, NEW middle floor, upper floor. Show THREE distinct roof/eave levels; do NOT count brick platform as a floor. Preserve flanking small bell and drum pavilions, terrace dimensions and muted palette. Change terrace's central entry to a rounded STONE ARCH tunnel (not rectangular lintel). Keep three-quarter front-right camera, pure white background, no ground shadow, no labels, no text.",
+    true
+  ],
+  [
+    "X03",
+    "夫人城",
+    "Edit reference fortification. REMOVE EVERY roofed building: all five turrets/pavilions and their wooden walls and roofs. Keep ONLY masonry crenellated square outer enclosure, corner platforms, short connecting wall and main wall corner. At locations of removed turrets show plain paved flat terrace behind crenellated parapet. Preserve wall geometry and brick palette. Entire subject isolated on pure white, same three-quarter camera, no foliage, no buildings or roofs anywhere, no text.",
+    true
+  ],
+  [
+    "K09",
+    "方坛",
+    "Generate one simple Ming EARTH ALTAR compound. Center is ONE low square rammed-earth platform with ochre earthen sides and flat plain top, stairs on four sides. A SEPARATE LOW SQUARE ENCLOSURE WALL stands on ground AROUND the altar, visibly separated from platform by a broad empty walkway. Four gaps, one at center of each enclosure side. The outer wall is a low plastered earth wall, NOT a railing attached to platform. NO ornate stone balusters, finial columns, temples or roofs. Isolated object assembly on pure white background. 45-degree downward three-quarter view. Muted ochre earth and pale grey-blue coping, hand-painted low-poly. No scenic ground outside boundary, no shadows or text.",
+    false
+  ],
+  [
+    "J01",
+    "宾阳楼与瓮城",
+    "Ming Binyang gate complex, hand-painted low-poly isolated module. Tall main brick gate terrace at BACK with one main arch and a double-eave wooden hall. A square-ish barbican courtyard in FRONT. CRITICAL: its FRONT-RIGHT CORNER is CHAMFERED at 45 degrees, and the OUTER ARCH ENTRY is in that DIAGONAL CHAMFER wall, oriented 45 degrees relative to main gate. Front wall itself has NO gate; main and outer gate cannot align straight. Make diagonal corner opening unambiguously visible. Lower outer walls, grey brick, muted ochre, slate roof, red-brown wood. White background, no shadows, scenery, people, text. 45-degree downward front-right three-quarter view.",
+    false
+  ],
+  [
+    "J03",
+    "公安水门",
+    "Ming Gong'an water gate isolated module. A short tall main grey-brick wall across BACK with ONE arched gate. A SINGLE SEMICIRCULAR BARBICAN WALL extends forward, joined to main wall at its two ends, enclosing a visibly open HALF-DISC COURTYARD. Outer curved wall lower than main wall. A side-facing arch opening in RIGHT part of curved wall connects to a SMALL stone-stair wharf immediately outside. Exactly ONE semicircular enclosure; NO cylindrical towers, NO pair of curved bastions, NO wooden building, NO roofs. Grey brick, ochre stone, no water plane. Pure white background, soft light no ground shadows, no text. 45-degree downward three-quarter view, hand-painted low-poly.",
+    false
+  ],
+  [
+    "B01",
+    "保定府署",
+    "One restrained Ming Baoding prefectural government compound, elongated narrow rectangular plan, FIVE clearly separated consecutive COURTYARDS along front-to-back axis. Six modest single-storey axial structures bound five courts: main gate, ceremonial gate, main hall, second hall, residence, rear rooms. Low pale plaster perimeter walls, symmetric low side rooms; plain simple grey-blue gable roofs, muted red-brown wood. NO palace grandeur, NO watchtowers or corner towers, NO two-storey halls, NO pavilions, NO plants, NO gold ornament or dragons, NO signs or text. Isolated whole compound, pure white, no exterior terrain or shadow. 45-degree downward three-quarter view, hand-painted low-poly, same reference palette.",
+    false
+  ]
+]

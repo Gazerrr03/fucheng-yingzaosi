@@ -1,0 +1,1419 @@
+{
+  "generated_versions": 128,
+  "png_files_in_raw": 129,
+  "current_deliverables": 101,
+  "by_task": {
+    "T0": 1,
+    "T1": 1,
+    "T2": 1,
+    "T3": 1,
+    "T4": 1,
+    "T5": 4,
+    "T6": 18,
+    "T7": 74
+  },
+  "all_registered_images_decoded": true,
+  "all_recorded_hashes_match": true,
+  "checks": [
+    {
+      "path": "assets/raw/style/style_candidate_01.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/style/style_candidate_02.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/style/style_candidate_03.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/style/style_candidate_04.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/maps/candidates/map_xiangyang.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/maps/candidates/map_jingzhou.png",
+      "size": [
+        1586,
+        992
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/maps/candidates/map_baoding.png",
+      "size": [
+        1340,
+        1174
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/maps/candidates/map_overview.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/clouds/candidates/cloud_01_v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 4
+    },
+    {
+      "path": "assets/raw/clouds/cloud_01.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "path": "assets/raw/clouds/cloud_02.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "path": "assets/raw/clouds/cloud_03.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        253
+      ],
+      "edge_alpha_max": 0
+    },
+    {
+      "path": "assets/raw/clouds/cloud_04.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "path": "assets/raw/ui/ui_panel_paper.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/ui/icon_gene_1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "path": "assets/raw/ui/icon_gene_2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "path": "assets/raw/ui/icon_gene_3.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "path": "assets/raw/ui/icon_gene_4.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "path": "assets/raw/ui/icon_gene_5.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "path": "assets/raw/ui/icon_gene_6.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "path": "assets/raw/ui/icon_gene_7.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "path": "assets/raw/ui/icon_gene_off.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 0
+    },
+    {
+      "path": "assets/raw/ui/seal_xiangyang.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 0
+    },
+    {
+      "path": "assets/raw/ui/seal_jingzhou.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "path": "assets/raw/ui/seal_baoding.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "path": "assets/raw/ui/icon_marker_gate.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "path": "assets/raw/ui/icon_marker_landmark.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "path": "assets/raw/ui/icon_marker_temple.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "path": "assets/raw/ui/icon_marker_office.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "path": "assets/raw/ui/icon_marker_water.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 2
+    },
+    {
+      "path": "assets/raw/ui/icon_marker_mountain.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "path": "assets/raw/concepts/K01/concept_K01_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K01/concept_K01_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K02/concept_K02_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K02/concept_K02_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K02/concept_K02_main_v2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K02/concept_K02_side_v2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K03/concept_K03_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K03/concept_K03_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K04a/concept_K04a_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K04a/concept_K04a_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K04b/concept_K04b_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K04b/concept_K04b_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K05a/concept_K05a_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K05a/concept_K05a_side.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K05b/concept_K05b_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K05b/concept_K05b_side.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K06/concept_K06_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K06/concept_K06_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K07a/concept_K07a_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K07a/concept_K07a_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K07b/concept_K07b_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K07b/concept_K07b_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K08/concept_K08_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K08/concept_K08_side.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K09/concept_K09_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K09/concept_K09_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K10/concept_K10_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K10/concept_K10_side.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K11a/concept_K11a_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K11a/concept_K11a_side.png",
+      "size": [
+        1774,
+        887
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K11b/concept_K11b_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K11b/concept_K11b_side.png",
+      "size": [
+        1774,
+        887
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K12a/concept_K12a_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K12a/concept_K12a_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K12b/concept_K12b_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K12b/concept_K12b_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K12c/concept_K12c_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K12c/concept_K12c_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K12d/concept_K12d_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K12d/concept_K12d_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K13a/concept_K13a_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K13a/concept_K13a_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K13b/concept_K13b_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K13b/concept_K13b_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K13c/concept_K13c_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K13c/concept_K13c_side.png",
+      "size": [
+        1774,
+        887
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K14/concept_K14_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K14/concept_K14_side.png",
+      "size": [
+        1774,
+        887
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/X01/concept_X01_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/X01/concept_X01_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/X02/concept_X02_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/X02/concept_X02_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/X03/concept_X03_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/X03/concept_X03_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/X04/concept_X04_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/X04/concept_X04_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/X05/concept_X05_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/X05/concept_X05_side.png",
+      "size": [
+        1610,
+        977
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/X06/concept_X06_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/X06/concept_X06_side.png",
+      "size": [
+        1774,
+        887
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/X07/concept_X07_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/X07/concept_X07_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/J01/concept_J01_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/J01/concept_J01_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/J02/concept_J02_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/J02/concept_J02_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/J03/concept_J03_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/J03/concept_J03_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/J04/concept_J04_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/J04/concept_J04_side.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/J05/concept_J05_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/J05/concept_J05_side.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/B01/concept_B01_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/B01/concept_B01_side.png",
+      "size": [
+        1774,
+        887
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/B03/concept_B03_main.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/B03/concept_B03_side.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/X01/concept_X01_main_v2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/X01/concept_X01_side_v2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/X03/concept_X03_main_v2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/X03/concept_X03_side_v2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K09/concept_K09_main_v2.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K09/concept_K09_side_v2.png",
+      "size": [
+        1774,
+        887
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/J01/concept_J01_main_v2.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/J01/concept_J01_side_v2.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/J03/concept_J03_main_v2.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/J03/concept_J03_side_v2.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/B01/concept_B01_main_v2.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/B01/concept_B01_side_v2.png",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K05a/concept_K05a_side_v2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K05b/concept_K05b_side_v2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K07a/concept_K07a_side_v2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K07b/concept_K07b_side_v2.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K08/concept_K08_side_v2.png",
+      "size": [
+        1774,
+        887
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/K10/concept_K10_side_v2.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/concepts/X06/concept_X06_side_v2.png",
+      "size": [
+        1774,
+        887
+      ],
+      "mode": "RGB",
+      "decode": "passed",
+      "hash": "passed"
+    },
+    {
+      "path": "assets/raw/ui/icon_gene_2_v2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "path": "assets/raw/ui/icon_marker_office_v2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "decode": "passed",
+      "hash": "passed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "edge_alpha_max": 1
+    }
+  ]
+}

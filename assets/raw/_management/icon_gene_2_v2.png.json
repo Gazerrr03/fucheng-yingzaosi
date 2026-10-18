@@ -1,0 +1,11 @@
+{
+  "task": "T6",
+  "dest": "assets/raw/ui/icon_gene_2_v2.png",
+  "prompt": "Edit input image: simplify the CITY PLAN seal pictogram radically. Keep vermilion red distressed square frame and red printed texture. REMOVE every house, roof, courtyard interior, tree, moat and tiny street. Inside frame show ONLY one bold simple overhead city-wall OUTLINE, a roughly square polygon with a clear westward bulge at lower-left, four minimal square gate interruptions. EMPTY transparent interior. This symbol communicates city footprint shape, not perimeter wall thickness or city gate facade. Extremely legible at small size. Flat 2D red marks only, genuine transparent background, no paper background, no text, no glyphs or characters. Requested 512x512.",
+  "status": "revision_pending_review",
+  "references": [
+    "/Users/qizhi_dong/Projects/demo/assets/raw/ui/icon_gene_2.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-81510293-c869-46c6-a40f-eb3893ba8289.png",
+  "visual_review": "Targeted small-icon clarity revision, pending visual check."
+}

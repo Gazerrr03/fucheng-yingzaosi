@@ -1,0 +1,14 @@
+{
+  "task": "T7",
+  "asset_id": "X07",
+  "label": "东北外城与震华门",
+  "view": "side",
+  "dest": "assets/raw/concepts/X07/concept_X07_side.png",
+  "prompt": "Create a NEW CAMERA VIEW of the EXACT object in input image 1. Produce ONE architectural ORTHOGRAPHIC FRONT ELEVATION at EYE LEVEL. Rotate and lower camera from the reference to look straight and horizontally at the front. Roof ridges, wall tops and bases must be HORIZONTAL, verticals VERTICAL. NO isometric view, NO three-quarter view, NO top-down perspective; no diagonal receding plan visible, no view down onto roof or floor surfaces. Preserve the precise number of floors, roof tiers, bays, arches, overall width-to-height proportions, materials and colors. Do not invent extra parts. Pure SOLID WHITE background, soft even light, no shadow patch or ground plane, no people, plants unless this asset IS a tree, text, labels or multiple panels. Single isolated centered object with margin. Asset identity: X07 东北外城与震华门. Xiangyang northeastern outer-city junction module: short main grey-brick city wall meets a lower outward-bulging RECTANGULAR outer enclosure at its corner, one long-gate tower (Zhenhua) with a single arch in outer wall. Clearly distinguish main and outer wall junction, crenellations, modest grey-blue tiled tower. Not a whole city, no water, terrain or houses.",
+  "status": "generated_pending_pair_review",
+  "references": [
+    "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-9b54eab3-02a1-40ae-a3a4-3e11e448918e.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-0c00c91d-5f50-4489-9995-4c5f02c23e68.png",
+  "visual_review": "Concept generated, awaiting pair review; PNG actual size and original hash recorded. No GLB generated."
+}

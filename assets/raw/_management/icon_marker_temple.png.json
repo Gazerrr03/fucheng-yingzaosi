@@ -1,0 +1,9 @@
+{
+  "task": "T6",
+  "dest": "assets/raw/ui/icon_marker_temple.png",
+  "prompt": "Use case: stylized-concept. T6 production game UI asset, requested 256x256 square. One circular DARK CHARCOAL-INK map marker badge with pale IVORY pictogram of temple hall with upturned roof. Restrained aged-paper grain within disk, thin warm ivory rim, hand-inked small-size game map icon, flat front view. Only circular badge visible, transparent outside, no letters, text or additional seal square. Match supplied reference for muted historical ink and watercolor handwork only; no map scene. Chinese traditional visual language. Single isolated centered graphic with generous safe padding, no contact with canvas edges. No text, calligraphy, Chinese characters, numbers, watermark, modern motif or UI mockup. Genuinely transparent PNG background; preserve alpha.",
+  "status": "generated_pending_visual_and_size_review",
+  "requested_size": "256x256 square",
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-456e72df-3985-45d0-8235-c2773d61e463.png",
+  "visual_review": "Awaiting visual review; PNG signature, actual dimensions and original-copy hash checked during archive."
+}

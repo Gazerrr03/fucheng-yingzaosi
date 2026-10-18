@@ -1,0 +1,13 @@
+{
+  "task": "T7",
+  "asset_id": "K05a",
+  "view": "side",
+  "dest": "assets/raw/concepts/K05a/concept_K05a_side_v2.png",
+  "prompt": "Re-render the EXACT architectural module in the reference as a true RIGHT-SIDE ELEVATION. Camera is at ground-level object midpoint, viewing HORIZONTALLY perpendicular to its LONG RIGHT perimeter wall. Show a single FLAT silhouette in elevation: outer wall is a horizontal strip; the SAME roof ridges and gable ends are visible above it, at physically correct overlapping heights. All buildings stand on ONE baseline. Foreground perimeter wall OCCLUDES courtyards: NO courtyard paving, NO floor or platform top is visible. Do not stack rear buildings vertically to show them all. No perspective, no isometric tilt, no roof-top view. Preserve existing number and arrangement of buildings, stories, roofs, materials, colors and features. Single isolated whole object, pure white background, soft diffuse light, NO ground shadow, no vegetation, no text or labels. This is the supplementary side view for image-to-3D, main view already exists.",
+  "status": "elevation_revision_pending_review",
+  "references": [
+    "/Users/qizhi_dong/Projects/demo/assets/raw/concepts/K05a/concept_K05a_main.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-e5da9108-422f-4ccd-803a-e78d7dc43717.png",
+  "visual_review": "Supplementary right-side elevation revision, awaiting visual inspection."
+}

@@ -1,0 +1,9 @@
+{
+  "task": "T6",
+  "dest": "assets/raw/ui/icon_gene_2.png",
+  "prompt": "Use case: stylized-concept. T6 production game UI asset, requested 512x512 square. One Chinese seal-carving style VERMILION RED pictogram: a simple clearly readable walled CITY PLAN outline seen overhead. Square red stamp outline enclosing the recognizable pictorial motif; distressed hand-printed edges and subtle grain. Symbol must be a picture, no Chinese glyph, no letters or numerals. Bold legible at small size, flat front view, only red ink marks on transparent background. Match supplied reference for muted historical ink and watercolor handwork only; no map scene. Chinese traditional visual language. Single isolated centered graphic with generous safe padding, no contact with canvas edges. No text, calligraphy, Chinese characters, numbers, watermark, modern motif or UI mockup. Genuinely transparent PNG background; preserve alpha.",
+  "status": "generated_pending_visual_and_size_review",
+  "requested_size": "512x512 square",
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-bf15d027-95ed-43dc-b094-0238eb875c5d.png",
+  "visual_review": "Awaiting visual review; PNG signature, actual dimensions and original-copy hash checked during archive."
+}

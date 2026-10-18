@@ -1,0 +1,458 @@
+{
+  "_note": "3D 资产在地块上的显示规格。width = 模型水平方向最长边在地块上占多少米（地块有夸张比例，一格对边 200 m）；heroWidth = 作为地点主体时的宽度；rotY = 绕竖轴额外旋转（度），用来修正图生 3D 的朝向，使正面朝南（+Z）。模型文件放 assets/models/{ID}.glb。 fallback = 本资产还没建模时临时借用的通用模型。 far = 远景时改用的简模 ID；lodOf = 该条目是哪个资产的远景简模。",
+  "K01": {
+    "name": "城墙直段",
+    "width": 120,
+    "heroWidth": 200,
+    "far": "K01_far",
+    "bounds": [[-20.075, 0.0, -4.895], [20.075, 10.48, 5.1]]
+  },
+  "K01_far": {
+    "name": "城墙直段（远景简模）",
+    "width": 120,
+    "heroWidth": 200,
+    "lodOf": "K01"
+  },
+  "K02": {
+    "name": "城墙转角 + 角台",
+    "width": 110,
+    "heroWidth": 180,
+    "fallback": "K01",
+    "far": "K02_far",
+    "bounds": [[-10.31, 0.0, -26.05], [26.05, 15.31, 10.31]]
+  },
+  "K02_far": {
+    "name": "城墙转角 + 角台（远景简模）",
+    "width": 110,
+    "heroWidth": 180,
+    "lodOf": "K02"
+  },
+  "K03": {
+    "name": "马面 / 敌台",
+    "width": 100,
+    "heroWidth": 170,
+    "fallback": "K01"
+  },
+  "K04a": {
+    "name": "城门台 + 单檐城楼",
+    "width": 110,
+    "heroWidth": 180,
+    "far": "K04a_far",
+    "bounds": [[-26.5, 0.0, -13.3], [26.5, 23.485, 10.31]]
+  },
+  "K04b": {
+    "name": "城门台 + 重檐城楼",
+    "width": 120,
+    "heroWidth": 190,
+    "far": "K04b_far",
+    "bounds": [[-27.45, 0.0, -14.3], [27.45, 30.807, 11.31]]
+  },
+  "K04b_far": {
+    "name": "城门台 + 重檐城楼（远景简模）",
+    "width": 120,
+    "heroWidth": 190,
+    "lodOf": "K04b"
+  },
+  "K05a": {
+    "name": "方形瓮城",
+    "width": 130,
+    "heroWidth": 200,
+    "far": "K05a_far",
+    "bounds": [[-24.5, 0.0, -9.31], [25.7424, 23.015, 41.3]]
+  },
+  "K05a_far": {
+    "name": "方形瓮城（远景简模）",
+    "width": 130,
+    "heroWidth": 200,
+    "lodOf": "K05a"
+  },
+  "K05b": {
+    "name": "半圆形瓮城",
+    "width": 130,
+    "heroWidth": 200,
+    "far": "K05b_far",
+    "bounds": [[-24.5, 0.0, -13.0], [24.5, 23.015, 27.4936]]
+  },
+  "K05b_far": {
+    "name": "半圆形瓮城（远景简模）",
+    "width": 130,
+    "heroWidth": 200,
+    "lodOf": "K05b"
+  },
+  "K06": {
+    "name": "角楼",
+    "width": 100,
+    "heroWidth": 170,
+    "fallback": "K04a"
+  },
+  "K07a": {
+    "name": "民居群（南方）",
+    "width": 95,
+    "heroWidth": 150,
+    "far": "K07a_far",
+    "bounds": [[-20.25, 0.0, -20.25], [20.25, 9.848, 20.25]]
+  },
+  "K07a_far": {
+    "name": "民居群（南方）（远景简模）",
+    "width": 95,
+    "heroWidth": 150,
+    "lodOf": "K07a"
+  },
+  "K07b": {
+    "name": "民居群（北方）",
+    "width": 95,
+    "heroWidth": 150,
+    "fallback": "K07a",
+    "far": "K07b_far",
+    "bounds": [[-23.0, 0.0, -22.05], [23.0, 7.72, 24.5598]]
+  },
+  "K07b_far": {
+    "name": "民居群（北方）（远景简模）",
+    "width": 95,
+    "heroWidth": 150,
+    "lodOf": "K07b"
+  },
+  "K08": {
+    "name": "衙署院落",
+    "width": 130,
+    "heroWidth": 200,
+    "far": "K08_far",
+    "bounds": [[-20.6, 0.0, -40.6], [20.6, 17.805, 51.5666]]
+  },
+  "K08_far": {
+    "name": "衙署院落（远景简模）",
+    "width": 130,
+    "heroWidth": 200,
+    "lodOf": "K08"
+  },
+  "K09": {
+    "name": "坛",
+    "width": 110,
+    "heroWidth": 180,
+    "far": "K09_far",
+    "bounds": [[-18.1, 0.0, -18.1], [18.1, 2.55, 18.1]]
+  },
+  "K09_far": {
+    "name": "坛（远景简模）",
+    "width": 110,
+    "heroWidth": 180,
+    "lodOf": "K09"
+  },
+  "K10": {
+    "name": "庙宇",
+    "width": 110,
+    "heroWidth": 180,
+    "fallback": "K08"
+  },
+  "K11a": {
+    "name": "单孔石拱桥",
+    "width": 70,
+    "heroWidth": 140,
+    "far": "K11a_far",
+    "bounds": [[-10.9, 0.0, -2.65], [10.9, 7.38, 2.65]]
+  },
+  "K11a_far": {
+    "name": "单孔石拱桥（远景简模）",
+    "width": 70,
+    "heroWidth": 140,
+    "lodOf": "K11a"
+  },
+  "K11b": {
+    "name": "双孔石拱桥",
+    "width": 80,
+    "heroWidth": 160,
+    "far": "K11b_far",
+    "bounds": [[-15.9, 0.0, -3.9], [15.9, 7.88, 3.9]]
+  },
+  "K11b_far": {
+    "name": "双孔石拱桥（远景简模）",
+    "width": 80,
+    "heroWidth": 160,
+    "lodOf": "K11b"
+  },
+  "K12a": {
+    "name": "柳",
+    "width": 55,
+    "heroWidth": 90,
+    "far": "K12a_far",
+    "bounds": [[-2.6049, -0.0414, -4.375], [4.8102, 7.8713, 3.9168]]
+  },
+  "K12a_far": {
+    "name": "柳（远景简模）",
+    "width": 55,
+    "heroWidth": 90,
+    "lodOf": "K12a"
+  },
+  "K12b": {
+    "name": "松",
+    "width": 55,
+    "heroWidth": 90,
+    "far": "K12b_far",
+    "bounds": [[-3.4388, -0.1153, -5.5265], [7.5917, 11.9414, 5.4339]]
+  },
+  "K12b_far": {
+    "name": "松（远景简模）",
+    "width": 55,
+    "heroWidth": 90,
+    "lodOf": "K12b"
+  },
+  "K12c": {
+    "name": "杂木团",
+    "width": 55,
+    "heroWidth": 90,
+    "far": "K12c_far",
+    "bounds": [[-8.4534, -0.023, -6.1402], [7.2879, 9.9939, 5.9732]]
+  },
+  "K12c_far": {
+    "name": "杂木团（远景简模）",
+    "width": 55,
+    "heroWidth": 90,
+    "lodOf": "K12c"
+  },
+  "K12d": {
+    "name": "银杏",
+    "width": 55,
+    "heroWidth": 90,
+    "fallback": "K12c"
+  },
+  "K13a": {
+    "name": "码头",
+    "width": 60,
+    "heroWidth": 110,
+    "fallback": "K13b"
+  },
+  "K13b": {
+    "name": "木船",
+    "width": 60,
+    "heroWidth": 110,
+    "far": "K13b_far",
+    "bounds": [[-8.85, -0.2, -1.3701], [5.0438, 1.9235, 1.3701]]
+  },
+  "K13b_far": {
+    "name": "木船（远景简模）",
+    "width": 60,
+    "heroWidth": 110,
+    "lodOf": "K13b"
+  },
+  "K13c": {
+    "name": "篷船",
+    "width": 60,
+    "heroWidth": 110,
+    "far": "K13c_far",
+    "bounds": [[-10.51, -0.2, -1.5701], [6.0425, 2.6395, 1.5701]]
+  },
+  "K13c_far": {
+    "name": "篷船（远景简模）",
+    "width": 60,
+    "heroWidth": 110,
+    "lodOf": "K13c"
+  },
+  "K14": {
+    "name": "关厢街屋",
+    "width": 95,
+    "heroWidth": 150,
+    "far": "K14_far",
+    "bounds": [[-30.4, 0.0, -5.75], [30.4, 8.76, 7.8]]
+  },
+  "K14_far": {
+    "name": "关厢街屋（远景简模）",
+    "width": 95,
+    "heroWidth": 150,
+    "lodOf": "K14"
+  },
+  "X01": {
+    "name": "昭明台",
+    "width": 120,
+    "heroWidth": 190,
+    "far": "X01_far",
+    "bounds": [[-17.4805, 0.0, -12.3826], [17.4805, 36.3501, 14.5488]]
+  },
+  "X01_far": {
+    "name": "昭明台（远景简模）",
+    "width": 120,
+    "heroWidth": 190,
+    "lodOf": "X01"
+  },
+  "X02": {
+    "name": "临汉门",
+    "width": 120,
+    "heroWidth": 190,
+    "far": "X02_far",
+    "bounds": [[-30.45, 0.0, -13.3], [30.45, 32.081, 10.31]]
+  },
+  "X02_far": {
+    "name": "临汉门（远景简模）",
+    "width": 120,
+    "heroWidth": 190,
+    "lodOf": "X02"
+  },
+  "X03": {
+    "name": "夫人城",
+    "width": 120,
+    "heroWidth": 190,
+    "far": "X03_far",
+    "bounds": [[-14.31, 0.0, -24.05], [24.05, 17.31, 14.31]]
+  },
+  "X03_far": {
+    "name": "夫人城（远景简模）",
+    "width": 120,
+    "heroWidth": 190,
+    "lodOf": "X03"
+  },
+  "X04": {
+    "name": "仲宣楼",
+    "width": 120,
+    "heroWidth": 190,
+    "far": "X04_far",
+    "bounds": [[-33.05, 0.0, -33.05], [13.1, 30.0958, 20.7]]
+  },
+  "X04_far": {
+    "name": "仲宣楼（远景简模）",
+    "width": 120,
+    "heroWidth": 190,
+    "lodOf": "X04"
+  },
+  "X05": {
+    "name": "绿影壁",
+    "width": 120,
+    "heroWidth": 190,
+    "far": "X05_far",
+    "bounds": [[-14.0166, 0.0, -2.9166], [14.0166, 11.38, 2.9166]]
+  },
+  "X05_far": {
+    "name": "绿影壁（远景简模）",
+    "width": 120,
+    "heroWidth": 190,
+    "lodOf": "X05"
+  },
+  "X06": {
+    "name": "府儒学",
+    "width": 130,
+    "heroWidth": 200,
+    "far": "X06_far",
+    "bounds": [[-25.65, 0.0, -35.65], [25.65, 19.105, 45.7666]]
+  },
+  "X06_far": {
+    "name": "府儒学（远景简模）",
+    "width": 130,
+    "heroWidth": 200,
+    "lodOf": "X06"
+  },
+  "X07": {
+    "name": "东北外城 + 震华门",
+    "width": 130,
+    "heroWidth": 200,
+    "far": "X07_far",
+    "bounds": [[-40.05, 0.0, -24.895], [40.05, 21.125, 24.7166]]
+  },
+  "X07_far": {
+    "name": "东北外城 + 震华门（远景简模）",
+    "width": 130,
+    "heroWidth": 200,
+    "lodOf": "X07"
+  },
+  "J01": {
+    "name": "宾阳楼 + 瓮城",
+    "width": 130,
+    "heroWidth": 200,
+    "fallback": "K05a",
+    "far": "J01_far",
+    "bounds": [[-27.981, 0.0, -9.31], [27.981, 29.6874, 48.0484]]
+  },
+  "J01_far": {
+    "name": "宾阳楼 + 瓮城（远景简模）",
+    "width": 130,
+    "heroWidth": 200,
+    "lodOf": "J01"
+  },
+  "J02": {
+    "name": "朝宗楼",
+    "width": 120,
+    "heroWidth": 190,
+    "fallback": "K04b",
+    "far": "J02_far",
+    "bounds": [[-17.31, 0.0, -11.31], [17.31, 32.2142, 11.45]]
+  },
+  "J02_far": {
+    "name": "朝宗楼（远景简模）",
+    "width": 120,
+    "heroWidth": 190,
+    "lodOf": "J02"
+  },
+  "J03": {
+    "name": "公安门（水门）",
+    "width": 130,
+    "heroWidth": 200,
+    "fallback": "K05b",
+    "far": "J03_far",
+    "bounds": [[-26.05, 0.0, -7.31], [25.31, 11.98, 34.0]]
+  },
+  "J03_far": {
+    "name": "公安门（水门）（远景简模）",
+    "width": 130,
+    "heroWidth": 200,
+    "lodOf": "J03"
+  },
+  "J04": {
+    "name": "南纪门",
+    "width": 130,
+    "heroWidth": 200,
+    "fallback": "K05a",
+    "far": "J04_far",
+    "bounds": [[-24.5, 0.0, -9.31], [24.5, 29.1298, 46.2166]]
+  },
+  "J04_far": {
+    "name": "南纪门（远景简模）",
+    "width": 130,
+    "heroWidth": 200,
+    "lodOf": "J04"
+  },
+  "J05": {
+    "name": "洪武砖墙段",
+    "width": 120,
+    "heroWidth": 200,
+    "fallback": "K01",
+    "far": "J05_far",
+    "bounds": [[-20.075, 0.0, -5.295], [20.075, 11.48, 5.5]]
+  },
+  "J05_far": {
+    "name": "洪武砖墙段（远景简模）",
+    "width": 120,
+    "heroWidth": 200,
+    "lodOf": "J05"
+  },
+  "B01": {
+    "name": "保定府署",
+    "width": 140,
+    "heroWidth": 210,
+    "fallback": "K08",
+    "far": "B01_far",
+    "bounds": [[-18.6, 0.0, -60.6], [18.6, 18.205, 63.2159]]
+  },
+  "B01_far": {
+    "name": "保定府署（远景简模）",
+    "width": 140,
+    "heroWidth": 210,
+    "lodOf": "B01"
+  },
+  "B03": {
+    "name": "一亩泉引水 + 水力石磨",
+    "width": 110,
+    "heroWidth": 180,
+    "fallback": "K11a",
+    "far": "B03_far",
+    "bounds": [[-17.0, 0.0, -12.0], [5.05, 9.0, 2.55]]
+  },
+  "B03_far": {
+    "name": "一亩泉引水 + 水力石磨（远景简模）",
+    "width": 110,
+    "heroWidth": 180,
+    "lodOf": "B03"
+  },
+  "K04a_far": {
+    "name": "城门台 + 单檐城楼（远景简模）",
+    "width": 110,
+    "heroWidth": 180,
+    "lodOf": "K04a"
+  }
+}

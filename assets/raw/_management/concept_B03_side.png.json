@@ -1,0 +1,14 @@
+{
+  "task": "T7",
+  "asset_id": "B03",
+  "label": "引水渠与水磨",
+  "view": "side",
+  "dest": "assets/raw/concepts/B03/concept_B03_side.png",
+  "prompt": "Create a NEW CAMERA VIEW of the EXACT object in input image 1. Produce ONE architectural ORTHOGRAPHIC FRONT ELEVATION at EYE LEVEL. Rotate and lower camera from the reference to look straight and horizontally at the front. Roof ridges, wall tops and bases must be HORIZONTAL, verticals VERTICAL. NO isometric view, NO three-quarter view, NO top-down perspective; no diagonal receding plan visible, no view down onto roof or floor surfaces. Preserve the precise number of floors, roof tiers, bays, arches, overall width-to-height proportions, materials and colors. Do not invent extra parts. Pure SOLID WHITE background, soft even light, no shadow patch or ground plane, no people, plants unless this asset IS a tree, text, labels or multiple panels. Single isolated centered object with margin. Asset identity: B03 引水渠与水磨. One compact historic spring canal and water-powered stone mill module: low stone canal trough leads to one timber undershot water wheel at side of a modest grey-tiled mill hut; wheel axle connected to visible circular stone millstones via simple wooden shaft. No flowing water surface (added by program), no terrain island, people or city.",
+  "status": "generated_pending_pair_review",
+  "references": [
+    "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-f4aeeec0-3ec4-4ce6-9a0a-8dee23cb0e5d.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-ec836387-7580-4eea-8d3a-dee8e2320ef4.png",
+  "visual_review": "Concept generated, awaiting pair review; PNG actual size and original hash recorded. No GLB generated."
+}

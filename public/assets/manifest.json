@@ -1,0 +1,768 @@
+{
+  "maps/xiangyang": {
+    "file": "assets/maps/xiangyang.webp",
+    "size": [
+      1448,
+      1086
+    ]
+  },
+  "maps/jingzhou": {
+    "file": "assets/maps/jingzhou.webp",
+    "size": [
+      1586,
+      992
+    ]
+  },
+  "maps/baoding": {
+    "file": "assets/maps/baoding.webp",
+    "size": [
+      1340,
+      1174
+    ]
+  },
+  "maps/overview": {
+    "file": "assets/maps/overview.webp",
+    "size": [
+      1536,
+      1024
+    ]
+  },
+  "clouds/cloud_01": {
+    "file": "assets/clouds/cloud_01.webp",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  "clouds/cloud_02": {
+    "file": "assets/clouds/cloud_02.webp",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  "clouds/cloud_03": {
+    "file": "assets/clouds/cloud_03.webp",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  "clouds/cloud_04": {
+    "file": "assets/clouds/cloud_04.webp",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  "ui/ui_panel_paper": {
+    "file": "assets/ui/ui_panel_paper.webp",
+    "size": [
+      1024,
+      1536
+    ]
+  },
+  "ui/icon_gene_1": {
+    "file": "assets/ui/icon_gene_1.webp",
+    "size": [
+      256,
+      256
+    ]
+  },
+  "ui/icon_gene_2": {
+    "file": "assets/ui/icon_gene_2.webp",
+    "size": [
+      256,
+      256
+    ]
+  },
+  "ui/icon_gene_3": {
+    "file": "assets/ui/icon_gene_3.webp",
+    "size": [
+      256,
+      256
+    ]
+  },
+  "ui/icon_gene_4": {
+    "file": "assets/ui/icon_gene_4.webp",
+    "size": [
+      256,
+      256
+    ]
+  },
+  "ui/icon_gene_5": {
+    "file": "assets/ui/icon_gene_5.webp",
+    "size": [
+      256,
+      256
+    ]
+  },
+  "ui/icon_gene_6": {
+    "file": "assets/ui/icon_gene_6.webp",
+    "size": [
+      256,
+      256
+    ]
+  },
+  "ui/icon_gene_7": {
+    "file": "assets/ui/icon_gene_7.webp",
+    "size": [
+      256,
+      256
+    ]
+  },
+  "ui/icon_gene_off": {
+    "file": "assets/ui/icon_gene_off.webp",
+    "size": [
+      256,
+      256
+    ]
+  },
+  "ui/seal_xiangyang": {
+    "file": "assets/ui/seal_xiangyang.webp",
+    "size": [
+      256,
+      256
+    ]
+  },
+  "ui/seal_jingzhou": {
+    "file": "assets/ui/seal_jingzhou.webp",
+    "size": [
+      256,
+      256
+    ]
+  },
+  "ui/seal_baoding": {
+    "file": "assets/ui/seal_baoding.webp",
+    "size": [
+      256,
+      256
+    ]
+  },
+  "ui/icon_marker_gate": {
+    "file": "assets/ui/icon_marker_gate.webp",
+    "size": [
+      128,
+      128
+    ]
+  },
+  "ui/icon_marker_landmark": {
+    "file": "assets/ui/icon_marker_landmark.webp",
+    "size": [
+      128,
+      128
+    ]
+  },
+  "ui/icon_marker_temple": {
+    "file": "assets/ui/icon_marker_temple.webp",
+    "size": [
+      128,
+      128
+    ]
+  },
+  "ui/icon_marker_office": {
+    "file": "assets/ui/icon_marker_office.webp",
+    "size": [
+      128,
+      128
+    ]
+  },
+  "ui/icon_marker_water": {
+    "file": "assets/ui/icon_marker_water.webp",
+    "size": [
+      128,
+      128
+    ]
+  },
+  "ui/icon_marker_mountain": {
+    "file": "assets/ui/icon_marker_mountain.webp",
+    "size": [
+      128,
+      128
+    ]
+  },
+  "concepts/K01_main": {
+    "file": "assets/concepts/K01_main.webp",
+    "size": [
+      512,
+      318
+    ]
+  },
+  "concepts/K01_side": {
+    "file": "assets/concepts/K01_side.webp",
+    "size": [
+      512,
+      143
+    ]
+  },
+  "concepts/K02_main": {
+    "file": "assets/concepts/K02_main.webp",
+    "size": [
+      512,
+      350
+    ]
+  },
+  "concepts/K02_side": {
+    "file": "assets/concepts/K02_side.webp",
+    "size": [
+      512,
+      258
+    ]
+  },
+  "concepts/K03_main": {
+    "file": "assets/concepts/K03_main.webp",
+    "size": [
+      512,
+      350
+    ]
+  },
+  "concepts/K03_side": {
+    "file": "assets/concepts/K03_side.webp",
+    "size": [
+      512,
+      184
+    ]
+  },
+  "concepts/K04a_main": {
+    "file": "assets/concepts/K04a_main.webp",
+    "size": [
+      512,
+      465
+    ]
+  },
+  "concepts/K04a_side": {
+    "file": "assets/concepts/K04a_side.webp",
+    "size": [
+      512,
+      399
+    ]
+  },
+  "concepts/K04b_main": {
+    "file": "assets/concepts/K04b_main.webp",
+    "size": [
+      512,
+      411
+    ]
+  },
+  "concepts/K04b_side": {
+    "file": "assets/concepts/K04b_side.webp",
+    "size": [
+      512,
+      441
+    ]
+  },
+  "concepts/K05a_main": {
+    "file": "assets/concepts/K05a_main.webp",
+    "size": [
+      512,
+      413
+    ]
+  },
+  "concepts/K05a_side": {
+    "file": "assets/concepts/K05a_side.webp",
+    "size": [
+      512,
+      243
+    ]
+  },
+  "concepts/K05b_main": {
+    "file": "assets/concepts/K05b_main.webp",
+    "size": [
+      512,
+      393
+    ]
+  },
+  "concepts/K05b_side": {
+    "file": "assets/concepts/K05b_side.webp",
+    "size": [
+      512,
+      234
+    ]
+  },
+  "concepts/K06_main": {
+    "file": "assets/concepts/K06_main.webp",
+    "size": [
+      512,
+      465
+    ]
+  },
+  "concepts/K06_side": {
+    "file": "assets/concepts/K06_side.webp",
+    "size": [
+      512,
+      443
+    ]
+  },
+  "concepts/K07a_main": {
+    "file": "assets/concepts/K07a_main.webp",
+    "size": [
+      512,
+      398
+    ]
+  },
+  "concepts/K07a_side": {
+    "file": "assets/concepts/K07a_side.webp",
+    "size": [
+      512,
+      197
+    ]
+  },
+  "concepts/K07b_main": {
+    "file": "assets/concepts/K07b_main.webp",
+    "size": [
+      512,
+      431
+    ]
+  },
+  "concepts/K07b_side": {
+    "file": "assets/concepts/K07b_side.webp",
+    "size": [
+      512,
+      140
+    ]
+  },
+  "concepts/K08_main": {
+    "file": "assets/concepts/K08_main.webp",
+    "size": [
+      511,
+      512
+    ]
+  },
+  "concepts/K08_side": {
+    "file": "assets/concepts/K08_side.webp",
+    "size": [
+      512,
+      130
+    ]
+  },
+  "concepts/K09_main": {
+    "file": "assets/concepts/K09_main.webp",
+    "size": [
+      512,
+      293
+    ]
+  },
+  "concepts/K09_side": {
+    "file": "assets/concepts/K09_side.webp",
+    "size": [
+      512,
+      72
+    ]
+  },
+  "concepts/K10_main": {
+    "file": "assets/concepts/K10_main.webp",
+    "size": [
+      512,
+      364
+    ]
+  },
+  "concepts/K10_side": {
+    "file": "assets/concepts/K10_side.webp",
+    "size": [
+      512,
+      205
+    ]
+  },
+  "concepts/K11a_main": {
+    "file": "assets/concepts/K11a_main.webp",
+    "size": [
+      512,
+      307
+    ]
+  },
+  "concepts/K11a_side": {
+    "file": "assets/concepts/K11a_side.webp",
+    "size": [
+      512,
+      148
+    ]
+  },
+  "concepts/K11b_main": {
+    "file": "assets/concepts/K11b_main.webp",
+    "size": [
+      512,
+      264
+    ]
+  },
+  "concepts/K11b_side": {
+    "file": "assets/concepts/K11b_side.webp",
+    "size": [
+      512,
+      152
+    ]
+  },
+  "concepts/K12a_main": {
+    "file": "assets/concepts/K12a_main.webp",
+    "size": [
+      483,
+      512
+    ]
+  },
+  "concepts/K12a_side": {
+    "file": "assets/concepts/K12a_side.webp",
+    "size": [
+      479,
+      512
+    ]
+  },
+  "concepts/K12b_main": {
+    "file": "assets/concepts/K12b_main.webp",
+    "size": [
+      512,
+      505
+    ]
+  },
+  "concepts/K12b_side": {
+    "file": "assets/concepts/K12b_side.webp",
+    "size": [
+      512,
+      504
+    ]
+  },
+  "concepts/K12c_main": {
+    "file": "assets/concepts/K12c_main.webp",
+    "size": [
+      512,
+      454
+    ]
+  },
+  "concepts/K12c_side": {
+    "file": "assets/concepts/K12c_side.webp",
+    "size": [
+      512,
+      460
+    ]
+  },
+  "concepts/K12d_main": {
+    "file": "assets/concepts/K12d_main.webp",
+    "size": [
+      491,
+      512
+    ]
+  },
+  "concepts/K12d_side": {
+    "file": "assets/concepts/K12d_side.webp",
+    "size": [
+      512,
+      512
+    ]
+  },
+  "concepts/K13a_main": {
+    "file": "assets/concepts/K13a_main.webp",
+    "size": [
+      512,
+      377
+    ]
+  },
+  "concepts/K13a_side": {
+    "file": "assets/concepts/K13a_side.webp",
+    "size": [
+      512,
+      274
+    ]
+  },
+  "concepts/K13b_main": {
+    "file": "assets/concepts/K13b_main.webp",
+    "size": [
+      512,
+      360
+    ]
+  },
+  "concepts/K13b_side": {
+    "file": "assets/concepts/K13b_side.webp",
+    "size": [
+      512,
+      148
+    ]
+  },
+  "concepts/K13c_main": {
+    "file": "assets/concepts/K13c_main.webp",
+    "size": [
+      512,
+      341
+    ]
+  },
+  "concepts/K13c_side": {
+    "file": "assets/concepts/K13c_side.webp",
+    "size": [
+      512,
+      152
+    ]
+  },
+  "concepts/K14_main": {
+    "file": "assets/concepts/K14_main.webp",
+    "size": [
+      512,
+      265
+    ]
+  },
+  "concepts/K14_side": {
+    "file": "assets/concepts/K14_side.webp",
+    "size": [
+      512,
+      137
+    ]
+  },
+  "concepts/X01_main": {
+    "file": "assets/concepts/X01_main.webp",
+    "size": [
+      512,
+      447
+    ]
+  },
+  "concepts/X01_side": {
+    "file": "assets/concepts/X01_side.webp",
+    "size": [
+      512,
+      436
+    ]
+  },
+  "concepts/X02_main": {
+    "file": "assets/concepts/X02_main.webp",
+    "size": [
+      512,
+      433
+    ]
+  },
+  "concepts/X02_side": {
+    "file": "assets/concepts/X02_side.webp",
+    "size": [
+      512,
+      361
+    ]
+  },
+  "concepts/X03_main": {
+    "file": "assets/concepts/X03_main.webp",
+    "size": [
+      512,
+      370
+    ]
+  },
+  "concepts/X03_side": {
+    "file": "assets/concepts/X03_side.webp",
+    "size": [
+      512,
+      232
+    ]
+  },
+  "concepts/X04_main": {
+    "file": "assets/concepts/X04_main.webp",
+    "size": [
+      512,
+      495
+    ]
+  },
+  "concepts/X04_side": {
+    "file": "assets/concepts/X04_side.webp",
+    "size": [
+      512,
+      449
+    ]
+  },
+  "concepts/X05_main": {
+    "file": "assets/concepts/X05_main.webp",
+    "size": [
+      512,
+      305
+    ]
+  },
+  "concepts/X05_side": {
+    "file": "assets/concepts/X05_side.webp",
+    "size": [
+      512,
+      237
+    ]
+  },
+  "concepts/X06_main": {
+    "file": "assets/concepts/X06_main.webp",
+    "size": [
+      512,
+      417
+    ]
+  },
+  "concepts/X06_side": {
+    "file": "assets/concepts/X06_side.webp",
+    "size": [
+      512,
+      143
+    ]
+  },
+  "concepts/X07_main": {
+    "file": "assets/concepts/X07_main.webp",
+    "size": [
+      512,
+      370
+    ]
+  },
+  "concepts/X07_side": {
+    "file": "assets/concepts/X07_side.webp",
+    "size": [
+      512,
+      214
+    ]
+  },
+  "concepts/J01_main": {
+    "file": "assets/concepts/J01_main.webp",
+    "size": [
+      512,
+      350
+    ]
+  },
+  "concepts/J01_side": {
+    "file": "assets/concepts/J01_side.webp",
+    "size": [
+      512,
+      250
+    ]
+  },
+  "concepts/J02_main": {
+    "file": "assets/concepts/J02_main.webp",
+    "size": [
+      512,
+      436
+    ]
+  },
+  "concepts/J02_side": {
+    "file": "assets/concepts/J02_side.webp",
+    "size": [
+      512,
+      425
+    ]
+  },
+  "concepts/J03_main": {
+    "file": "assets/concepts/J03_main.webp",
+    "size": [
+      512,
+      350
+    ]
+  },
+  "concepts/J03_side": {
+    "file": "assets/concepts/J03_side.webp",
+    "size": [
+      512,
+      190
+    ]
+  },
+  "concepts/J04_main": {
+    "file": "assets/concepts/J04_main.webp",
+    "size": [
+      512,
+      410
+    ]
+  },
+  "concepts/J04_side": {
+    "file": "assets/concepts/J04_side.webp",
+    "size": [
+      512,
+      273
+    ]
+  },
+  "concepts/J05_main": {
+    "file": "assets/concepts/J05_main.webp",
+    "size": [
+      512,
+      407
+    ]
+  },
+  "concepts/J05_side": {
+    "file": "assets/concepts/J05_side.webp",
+    "size": [
+      512,
+      195
+    ]
+  },
+  "concepts/B01_main": {
+    "file": "assets/concepts/B01_main.webp",
+    "size": [
+      512,
+      470
+    ]
+  },
+  "concepts/B01_side": {
+    "file": "assets/concepts/B01_side.webp",
+    "size": [
+      512,
+      72
+    ]
+  },
+  "concepts/B03_main": {
+    "file": "assets/concepts/B03_main.webp",
+    "size": [
+      512,
+      411
+    ]
+  },
+  "concepts/B03_side": {
+    "file": "assets/concepts/B03_side.webp",
+    "size": [
+      512,
+      235
+    ]
+  },
+  "models": [
+    "B01",
+    "B01_far",
+    "B03",
+    "B03_far",
+    "J01",
+    "J01_far",
+    "J02",
+    "J02_far",
+    "J03",
+    "J03_far",
+    "J04",
+    "J04_far",
+    "J05",
+    "J05_far",
+    "K01",
+    "K01_far",
+    "K02",
+    "K02_far",
+    "K04a",
+    "K04a_far",
+    "K04b",
+    "K04b_far",
+    "K05a",
+    "K05a_far",
+    "K05b",
+    "K05b_far",
+    "K07a",
+    "K07a_far",
+    "K07b",
+    "K07b_far",
+    "K08",
+    "K08_far",
+    "K09",
+    "K09_far",
+    "K11a",
+    "K11a_far",
+    "K11b",
+    "K11b_far",
+    "K12a",
+    "K12a_far",
+    "K12b",
+    "K12b_far",
+    "K12c",
+    "K12c_far",
+    "K13b",
+    "K13b_far",
+    "K13c",
+    "K13c_far",
+    "K14",
+    "K14_far",
+    "X01",
+    "X01_far",
+    "X02",
+    "X02_far",
+    "X03",
+    "X03_far",
+    "X04",
+    "X04_far",
+    "X05",
+    "X05_far",
+    "X06",
+    "X06_far",
+    "X07",
+    "X07_far"
+  ]
+}

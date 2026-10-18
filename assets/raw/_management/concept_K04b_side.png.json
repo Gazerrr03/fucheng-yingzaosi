@@ -1,0 +1,14 @@
+{
+  "task": "T7",
+  "asset_id": "K04b",
+  "label": "重檐城楼",
+  "view": "side",
+  "dest": "assets/raw/concepts/K04b/concept_K04b_side.png",
+  "prompt": "Create a NEW CAMERA VIEW of the EXACT object in input image 1. Produce ONE architectural ORTHOGRAPHIC FRONT ELEVATION at EYE LEVEL. Rotate and lower camera from the reference to look straight and horizontally at the front. Roof ridges, wall tops and bases must be HORIZONTAL, verticals VERTICAL. NO isometric view, NO three-quarter view, NO top-down perspective; no diagonal receding plan visible, no view down onto roof or floor surfaces. Preserve the precise number of floors, roof tiers, bays, arches, overall width-to-height proportions, materials and colors. Do not invent extra parts. Pure SOLID WHITE background, soft even light, no shadow patch or ground plane, no people, plants unless this asset IS a tree, text, labels or multiple panels. Single isolated centered object with margin. Asset identity: K04b 重檐城楼. One main city-gate brick terrace with a SINGLE central arched tunnel, FIVE-BAY wooden gate hall above, DOUBLE-EAVE hip-and-gable xieshan roof, hall height about 12 on terrace height 10 relative units. Grey-blue tiles and muted red-brown columns.",
+  "status": "generated_pending_pair_review",
+  "references": [
+    "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-fb51894c-ceb3-4bac-b1e0-c5ed224801a4.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-8f61a793-03cb-4e46-9921-9b4281d52aea.png",
+  "visual_review": "Concept generated, awaiting pair review; PNG actual size and original hash recorded. No GLB generated."
+}

@@ -1,0 +1,14 @@
+{
+  "task": "T7",
+  "asset_id": "K09",
+  "label": "方坛",
+  "view": "side",
+  "dest": "assets/raw/concepts/K09/concept_K09_side_v2.png",
+  "prompt": "Create a NEW CAMERA VIEW of the EXACT object in input image 1. Produce ONE architectural ORTHOGRAPHIC RIGHT-SIDE ELEVATION at EYE LEVEL. Rotate and lower camera from the reference to look straight and horizontally at the front. Roof ridges, wall tops and bases must be HORIZONTAL, verticals VERTICAL. NO isometric view, NO three-quarter view, NO top-down perspective; no diagonal receding plan visible, no view down onto roof or floor surfaces. Preserve the precise number of floors, roof tiers, bays, arches, overall width-to-height proportions, materials and colors. Do not invent extra parts. Pure SOLID WHITE background, soft even light, no shadow patch or ground plane, no people, plants unless this asset IS a tree, text, labels or multiple panels. Single isolated centered object with margin. Look perpendicular to the object's RIGHT side. Any rear structures must be physically occluded by nearer walls/roofs, NOT stacked upward to reveal every courtyard. All bases sit on ONE shared horizontal baseline. No view of courtyard paving or top of platform. Preserve exact corrected geometry from reference; output one whole module.",
+  "status": "revision_pending_review",
+  "references": [
+    "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-58da162d-d178-4a27-8f2f-f106c400418a.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-bca3e8c6-8489-4b9b-9cbe-93a78adf287d.png",
+  "visual_review": "Targeted structural revision; awaiting visual inspection."
+}

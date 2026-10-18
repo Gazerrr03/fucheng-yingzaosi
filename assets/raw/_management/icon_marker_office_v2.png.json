@@ -1,0 +1,11 @@
+{
+  "task": "T6",
+  "dest": "assets/raw/ui/icon_marker_office_v2.png",
+  "prompt": "Create a replacement PREFECTURAL GOVERNMENT map marker badge. Keep the reference circular dark charcoal-ink disk, pale ivory narrow rim and warm paper grain. Replace inner pictogram with one broad restrained SINGLE-EAVE yamen government HALL roof over three simple upright columns and a rectangular doorway, with a LOW FLAT freestanding screen wall at its lower left. Exactly ONE roof tier; no second eave, no upstairs window band, no pagoda or temple ornament. Bold simple ivory silhouette, very few internal lines, clear at small sizes. Round badge only, generous transparent outer padding, genuine transparent PNG, no text or symbols on a plaque. Requested 256x256.",
+  "status": "revision_pending_review",
+  "references": [
+    "/Users/qizhi_dong/Projects/demo/assets/raw/ui/icon_marker_office.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-c9d2c3b8-9704-46a2-b22b-d80c6d604834.png",
+  "visual_review": "Targeted small-icon clarity revision, pending visual check."
+}

@@ -1,0 +1,14 @@
+{
+  "task": "T7",
+  "asset_id": "J01",
+  "label": "宾阳楼与瓮城",
+  "view": "main",
+  "dest": "assets/raw/concepts/J01/concept_J01_main_v2.png",
+  "prompt": "Ming Binyang gate complex, hand-painted low-poly isolated module. Tall main brick gate terrace at BACK with one main arch and a double-eave wooden hall. A square-ish barbican courtyard in FRONT. CRITICAL: its FRONT-RIGHT CORNER is CHAMFERED at 45 degrees, and the OUTER ARCH ENTRY is in that DIAGONAL CHAMFER wall, oriented 45 degrees relative to main gate. Front wall itself has NO gate; main and outer gate cannot align straight. Make diagonal corner opening unambiguously visible. Lower outer walls, grey brick, muted ochre, slate roof, red-brown wood. White background, no shadows, scenery, people, text. 45-degree downward front-right three-quarter view.",
+  "status": "revision_pending_review",
+  "references": [
+    "/Users/qizhi_dong/Projects/demo/assets/raw/style/style_master.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-85b9d31c-9856-4119-ae4d-485218467106.png",
+  "visual_review": "Targeted structural revision; awaiting visual inspection."
+}

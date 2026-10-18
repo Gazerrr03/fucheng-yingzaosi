@@ -1,0 +1,14 @@
+{
+  "task": "T7",
+  "asset_id": "J02",
+  "label": "朝宗楼",
+  "view": "side",
+  "dest": "assets/raw/concepts/J02/concept_J02_side.png",
+  "prompt": "Create a NEW CAMERA VIEW of the EXACT object in input image 1. Produce ONE architectural ORTHOGRAPHIC FRONT ELEVATION at EYE LEVEL. Rotate and lower camera from the reference to look straight and horizontally at the front. Roof ridges, wall tops and bases must be HORIZONTAL, verticals VERTICAL. NO isometric view, NO three-quarter view, NO top-down perspective; no diagonal receding plan visible, no view down onto roof or floor surfaces. Preserve the precise number of floors, roof tiers, bays, arches, overall width-to-height proportions, materials and colors. Do not invent extra parts. Pure SOLID WHITE background, soft even light, no shadow patch or ground plane, no people, plants unless this asset IS a tree, text, labels or multiple panels. Single isolated centered object with margin. Asset identity: J02 朝宗楼. Jingzhou north gate Chaozong concept: brick platform with single central arched gateway, tower FIVE bays wide and THREE bays deep, double-eave hip-and-gable roof, tower footprint about 18x12 relative units. Ming game concept using later surviving form only as reference, restrained ornament; grey-blue tiles, muted red-brown wood, grey brick. No text or terrain.",
+  "status": "generated_pending_pair_review",
+  "references": [
+    "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-e82419f6-c153-40e0-83c5-3feda4ae58c5.png"
+  ],
+  "source": "/Users/qizhi_dong/.codex/generated_images/01a1441e-c7e3-7192-b6c3-d618c7ca9cff/exec-db162219-8962-4b0c-bf8b-0ae2870aba8f.png",
+  "visual_review": "Concept generated, awaiting pair review; PNG actual size and original hash recorded. No GLB generated."
+}

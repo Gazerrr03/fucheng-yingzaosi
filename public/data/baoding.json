@@ -1,0 +1,268 @@
+{
+  "id": "baoding",
+  "name": "保定府",
+  "subtitle": "畿南首善之地 · 群山西峙，众水东潆",
+  "map": "maps/baoding",
+  "calibration": {
+    "note": "以主城四角为参考点；西南角取靴形外凸部的角，世界坐标向西多出 500 m。画面为示意级地理。",
+    "imageSize": [1340, 1174],
+    "points": [
+      {
+        "img": [465, 200],
+        "world": [-900, 900],
+        "label": "西北角"
+      },
+      {
+        "img": [1090, 270],
+        "world": [900, 900],
+        "label": "东北角"
+      },
+      {
+        "img": [1115, 850],
+        "world": [900, -900],
+        "label": "东南角"
+      },
+      {
+        "img": [200, 690],
+        "world": [-1400, -900],
+        "label": "西南角（靴尖）"
+      }
+    ]
+  },
+  "grid": {
+    "hexAcross": 200
+  },
+  "props": {
+    "B": [
+      "K07b",
+      "K14"
+    ],
+    "G": [
+      "K07b",
+      "K12c"
+    ]
+  },
+  "terrainNames": {
+    "S": "太行余脉",
+    "M": "护城河"
+  },
+  "genes": {
+    "shanshui": {
+      "rule": "all",
+      "sites": [
+        "xishan",
+        "yimuquan"
+      ]
+    },
+    "xingzhuang": {
+      "rule": "any",
+      "sites": [
+        "xuejian"
+      ]
+    },
+    "zhouhui": {
+      "rule": "any",
+      "sites": [
+        "chengqiang"
+      ]
+    },
+    "chengmen": {
+      "rule": "all",
+      "sites": [
+        "beimen",
+        "nanmen",
+        "dongmen",
+        "ximen"
+      ]
+    },
+    "tanmiao": {
+      "rule": "any",
+      "sites": [
+        "sheji"
+      ]
+    },
+    "fushu": {
+      "rule": "any",
+      "sites": [
+        "fushu"
+      ]
+    },
+    "gaohou": {
+      "rule": "any",
+      "sites": [
+        "nanmen"
+      ]
+    }
+  },
+  "lore": [
+    {
+      "id": "zhangrou",
+      "name": "张柔重建保州"
+    },
+    {
+      "id": "yimuquan",
+      "name": "一亩泉引水与水力石磨"
+    },
+    {
+      "id": "baoding",
+      "name": "「保卫大都，安定天下」"
+    },
+    {
+      "id": "jinan",
+      "name": "畿南首善"
+    }
+  ],
+  "sites": [
+    {
+      "id": "beimen",
+      "name": "北门",
+      "kind": "gate",
+      "img": [760, 232],
+      "model": "K04b",
+      "cards": [
+        "gene:chengmen",
+        "lore:baoding",
+        "lore:jinan"
+      ]
+    },
+    {
+      "id": "nanmen",
+      "name": "南门",
+      "kind": "gate",
+      "img": [630, 792],
+      "model": "K05a",
+      "cards": [
+        "gene:chengmen",
+        "gene:gaohou"
+      ]
+    },
+    {
+      "id": "dongmen",
+      "name": "东门",
+      "kind": "gate",
+      "img": [1110, 535],
+      "model": "K04a",
+      "cards": [
+        "gene:chengmen"
+      ]
+    },
+    {
+      "id": "ximen",
+      "name": "西门",
+      "kind": "gate",
+      "img": [278, 515],
+      "model": "K04a",
+      "cards": [
+        "gene:chengmen"
+      ]
+    },
+    {
+      "id": "xuejian",
+      "name": "靴城西南凸出部",
+      "kind": "landmark",
+      "img": [215, 640],
+      "model": "K02",
+      "rotY": 0,
+      "cards": [
+        "gene:xingzhuang"
+      ]
+    },
+    {
+      "id": "chengqiang",
+      "name": "东城墙",
+      "kind": "landmark",
+      "img": [1100, 380],
+      "model": "K01",
+      "cards": [
+        "gene:zhouhui"
+      ]
+    },
+    {
+      "id": "xishan",
+      "name": "西缘远山",
+      "kind": "mountain",
+      "img": [150, 960],
+      "model": "K12b",
+      "cards": [
+        "gene:shanshui"
+      ]
+    },
+    {
+      "id": "yimuquan",
+      "name": "一亩泉引水",
+      "kind": "water",
+      "img": [300, 160],
+      "model": "B03",
+      "cards": [
+        "gene:shanshui",
+        "lore:yimuquan"
+      ]
+    },
+    {
+      "id": "sheji",
+      "name": "社稷坛",
+      "kind": "temple",
+      "img": [190, 260],
+      "model": "K09",
+      "cards": [
+        "gene:tanmiao"
+      ]
+    },
+    {
+      "id": "fushu",
+      "name": "保定府署",
+      "kind": "office",
+      "img": [760, 525],
+      "model": "B01",
+      "cards": [
+        "gene:fushu"
+      ]
+    },
+    {
+      "id": "zhangrou",
+      "name": "城中坊市",
+      "kind": "landmark",
+      "img": [600, 420],
+      "model": "K07b",
+      "cards": [
+        "lore:zhangrou"
+      ]
+    }
+  ],
+  "labels": [],
+  "terrain": {
+    "qMin": -21,
+    "rMin": -14,
+    "rows": [
+      ".......................................",
+      ".......................................",
+      "...................TTT.................",
+      "...................TSGTTT..............",
+      "..................TTSGTTTTTTT..........",
+      ".................TSTTTGTTTTTTTTT.......",
+      ".................TTTTGTTTTTTTGMT.......",
+      "................TMMMMMMTMMMMMMTT.......",
+      "...............TMMTTTTTTTTTTTMM........",
+      "..............TMMCCCCCCCCCCCCMT........",
+      "..............TMCBBBBBBBBBBCMM.........",
+      ".............TGMCBBBBBBBBBBCMT.........",
+      "............TTTTCBBBBBBBBBCMM..........",
+      "............TTTTCBBBBBBBBBCMT..........",
+      "...........TTTMCBBBBBBBBBCGGT..........",
+      "..........TTTGTCBBBBBBBBBCMT...........",
+      ".........TTTGTTCBBBBBBBBCMTT...........",
+      ".........TTTTTMCBBBBBBBBCMG............",
+      "........TTTTTGCBBBBBBBBCMTT............",
+      ".......TTTTWMMCCCCCCCCCCMT.............",
+      ".......TTTTTTMMMMMGMMMMMTT.............",
+      "......TTTTTGMTTTTGTGTTTGMT.............",
+      ".....TTTTGTTTTTTGTTGMTMGT..............",
+      ".........TTTTTTTTGWTTTGGT..............",
+      "...............TTTTTTTTT...............",
+      ".....................TTT...............",
+      ".......................................",
+      "......................................."
+    ],
+    "note": "由 tools/prefill_terrain.py 预填，之后在标定工具里人工修正"
+  }
+}
