@@ -4,6 +4,14 @@ body.plan-mode #map { display: none; }
 #plan { position: fixed; inset: 0; display: block; cursor: grab; touch-action: none; }
 #plan.dragging { cursor: grabbing; }
 #plan.placing { cursor: crosshair; }
+#plan.panning, #plan.panning.placing { cursor: grab; }
+
+/* 工具提示条（v4） */
+.plan-hint {
+  position: fixed; left: 50%; bottom: 74px; transform: translateX(-50%); z-index: 2; pointer-events: none !important;
+  padding: 6px 16px; background: rgba(36, 28, 20, 0.78); color: #f3ead6; font-size: 13px; letter-spacing: 0.06em; white-space: nowrap;
+}
+.plan-hint[hidden] { display: none; }
 
 .plan-ui { position: fixed; inset: 0; pointer-events: none; font-family: var(--serif); }
 .plan-ui > * { pointer-events: auto; }
@@ -151,6 +159,8 @@ body.plan-mode #map { display: none; }
 .plan-judge .grade { cursor: pointer; }
 .plan-judge.folded section { display: none; }
 .plan-judge.folded .grade { border-bottom: 0; padding-bottom: 0; }
+.plan-judge .grade { cursor: pointer; }
+.plan-judge.folded .grade span::after { content: '　展开 ▾'; font-size: 11px; color: var(--ink-soft); }
 @media (max-width: 960px) {
   .plan-title { max-width: 260px; }
   .plan-title h1 { font-size: 20px; }

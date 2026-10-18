@@ -14,6 +14,12 @@ const ZK = 0.85; //     高度在屏幕上的比例
 export interface PlanViewEvents {
   onHover(hex: Hex | null, screen: Vec2): void;
   onClick(hex: Hex, button: number): void;
+  /** 当前工具能否按住拖动连续施工（城墙、拆除）；能则左键拖动是施工，不是平移 */
+  paintable?(): boolean;
+  /** 拖动施工：start 首格，move 新经过的格（已补成相邻链），end 松手 */
+  onPaint?(phase: 'start' | 'move' | 'end', hexes: Hex[]): void;
+  /** 镜头变了（风水透镜据此重算可见范围） */
+  onCamera?(): void;
 }
 
 export interface Ghost {
@@ -27,6 +33,9 @@ export class PlanView {
   showCompass = true;
   /** 关卡提示的目标格 */
   highlight = new Set<string>();
+  /** 风水透镜：格 → 预估得分（null = 关） */
+  lens: Map<string, number> | null = null;
+  private keys = new Set<string>();
   private ctx: CanvasRenderingContext2D;
   private camX = 0;
   private camY = 0;
@@ -76,6 +85,7 @@ export class PlanView {
       return m && !m.orient ? m.models.map((model) => this.spec(b, model)) : [];
     }));
     const tick = () => {
+      this.keyPan();
       if (this.dirty) {
         this.dirty = false;
         this.draw();
@@ -213,6 +223,7 @@ export class PlanView {
     if (this.map.data.ring) this.drawRing();
     if (this.showCompass) this.drawCompass();
     this.drawLabels(detail);
+    if (this.lens) this.drawLensNumbers(hexPx);
     if (this.hover && !this.ghost) this.outline(this.hover, 'rgba(47,36,26,0.8)', 2);
     this.lastDrawMs = performance.now() - t0;
   }
@@ -241,7 +252,10 @@ export class PlanView {
     this.ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
     Object.assign(this, { camX: cx, camY: cy, zoom: z0, vw: w, vh: h });
     const inside = this.map.inside();
+    const lens = this.lens;
+    this.lens = null;
     for (const row of this.rows) for (const c of row) this.drawCell(c, inside.has(hexKey(c)), false);
+    this.lens = lens;
     Object.assign(this, saved);
     this.cache = { canvas, z0, cx, cy, w, h };
   }
@@ -306,6 +320,12 @@ export class PlanView {
       ctx.lineWidth = 1;
       ctx.stroke();
     }
+    const lensScore = this.lens?.get(hexKey(c));
+    if (lensScore !== undefined) {
+      ctx.fillStyle = lensFill(lensScore);
+      ctx.fill();
+    }
+    if (detail) this.decorate(c, z);
     if (this.highlight.has(hexKey(c))) {
       ctx.fillStyle = 'rgba(184,50,42,0.22)';
       ctx.fill();
@@ -441,6 +461,11 @@ export class PlanView {
     const z = this.z(c);
     const unit = this.map.data.hexAcross; // 米
     ctx.globalAlpha = alpha;
+    if (this.map.data.hexAcross * this.zoom < 15) {
+      this.drawIcon(c, b, z);
+      ctx.globalAlpha = 1;
+      return;
+    }
     if (this.drawModel(c, b, detail)) {
       ctx.globalAlpha = 1;
       return;
@@ -664,6 +689,180 @@ export class PlanView {
     }
   }
 
+  // ---------- 透镜、战略视图、地形点景 ----------
+
+  /** 画面里（含边缘一圈）的格子，透镜只算这些 */
+  viewCells(): Cell[] {
+    const W = this.vw, H = this.vh;
+    const pad = this.map.data.hexAcross;
+    const xMin = this.camX - W / 2 / this.zoom - pad, xMax = this.camX + W / 2 / this.zoom + pad;
+    const yMin = this.camY - H / 2 / (this.zoom * TILT) - pad, yMax = this.camY + H / 2 / (this.zoom * TILT) + pad * 4;
+    const out: Cell[] = [];
+    for (const c of this.map.cells.values()) {
+      const [x, y] = hexToWorld(c, this.map.hexSize);
+      if (x >= xMin && x <= xMax && y >= yMin && y <= yMax) out.push(c);
+    }
+    return out;
+  }
+
+  private drawLensNumbers(hexPx: number): void {
+    if (hexPx < 26) return;
+    const ctx = this.ctx;
+    const fs = Math.max(10, Math.min(15, hexPx * 0.24));
+    ctx.font = `bold ${fs}px ${this.fontFamily()}`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.lineWidth = 3;
+    for (const [k, v] of this.lens!) {
+      const c = this.map.cells.get(k);
+      if (!c || this.map.at(c)) continue;
+      const [x, y] = this.center(c, this.z(c));
+      if (x < -40 || y < -40 || x > this.vw + 40 || y > this.vh + 40) continue;
+      ctx.strokeStyle = 'rgba(40,30,20,0.75)';
+      ctx.strokeText(String(v), x, y);
+      ctx.fillStyle = v >= 80 ? '#e6f6dc' : v >= 60 ? '#fbf0cf' : '#fbd9cf';
+      ctx.fillText(String(v), x, y);
+    }
+  }
+
+  /** 远景（战略视图）：构件画成一枚朱印，屋顶色作底 */
+  private drawIcon(c: Cell, b: BuildingDef, z: number): void {
+    const ctx = this.ctx;
+    const top = this.corners(c, z, b.wallish ? 1 : 0.78);
+    ctx.fillStyle = b.wallish ? '#7d766a' : b.waterish ? PLAN_TERRAIN.M.color : b.roof;
+    ctx.beginPath();
+    for (const p of top) ctx.lineTo(p[0], p[1]);
+    ctx.closePath();
+    ctx.fill();
+    const hexPx = this.map.data.hexAcross * this.zoom;
+    if (!b.wallish && !b.waterish && hexPx >= 8) {
+      const [x, y] = this.center(c, z);
+      ctx.font = `bold ${Math.max(7, hexPx * 0.55)}px ${this.fontFamily()}`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = '#f3ead6';
+      ctx.fillText(b.glyph, x, y + 0.5);
+    }
+  }
+
+  /** 地形点景：山石松树、冈阜、田垄、村舍。只在近景画，按格子哈希错落 */
+  private decorate(c: Cell, z: number): void {
+    if (this.map.at(c)) return;
+    const hexPx = this.map.data.hexAcross * this.zoom;
+    if (hexPx < 22) return;
+    const ctx = this.ctx;
+    const [x, y] = this.center(c, z);
+    const u = hexPx;
+    const h = (k: number) => ((((c.q * 73856093) ^ (c.r * 19349663) ^ (k * 83492791)) >>> 0) % 1000) / 1000;
+    switch (c.terrain) {
+      case 'S': {
+        if (h(1) < 0.45) {
+          // 石峰
+          const w = u * (0.22 + h(2) * 0.1), ht = u * (0.3 + h(3) * 0.2);
+          const px = x + (h(4) - 0.5) * u * 0.3, py = y + u * 0.12;
+          ctx.fillStyle = 'rgba(96,98,72,0.95)';
+          ctx.beginPath();
+          ctx.moveTo(px - w, py);
+          ctx.lineTo(px - w * 0.1, py - ht);
+          ctx.lineTo(px + w, py);
+          ctx.closePath();
+          ctx.fill();
+          ctx.fillStyle = 'rgba(150,145,105,0.9)';
+          ctx.beginPath();
+          ctx.moveTo(px - w, py);
+          ctx.lineTo(px - w * 0.1, py - ht);
+          ctx.lineTo(px - w * 0.05, py);
+          ctx.closePath();
+          ctx.fill();
+          ctx.strokeStyle = 'rgba(40,34,24,0.6)';
+          ctx.lineWidth = Math.max(0.8, u * 0.02);
+          ctx.beginPath();
+          ctx.moveTo(px - w, py);
+          ctx.lineTo(px - w * 0.1, py - ht);
+          ctx.lineTo(px + w, py);
+          ctx.stroke();
+        } else this.pines(x, y, u, h, 3);
+        break;
+      }
+      case 'H':
+        if (h(1) < 0.5) {
+          ctx.strokeStyle = 'rgba(95,85,50,0.45)';
+          ctx.lineWidth = Math.max(0.8, u * 0.025);
+          ctx.beginPath();
+          ctx.arc(x + (h(2) - 0.5) * u * 0.2, y + u * 0.15, u * 0.22, Math.PI * 1.15, Math.PI * 1.85);
+          ctx.stroke();
+        }
+        if (h(3) < 0.55) this.pines(x, y, u, h, 2);
+        break;
+      case 'T': {
+        ctx.strokeStyle = 'rgba(150,125,75,0.32)';
+        ctx.lineWidth = Math.max(0.6, u * 0.014);
+        const a = h(1) < 0.5 ? 0 : 0.5;
+        for (let i = -2; i <= 2; i++) {
+          const oy = i * u * 0.075;
+          ctx.beginPath();
+          ctx.moveTo(x - u * 0.26, y + oy - a * u * 0.06);
+          ctx.lineTo(x + u * 0.26, y + oy + a * u * 0.06);
+          ctx.stroke();
+        }
+        break;
+      }
+      case 'G':
+        for (const [ox, oy] of [[-0.12, -0.02], [0.1, 0.06], [0.0, -0.14]]) {
+          const px = x + ox * u, py = y + oy * u, w = u * 0.07;
+          ctx.fillStyle = '#efe6d0';
+          ctx.fillRect(px - w, py - w * 0.8, w * 2, w * 0.8);
+          ctx.fillStyle = '#585a55';
+          ctx.beginPath();
+          ctx.moveTo(px - w * 1.3, py - w * 0.75);
+          ctx.lineTo(px, py - w * 1.55);
+          ctx.lineTo(px + w * 1.3, py - w * 0.75);
+          ctx.closePath();
+          ctx.fill();
+        }
+        break;
+    }
+  }
+
+  private pines(x: number, y: number, u: number, h: (k: number) => number, n: number): void {
+    const ctx = this.ctx;
+    for (let i = 0; i < n; i++) {
+      const px = x + (h(10 + i) - 0.5) * u * 0.6, py = y + (h(20 + i) - 0.5) * u * 0.35;
+      const r = u * 0.075;
+      ctx.fillStyle = 'rgba(58,84,56,0.9)';
+      ctx.beginPath();
+      ctx.moveTo(px, py - r * 3);
+      ctx.lineTo(px + r * 1.1, py - r * 0.4);
+      ctx.lineTo(px - r * 1.1, py - r * 0.4);
+      ctx.closePath();
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(70,50,30,0.7)';
+      ctx.lineWidth = Math.max(0.6, r * 0.3);
+      ctx.beginPath();
+      ctx.moveTo(px, py - r * 0.4);
+      ctx.lineTo(px, py);
+      ctx.stroke();
+    }
+  }
+
+  // ---------- 键盘平移 ----------
+
+  private keyPan(): void {
+    if (!this.keys.size) return;
+    const v = 10 / this.zoom;
+    let dx = 0, dy = 0;
+    if (this.keys.has('a') || this.keys.has('arrowleft')) dx -= v;
+    if (this.keys.has('d') || this.keys.has('arrowright')) dx += v;
+    if (this.keys.has('w') || this.keys.has('arrowup')) dy += v / TILT;
+    if (this.keys.has('s') || this.keys.has('arrowdown')) dy -= v / TILT;
+    if (!dx && !dy) return;
+    this.camX += dx;
+    this.camY += dy;
+    this.touched = true;
+    this.invalidate();
+    this.events.onCamera?.();
+  }
+
   // ---------- 拾取与输入 ----------
 
   pick(sx: number, sy: number): Hex | null {
@@ -690,21 +889,43 @@ export class PlanView {
 
   private bindInput(): void {
     const cv = this.canvas;
-    let down: { x: number; y: number; cx: number; cy: number; button: number; moved: boolean } | null = null;
+    let space = false;
+    let down: { x: number; y: number; cx: number; cy: number; button: number; moved: boolean; paint: boolean; last: Hex | null } | null = null;
     cv.addEventListener('pointerdown', (e) => {
-      down = { x: e.clientX, y: e.clientY, cx: this.camX, cy: this.camY, button: e.button, moved: false };
+      // 左键 + 可连续施工的工具 = 施工；空格按住、右键、中键拖动 = 平移
+      const paint = e.button === 0 && !space && !!this.events.paintable?.();
+      down = { x: e.clientX, y: e.clientY, cx: this.camX, cy: this.camY, button: e.button, moved: false, paint, last: null };
       cv.setPointerCapture(e.pointerId);
+      if (paint) {
+        const h = this.pick(e.clientX, e.clientY);
+        if (h) {
+          down.last = h;
+          this.events.onPaint?.('start', [h]);
+        }
+      }
     });
     cv.addEventListener('pointermove', (e) => {
       if (down) {
         const dx = e.clientX - down.x, dy = e.clientY - down.y;
         if (Math.hypot(dx, dy) > 5) down.moved = true;
+        if (down.paint) {
+          const h = this.pick(e.clientX, e.clientY);
+          if (h && (!down.last || h.q !== down.last.q || h.r !== down.last.r)) {
+            if (!down.last) this.events.onPaint?.('start', [h]);
+            else this.events.onPaint?.('move', hexLine(down.last, h).slice(1));
+            down.last = h;
+          }
+          this.setHover(h);
+          this.events.onHover(h, [e.clientX, e.clientY]);
+          return;
+        }
         if (down.moved) {
           this.touched = true;
           this.camX = down.cx - dx / this.zoom;
           this.camY = down.cy + dy / (this.zoom * TILT);
           cv.classList.add('dragging');
           this.invalidate();
+          this.events.onCamera?.();
           return;
         }
       }
@@ -714,7 +935,8 @@ export class PlanView {
     });
     cv.addEventListener('pointerup', (e) => {
       cv.classList.remove('dragging');
-      if (down && !down.moved) {
+      if (down?.paint) this.events.onPaint?.('end', []);
+      else if (down && !down.moved) {
         const h = this.pick(e.clientX, e.clientY);
         if (h) this.events.onClick(h, down.button);
       }
@@ -723,6 +945,14 @@ export class PlanView {
     cv.addEventListener('pointerleave', () => {
       this.setHover(null);
       this.events.onHover(null, [0, 0]);
+    });
+    cv.addEventListener('dblclick', (e) => {
+      if (this.events.paintable?.()) return;
+      const h = this.pick(e.clientX, e.clientY);
+      if (!h) return;
+      const shown = this.vh / (this.map.data.hexAcross * this.zoom * TILT);
+      this.focus(hexToWorld(h, this.map.hexSize), Math.max(6, shown / 1.8));
+      this.events.onCamera?.();
     });
     cv.addEventListener('contextmenu', (e) => e.preventDefault());
     cv.addEventListener('wheel', (e) => {
@@ -738,7 +968,30 @@ export class PlanView {
       this.camX = wx - (e.clientX - innerWidth / 2) / nz;
       this.camY = wy + (e.clientY - innerHeight / 2) / (nz * TILT);
       this.invalidate();
+      this.events.onCamera?.();
     }, { passive: false });
+    const PAN_KEYS = ['w', 'a', 's', 'd', 'arrowup', 'arrowdown', 'arrowleft', 'arrowright'];
+    window.addEventListener('keydown', (e) => {
+      if ((e.target as HTMLElement).closest('input, textarea') || e.ctrlKey || e.metaKey) return;
+      const k = e.key.toLowerCase();
+      if (PAN_KEYS.includes(k)) {
+        this.keys.add(k);
+        e.preventDefault();
+      }
+      if (e.key === ' ') {
+        space = true;
+        cv.classList.add('panning');
+        e.preventDefault();
+      }
+    });
+    window.addEventListener('keyup', (e) => {
+      this.keys.delete(e.key.toLowerCase());
+      if (e.key === ' ') {
+        space = false;
+        cv.classList.remove('panning');
+      }
+    });
+    window.addEventListener('blur', () => this.keys.clear());
   }
 
   /** 截图（史书卷首用） */
@@ -751,6 +1004,35 @@ export class PlanView {
     out.getContext('2d')!.drawImage(this.canvas, 0, 0, out.width, out.height);
     return out.toDataURL('image/jpeg', 0.85);
   }
+}
+
+/** 两格之间的六边形直线（含两端），拖动筑墙时补齐跳过的格 */
+export function hexLine(a: Hex, b: Hex): Hex[] {
+  const n = (Math.abs(a.q - b.q) + Math.abs(a.r - b.r) + Math.abs(a.q + a.r - b.q - b.r)) / 2;
+  const out: Hex[] = [];
+  for (let i = 0; i <= n; i++) {
+    const t = n ? i / n : 0;
+    // 微小偏移，避免恰好落在格边上时取整摇摆
+    const fq = a.q + (b.q - a.q) * t + 1e-6, fr = a.r + (b.r - a.r) * t + 1e-6;
+    const fs = -fq - fr;
+    let q = Math.round(fq), r = Math.round(fr);
+    const s = Math.round(fs);
+    const dq = Math.abs(q - fq), dr = Math.abs(r - fr), ds = Math.abs(s - fs);
+    if (dq > dr && dq > ds) q = -r - s;
+    else if (dr > ds) r = -q - s;
+    out.push({ q, r });
+  }
+  return out;
+}
+
+/** 透镜底色：高分青绿、中分土黄、低分赭红 */
+function lensFill(v: number): string {
+  const t = Math.max(0, Math.min(1, (v - 30) / 60));
+  const stops = [[178, 64, 48], [214, 170, 70], [72, 140, 92]];
+  const k = t < 0.5 ? t * 2 : (t - 0.5) * 2;
+  const [a, b] = t < 0.5 ? [stops[0], stops[1]] : [stops[1], stops[2]];
+  const m = (i: number) => Math.round(a[i] + (b[i] - a[i]) * k);
+  return `rgba(${m(0)},${m(1)},${m(2)},0.5)`;
 }
 
 function pointInPoly([x, y]: Vec2, poly: Vec2[]): boolean {

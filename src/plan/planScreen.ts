@@ -5,8 +5,8 @@ import type { Vec2 } from '../scene/homography';
 import { sound } from '../audio/sound';
 import { BUILDINGS, BUILDING_BY_ID, BUILDING_GROUPS, type BuildingDef } from './buildings';
 import { evaluate, evaluateCity, type CityVerdict, type EvalContext, type Verdict, type YiliSummary } from './fengshui';
-import type { PlanMap } from './planMap';
-import { PlanView } from './planView';
+import { PlanMap } from './planMap';
+import { PlanView, hexLine } from './planView';
 import { alreadySettled, finishTriggers, liveRecords, placeTriggers, suburb, yiliOutcome, type YiliEvent, type YiliRecord } from './yili';
 import { showYili } from './yiliUI';
 
@@ -64,6 +64,9 @@ export interface PlanUI {
   root: HTMLElement;
 }
 
+/** 可以按住拖动连续营建的构件 */
+const PAINT_TOOLS = new Set(['wall', 'moat']);
+
 export function runPlan(session: PlanSession): PlanUI {
   const { map } = session;
   document.body.classList.add('plan-mode');
@@ -96,8 +99,10 @@ export function runPlan(session: PlanSession): PlanUI {
       <section class="worst"><h3>可改进</h3><ul></ul></section>
     </aside>
     <div class="plan-tip" hidden></div>
+    <div class="plan-hint" hidden></div>
     <footer class="plan-bar">
       <button class="compass on" title="快捷键 C">罗盘</button>
+      <button class="lens on" title="选中构件时全图标出每处得分（快捷键 V）">透镜</button>
       <button class="undo" title="Ctrl+Z">撤销</button>
       ${(session.extraButtons ?? []).map((b, i) => `<button class="extra" data-i="${i}" title="${b.title ?? ''}">${b.label}</button>`).join('')}
       <button class="finish">${session.finishLabel}</button>
@@ -129,6 +134,13 @@ export function runPlan(session: PlanSession): PlanUI {
   let hoverScreen: Vec2 = [0, 0];
 
   const view = new PlanView(canvas, map, {
+    paintable: () => tool === 'remove' || (!!tool && PAINT_TOOLS.has(tool.id)),
+    onPaint(phase, hexes) {
+      paint(phase, hexes);
+    },
+    onCamera() {
+      scheduleLens();
+    },
     onHover(h, screen) {
       hoverHex = h;
       hoverScreen = screen;
@@ -161,10 +173,99 @@ export function runPlan(session: PlanSession): PlanUI {
 
   function selectTool(t: BuildingDef | 'remove' | null) {
     tool = tool === t ? null : t;
-    aboutEl.textContent = tool && tool !== 'remove' ? tool.about : tool === 'remove' ? '点击构件拆除；城门、角楼、水门拆除后退回城墙。' : '';
+    aboutEl.textContent = tool && tool !== 'remove' ? tool.about : tool === 'remove' ? '点击或按住拖动拆除；城门、角楼、水门拆除后退回城墙。' : '';
     canvas.classList.toggle('placing', !!tool);
     renderItems();
     updateGhost();
+    updateHint();
+    updateLens();
+  }
+
+  // ---------------------------------------------------------------- 工具提示与风水透镜
+
+  const hintEl = $<HTMLDivElement>('.plan-hint');
+  function updateHint() {
+    let text = '';
+    if (tool === 'remove') text = '拆除：点击或按住拖动 · 右键拖动平移 · Esc 收起';
+    else if (tool && PAINT_TOOLS.has(tool.id)) text = `${tool.name}：按住拖动连续营建，首尾相近自动合拢 · 右键或空格拖动平移 · Esc 收起`;
+    else if (tool) text = `${tool.name}：${lensOn ? '绿色格得分高，' : ''}点击放置 · 右键拆除 · Esc 收起`;
+    hintEl.textContent = text;
+    hintEl.hidden = !text;
+  }
+
+  let lensOn = true;
+  let lensTimer = 0;
+  function scheduleLens() {
+    if (!view.lens) return;
+    clearTimeout(lensTimer);
+    lensTimer = window.setTimeout(updateLens, 120);
+  }
+  /** 选中一种构件时，画面里每个能放的格都算一遍得分（不必逐格悬停） */
+  function updateLens() {
+    const def = tool && tool !== 'remove' && !PAINT_TOOLS.has(tool.id) ? tool : null;
+    if (!def || !lensOn) {
+      if (view.lens) {
+        view.lens = null;
+        view.invalidate();
+      }
+      return;
+    }
+    const lens = new Map<string, number>();
+    const c0 = ctx();
+    const cells = view.viewCells();
+    if (cells.length <= 9000) {
+      for (const c of cells) {
+        if (!map.canPlace(def, c).ok) continue;
+        lens.set(hexKey(c), evaluate(map, c, def, c0).score);
+      }
+    }
+    view.lens = lens;
+    view.invalidate();
+  }
+
+  // ---------------------------------------------------------------- 拖动施工
+
+  let paintBefore: ReturnType<PlanMap['snapshot']> | null = null;
+  let paintPath: Hex[] = [];
+  let paintCount = 0;
+  function paintOne(h: Hex) {
+    if (!tool) return;
+    if (tool === 'remove') {
+      if (map.remove(h)) paintCount++;
+    } else if (map.place(tool, h).ok) paintCount++;
+  }
+  function paint(phase: 'start' | 'move' | 'end', hexes: Hex[]) {
+    if (phase === 'start') {
+      paintBefore = map.snapshot();
+      paintPath = [];
+      paintCount = 0;
+    }
+    for (const h of hexes) {
+      paintPath.push(h);
+      paintOne(h);
+    }
+    if (phase !== 'end') {
+      if (hexes.length) {
+        if (paintCount) sound.tick();
+        view.invalidate();
+      }
+      return;
+    }
+    // 首尾相近（三格以内）而城墙还没合围：自动补上缺口
+    if (tool !== 'remove' && tool?.id === 'wall' && paintPath.length > 6 && !map.walled) {
+      const a = paintPath[0], b = paintPath[paintPath.length - 1];
+      const d = PlanMap.dist(a, b);
+      if (d >= 2 && d <= 3) for (const h of hexLine(b, a).slice(1, -1)) paintOne(h);
+      if (map.walled) toast(`城墙合围，城内 ${map.inside().size} 格`);
+    }
+    if (paintCount && paintBefore) {
+      history.push(paintBefore);
+      sound.click();
+      changed();
+    } else if (paintBefore && tool && tool !== 'remove' && paintPath.length === 1) {
+      toast(map.canPlace(tool, paintPath[0]).reason ?? '不能建在这里');
+    }
+    paintBefore = null;
   }
 
   function updateGhost() {
@@ -361,6 +462,7 @@ export function runPlan(session: PlanSession): PlanUI {
     fin.disabled = session.canFinish ? !session.canFinish(map, verdict) : false;
     renderItems();
     updateGhost();
+    updateLens();
     view.invalidate();
   }
 
@@ -382,7 +484,7 @@ export function runPlan(session: PlanSession): PlanUI {
   // 事件
   $('.home').addEventListener('click', () => session.onHome());
   const judge = $('.plan-judge');
-  if (innerWidth <= 960) judge.classList.add('folded');
+  if (innerWidth <= 960 || !session.goals) judge.classList.add('folded');
   $('.grade').addEventListener('click', () => judge.classList.toggle('folded'));
   root.querySelectorAll<HTMLButtonElement>('.tabs button').forEach((b) =>
     b.addEventListener('click', () => {
@@ -397,6 +499,13 @@ export function runPlan(session: PlanSession): PlanUI {
   });
   $('.tool-remove').addEventListener('click', () => selectTool('remove'));
   $('.compass').addEventListener('click', toggleCompass);
+  const toggleLens = () => {
+    lensOn = !lensOn;
+    $('.lens').classList.toggle('on', lensOn);
+    updateLens();
+    updateHint();
+  };
+  $('.lens').addEventListener('click', toggleLens);
   $('.undo').addEventListener('click', undo);
   root.querySelectorAll<HTMLButtonElement>('.extra').forEach((b) =>
     b.addEventListener('click', () => session.extraButtons![Number(b.dataset.i)].onClick(ui)),
@@ -420,6 +529,7 @@ export function runPlan(session: PlanSession): PlanUI {
       undo();
     }
     if (e.key === 'c' || e.key === 'C') toggleCompass();
+    if (e.key === 'v' || e.key === 'V') toggleLens();
   });
 
   const ui: PlanUI = { view, refresh, toast, root };

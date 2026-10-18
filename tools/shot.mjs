@@ -18,7 +18,7 @@ for (let i = 0; i < rest.length; i += 2) {
   else if (k === '--wait') wait = Number(v);
   else if (k === '--step') step = Number(v);
   else if (k === '--local') local = JSON.parse(v);
-  else if (k === '--eval' || k === '--click' || k === '--key') steps.push([k, v]);
+  else if (['--eval', '--click', '--key', '--drag', '--move'].includes(k)) steps.push([k, v]);
 }
 
 const browser = await chromium.launch({ executablePath: CHROME, headless: true, args: ['--use-angle=metal', '--enable-gpu'] });
@@ -41,6 +41,17 @@ for (const [k, v] of steps) {
     if (r !== undefined) console.log('eval →', JSON.stringify(r));
   } else if (k === '--click') await page.click(v);
   else if (k === '--key') await page.keyboard.press(v);
+  else if (k === '--drag') {
+    // "x,y;x,y;…" 按住左键依次经过各点
+    const pts = v.split(';').map((p) => p.split(',').map(Number));
+    await page.mouse.move(pts[0][0], pts[0][1]);
+    await page.mouse.down();
+    for (const [x, y] of pts.slice(1)) await page.mouse.move(x, y, { steps: 12 });
+    await page.mouse.up();
+  } else if (k === '--move') {
+    const [x, y] = v.split(',').map(Number);
+    await page.mouse.move(x, y);
+  }
   await page.waitForTimeout(step);
 }
 await page.screenshot({ path: out });
