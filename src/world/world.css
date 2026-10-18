@@ -1,0 +1,102 @@
+/* 天下舆图 */
+
+body.world-mode #map { display: none; }
+#world { position: fixed; inset: 0; display: block; cursor: grab; touch-action: none; }
+#world.dragging { cursor: grabbing; }
+
+.world-ui button { font-family: inherit; cursor: pointer; }
+.world-ui .kicker { font-size: 12px; letter-spacing: 0.2em; color: var(--cinnabar); }
+.world-ui .muted { color: var(--ink-soft); font-size: 13px; margin: 2px 0 8px; }
+
+.w-title {
+  position: fixed; left: 20px; top: 16px; padding: 12px 18px 12px 16px;
+  background: rgba(236, 226, 202, 0.94); border-left: 4px solid var(--cinnabar);
+  box-shadow: 0 8px 24px rgba(47, 36, 26, 0.28);
+}
+.w-title .home { padding: 0; border: 0; background: none; font-size: 13px; letter-spacing: 0.1em; color: var(--ink-soft); }
+.w-title .home:hover { color: var(--cinnabar); }
+.w-title .tag { margin-left: 10px; padding: 2px 8px; background: var(--cinnabar); color: var(--paper); font-size: 12px; letter-spacing: 0.16em; }
+.w-title h1 { margin: 6px 0 2px; font-size: 26px; letter-spacing: 0.24em; }
+.w-title p { margin: 0; font-size: 12px; color: var(--ink-soft); letter-spacing: 0.06em; }
+
+.w-tools { position: fixed; right: 20px; top: 16px; display: flex; gap: 6px; }
+.w-tools button {
+  padding: 8px 14px; border: 1px solid rgba(47, 36, 26, 0.45); background: rgba(236, 226, 202, 0.94);
+  font-size: 14px; letter-spacing: 0.12em; color: var(--ink); box-shadow: 0 4px 14px rgba(47, 36, 26, 0.22);
+}
+.w-tools button:hover { border-color: var(--cinnabar); color: var(--cinnabar); }
+.w-tools button.on { background: var(--cinnabar); border-color: var(--cinnabar); color: var(--paper); }
+.w-tools .zin, .w-tools .zout { width: 38px; padding: 8px 0; }
+.w-tools b { display: inline-block; min-width: 18px; margin-left: 4px; padding: 0 5px; background: var(--ink); color: var(--paper); font-weight: normal; font-size: 12px; }
+
+.w-tile {
+  position: fixed; left: 0; top: 0; pointer-events: none; z-index: 3; max-width: 280px;
+  padding: 8px 12px; background: rgba(36, 28, 20, 0.88); color: #f3ead6; font-size: 12px; line-height: 1.6;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+.w-tile b { display: block; font-size: 15px; letter-spacing: 0.1em; font-weight: normal; }
+.w-tile span { display: block; color: #d8cbb0; }
+.w-tile .water { color: #a9cfd8; }
+.w-tile em { display: block; font-style: normal; margin-top: 2px; }
+.w-tile em.bad { color: #f0a090; }
+.w-tile .g0 { color: #f0a090; } .w-tile .g1 { color: #f0d080; } .w-tile .g2, .w-tile .g3 { color: #a8e0a0; }
+
+.w-site {
+  position: fixed; right: 20px; top: 70px; width: 300px; max-height: calc(100vh - 330px); overflow: auto;
+  padding: 18px 20px 16px; background: url('/assets/ui/ui_panel_paper.webp') center / cover, var(--paper);
+  border-top: 4px solid var(--cinnabar); box-shadow: 0 12px 32px rgba(47, 36, 26, 0.35);
+}
+.w-site[hidden] { display: none; }
+.w-site h2 { margin: 4px 0 2px; font-size: 24px; letter-spacing: 0.16em; }
+.w-score { display: flex; align-items: center; gap: 12px; margin: 10px 0 8px; padding: 8px 10px; background: rgba(47, 36, 26, 0.06); }
+.w-score b { font-size: 34px; font-weight: normal; line-height: 1; min-width: 52px; text-align: center; }
+.w-score span { font-size: 14px; letter-spacing: 0.12em; }
+.w-score.g3 b, .w-score.g2 b { color: #3f7f52; }
+.w-score.g1 b { color: #a77a1c; }
+.w-score.g0 b, .w-score.bad b { color: var(--cinnabar); }
+.w-score.bad span { color: var(--cinnabar); font-size: 13px; letter-spacing: 0.04em; }
+.w-factors { list-style: none; margin: 0; padding: 0; }
+.w-factors li { display: grid; grid-template-columns: 40px 1fr 42px; align-items: center; gap: 2px 8px; padding: 5px 0; border-bottom: 1px dashed rgba(47, 36, 26, 0.15); }
+.w-factors i { font-style: normal; font-size: 13px; letter-spacing: 0.1em; }
+.w-factors .bar { height: 6px; background: rgba(47, 36, 26, 0.12); }
+.w-factors .bar span { display: block; height: 100%; background: linear-gradient(90deg, #b9853a, #3f7f52); }
+.w-factors em { font-style: normal; font-size: 12px; color: var(--ink-soft); text-align: right; }
+.w-factors small { grid-column: 2 / 4; font-size: 11px; color: var(--ink-soft); line-height: 1.5; }
+.w-factors li.neg em, .w-factors li.neg small { color: var(--cinnabar); }
+.w-site .known { font-size: 12px; color: var(--cinnabar); line-height: 1.6; margin: 10px 0 0; }
+.w-site .actions { display: flex; gap: 8px; margin-top: 14px; }
+.w-site .actions button { flex: 1; padding: 9px; border: 1px solid var(--ink); background: transparent; font-size: 15px; letter-spacing: 0.16em; color: var(--ink); }
+.w-site .actions .primary { background: var(--cinnabar); border-color: var(--cinnabar); color: var(--paper); }
+.w-site .actions button[data-act="close"] { flex: 0 0 68px; }
+
+.w-mini {
+  position: fixed; right: 20px; bottom: 62px; padding: 6px; background: rgba(236, 226, 202, 0.95);
+  box-shadow: 0 8px 22px rgba(47, 36, 26, 0.35); border: 1px solid rgba(47, 36, 26, 0.35);
+}
+.w-mini canvas { display: block; cursor: crosshair; }
+.w-mini span { position: absolute; left: 10px; top: 8px; font-size: 11px; letter-spacing: 0.2em; color: var(--paper); text-shadow: 0 1px 2px #000; pointer-events: none; }
+
+.w-hint {
+  position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); padding: 6px 16px;
+  background: rgba(36, 28, 20, 0.72); color: #f3ead6; font-size: 12px; letter-spacing: 0.08em; white-space: nowrap;
+  transition: background 0.2s;
+}
+.w-hint.flash { background: var(--cinnabar); }
+.w-legend {
+  position: fixed; left: 20px; bottom: 20px; display: grid; grid-template-columns: repeat(4, auto); gap: 4px 12px;
+  padding: 8px 12px; background: rgba(236, 226, 202, 0.9); font-size: 11px; color: var(--ink-soft);
+  box-shadow: 0 6px 16px rgba(47, 36, 26, 0.2);
+}
+.w-legend span { display: flex; align-items: center; gap: 5px; }
+.w-legend i { width: 12px; height: 12px; border: 1px solid rgba(47, 36, 26, 0.3); }
+.w-legend i.river { height: 4px; border: 0; background: #6f9cad; }
+.w-legend i.canal { height: 4px; border: 1px solid #5a4632; background: #8fb0b4; }
+.w-legend i.border { height: 0; border: 0; border-top: 2px dashed var(--cinnabar); }
+.w-modal input.w-name { font-size: 22px; letter-spacing: 0.2em; padding: 6px 10px; width: 100%; }
+
+@media (max-width: 960px), (max-height: 640px) {
+  .w-legend, .w-hint { display: none; }
+  .w-site { top: auto; bottom: 12px; right: 12px; width: 260px; max-height: 60vh; }
+  .w-mini { display: none; }
+  .w-title h1 { font-size: 18px; }
+}

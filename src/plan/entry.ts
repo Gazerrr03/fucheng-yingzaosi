@@ -55,7 +55,7 @@ async function importShare(ui: PlanUI, mapId: string, map: PlanMap, nav: Nav): P
   const code = ui.root.querySelector<HTMLTextAreaElement>('.share-in')?.value ?? '';
   try {
     const shared = decodeShare(code);
-    if (!CUSTOM_MAPS.some((m) => m.id === shared.mapId)) throw new Error(`不认识的地图：${shared.mapId}`);
+    if (!CUSTOM_MAPS.some((m) => m.id === shared.mapId) && !/^w/.test(shared.mapId)) throw new Error(`不认识的地图：${shared.mapId}`);
     setOrigin(shared.mapId, shared.author);
     if (shared.mapId !== mapId) {
       localStorage.setItem(layoutKey('custom', shared.mapId), JSON.stringify(shared.layout));
@@ -181,7 +181,19 @@ export const CUSTOM_MAPS: { id: string; name: string; blurb: string; source: 'pl
 
 export async function customMap(id: string): Promise<PlanMap> {
   const entry = CUSTOM_MAPS.find((m) => m.id === id);
-  if (!entry) throw new Error(`没有这张地图：${id}`);
+  if (!entry) {
+    // 天下舆图上择址生成的城址
+    const { hexOfSiteId } = await import('../world/worldScreen');
+    const h = hexOfSiteId(id);
+    if (!h) throw new Error(`没有这张地图：${id}`);
+    const [{ WorldMap }, { generateSite }, { evaluateSite }, { getFounding }] = await Promise.all([
+      import('../world/worldMap'), import('../world/siteGen'), import('../world/siteScore'), import('../world/foundings'),
+    ]);
+    const world = await WorldMap.load();
+    if (!world.cell(h)) throw new Error(`天下舆图上没有这一格：${id}`);
+    const f = getFounding(id);
+    return new PlanMap(generateSite(world, h, id, { name: f?.name ?? '新府', verdict: evaluateSite(world, h) }));
+  }
   if (entry.source === 'plan') return new PlanMap(await fetchPlanMap(id));
   const data = await fetchLevel(id);
   const json = PlanMap.fromLevel(id, data.name, data.terrain!, { hexAcross: data.grid.hexAcross, keepWalls: false, terrainNames: data.terrainNames });
@@ -189,55 +201,57 @@ export async function customMap(id: string): Promise<PlanMap> {
   return new PlanMap(json);
 }
 
-function mapPickerHtml(current: string): string {
-  return `<span class="kicker">自定义模式</span><h2>择地筑城</h2>
-    <p>选一处山水，从一片空地开始营建。每张图的营建各自保存。</p>
-    <ul class="map-pick">${CUSTOM_MAPS.map((m) => `<li><label><input type="radio" name="map" value="${m.id}" ${m.id === current ? 'checked' : ''}>
-      <b>${m.name}</b><small>${m.blurb}${loadLayout('custom', m.id)?.length ? ' · 已有营建' : ''}</small></label></li>`).join('')}</ul>`;
-}
-
 export async function runCustom(mapId: string, nav: Nav): Promise<void> {
+  const { getFounding, updateFounding } = await import('../world/foundings');
+  const founding = getFounding(mapId);
   const map = await customMap(mapId);
   const json = map.data;
   const saved = loadLayout('custom', mapId);
   if (saved) map.restore(saved);
-  const intro = `<span class="kicker">自定义模式 · ${json.kind === 'real' ? '真实地图' : '示意地图'}</span>
-    <h2>${json.name}</h2>
+  const title = founding?.name ?? json.name;
+  const intro = `<span class="kicker">自定义模式 · ${json.kind === 'real' ? '真实地图' : '城址'}</span>
+    <h2>${title}</h2>
     <p>${json.subtitle ?? ''}</p>
     ${json.ring ? `<p>红色虚线是${json.ringName ?? '可建范围'}，只能在线内营建。</p>` : ''}
-    <p>自由摆放城墙、城门、官署、坛庙、市井。鼠标悬停预览风水评价，右侧随时看全城格局。营建满意后点「修成史书」，会写下一卷营建记，并生成可以分享的城池码。</p>
+    <p>先看山水：江在哪一面、山在哪一面。选「城墙」后<b>按住拖动</b>就能沿路一口气筑墙，首尾相接即成城；选中任一构件，全图会标出每处能得几分，挑绿的放。</p>
+    <p>营建满意后点「修成史书」，写下一卷营建记，并生成可以分享的城池码。随时可点「回舆图」另择他处。</p>
     ${json.note ? `<p><small>${json.note}</small></p>` : ''}`;
+  const back = () => void nav.world(founding ? founding.hex : undefined);
+  let gradeTimer = 0;
 
   runPlan({
     map,
-    title: json.name,
+    title,
     subtitle: json.subtitle ?? '',
-    tag: json.kind === 'real' ? '自定义 · 真实地图' : '自定义 · 示意地图',
+    tag: json.kind === 'real' ? '自定义 · 真实地图' : '自定义 · 城址',
     intro: saved?.length ? undefined : intro,
     finishLabel: '修成史书',
     canFinish: (_m, v) => v.buildings.some((b) => b.def.id !== 'wall'),
-    onChange: (m) => saveLayout('custom', mapId, m),
+    onChange: (m) => {
+      saveLayout('custom', mapId, m);
+      if (!founding) return;
+      clearTimeout(gradeTimer);
+      gradeTimer = window.setTimeout(async () => {
+        const { evaluateCity } = await import('./fengshui');
+        const v = evaluateCity(m);
+        const built = v.buildings.some((b) => b.def.id !== 'wall');
+        updateFounding(mapId, built ? { grade: v.grade, total: v.total } : { grade: undefined, total: undefined });
+      }, 400);
+    },
     onFinish: async (_m, v, ui) => {
+      if (founding) updateFounding(mapId, { grade: v.grade, total: v.total });
       const { writeChronicle } = await import('./chronicleUI');
       await writeChronicle(ui, { map, verdict: v, mode: 'custom' });
     },
     extraButtons: [
-      {
-        label: '换地图',
-        onClick: async (ui) => {
-          const { openModal } = await import('./planScreen');
-          const pick = await openModal(ui.root, mapPickerHtml(mapId), '前往', '取消');
-          const id = ui.root.querySelector<HTMLInputElement>('.map-pick input:checked')?.value;
-          if (pick === 0 && id && id !== mapId) void nav.go(`?custom=${id}`);
-        },
-      },
+      { label: '回舆图', title: '回到天下舆图另择他处（营建自动保存）', onClick: back },
       { label: '导入城池码', onClick: (ui) => void importShare(ui, mapId, map, nav) },
       bookButton,
       {
         label: '清空',
         title: '拆掉本图的全部营建',
         onClick: (ui) => {
-          if (!confirm(`拆掉${json.name}的全部营建？（史书里的记载不受影响）`)) return;
+          if (!confirm(`拆掉${title}的全部营建？（史书里的记载不受影响）`)) return;
           setOrigin(mapId, null);
           map.restore([]);
           saveLayout('custom', mapId, map);
@@ -245,7 +259,7 @@ export async function runCustom(mapId: string, nav: Nav): Promise<void> {
         },
       },
     ],
-    onHome: () => void nav.world(),
+    onHome: back,
   });
   document.body.classList.add('ready');
   await nav.arrive();
