@@ -262,6 +262,9 @@ export function runPlan(session: PlanSession): PlanUI {
       history.push(paintBefore);
       sound.click();
       changed();
+      if (tool !== 'remove' && tool?.id === 'qu' && paintPath.some((h) => map.at(h)?.id === 'qu' && !map.isWet(h))) {
+        toast('此段渠尚未通水：要接上江河、湖塘或有水的护城河');
+      }
     } else if (paintBefore && tool && tool !== 'remove' && paintPath.length === 1) {
       toast(map.canPlace(tool, paintPath[0]).reason ?? '不能建在这里');
     }

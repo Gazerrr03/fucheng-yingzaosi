@@ -64,6 +64,7 @@ export class PlanMap {
   readonly hexSize: number;
   readonly bounds: { qMin: number; qMax: number; rMin: number; rMax: number };
   private cache: { inside: Set<string>; center: Vec2; radius: number } | null = null;
+  private wetCache: Set<string> | null = null;
 
   constructor(readonly data: PlanMapJSON) {
     this.hexSize = data.hexAcross / Math.sqrt(3);
@@ -131,10 +132,51 @@ export class PlanMap {
     return (Math.abs(a.q - b.q) + Math.abs(a.r - b.r) + Math.abs(a.q + a.r - b.q - b.r)) / 2;
   }
 
+  /** 是否水面：天然水，或有水的人工水面（干渠不算） */
   isWater(h: Hex): boolean {
     const c = this.cell(h);
     if (!c) return false;
-    return !!PLAN_TERRAIN[c.terrain]?.water || !!this.at(h)?.waterish;
+    if (PLAN_TERRAIN[c.terrain]?.water) return true;
+    const b = this.at(h);
+    if (!b?.waterish) return false;
+    return b.id !== 'qu' || this.wet().has(hexKey(h));
+  }
+
+  /** 人工水面格（护城河、水渠）是否已接上水源 */
+  isWet(h: Hex): boolean {
+    return this.wet().has(hexKey(h));
+  }
+
+  /**
+   * 水网：从天然水（江河湖塘）出发，沿相邻的护城河、水渠、水门洪水填充，填到的人工水面格就「有水」。
+   * 城墙本身不过水，水只能经水门穿墙。
+   */
+  wet(): Set<string> {
+    if (this.wetCache) return this.wetCache;
+    const wet = new Set<string>();
+    const seen = new Set<string>();
+    const stack: Hex[] = [];
+    const conduit = (b: BuildingDef | undefined) => !!b && (b.waterish || b.id === 'shuimen');
+    for (const c of this.cells.values()) {
+      if (PLAN_TERRAIN[c.terrain]?.water) {
+        seen.add(hexKey(c));
+        stack.push(c);
+      }
+    }
+    while (stack.length) {
+      const h = stack.pop()!;
+      for (const n of neighbors(h)) {
+        const k = hexKey(n);
+        if (seen.has(k)) continue;
+        const b = this.at(n);
+        if (!conduit(b)) continue;
+        seen.add(k);
+        if (b!.waterish) wet.add(k);
+        stack.push(n);
+      }
+    }
+    this.wetCache = wet;
+    return wet;
   }
 
   isNaturalWater(h: Hex): boolean {
@@ -189,6 +231,7 @@ export class PlanMap {
     if (!chk.ok) return chk;
     this.placed.set(hexKey(h), def.id);
     this.cache = null;
+    this.wetCache = null;
     return chk;
   }
 
@@ -200,6 +243,7 @@ export class PlanMap {
     if (cur.placement === 'onWall') this.placed.set(key, 'wall');
     else this.placed.delete(key);
     this.cache = null;
+    this.wetCache = null;
     return true;
   }
 
@@ -277,6 +321,7 @@ export class PlanMap {
       this.placed.set(key, id);
     }
     this.cache = null;
+    this.wetCache = null;
   }
 
   private compute() {

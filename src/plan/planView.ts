@@ -347,7 +347,7 @@ export class PlanView {
     }
   }
 
-  /** 水渠：从格心向每个相邻的水面（江河湖塘、护城河、水渠、水门）画一段渠，孤立的一格画成小潭 */
+  /** 水渠：从格心向每个相邻的水面（江河湖塘、护城河、水渠、水门）画一段渠，孤立的一格画成小潭；没接上水源的画成干沟 */
   private drawChannel(c: Cell, z: number): void {
     const ctx = this.ctx;
     const map = this.map;
@@ -356,7 +356,8 @@ export class PlanView {
     const ends: Vec2[] = [];
     for (const d of HEX_DIRS) {
       const n = { q: c.q + d.q, r: c.r + d.r };
-      if (!map.isWater(n) && map.at(n)?.id !== 'shuimen') continue;
+      const nb = map.at(n);
+      if (!map.isNaturalWater(n) && !nb?.waterish && nb?.id !== 'shuimen') continue;
       const [nx, ny] = this.center(n, z);
       ends.push([(cx + nx) / 2, (cy + ny) / 2]);
     }
@@ -375,8 +376,10 @@ export class PlanView {
       ctx.ellipse(cx, cy, width / 2, width / 2.6, 0, 0, Math.PI * 2);
       ctx.fill();
     };
+    const wet = map.isWet(c);
     stroke('rgba(110,92,68,0.55)', w * 1.35);
-    stroke(PLAN_TERRAIN.M.color, w);
+    stroke(wet ? PLAN_TERRAIN.M.color : '#b8a47f', w);
+    if (!wet) stroke('rgba(120,96,64,0.35)', w * 0.35);
     ctx.lineCap = 'butt';
   }
 
