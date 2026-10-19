@@ -250,6 +250,10 @@ export function evaluate(map: PlanMap, h: Hex, def: BuildingDef, ctx: EvalContex
       notes.push({ delta: 15, text: '城外有池，城池相依' });
       if (nb.some((n) => map.isNaturalWater(n) || (map.at(n)?.id === 'moat' && n !== h))) notes.push({ delta: 10, text: '濠水相连成环' });
       break;
+    case 'qu':
+      if (nb.some((n) => map.isWater(n))) notes.push({ delta: 10, text: '渠与水相接' });
+      else notes.push({ delta: -10, text: '孤渠一段，无水可引' });
+      break;
   }
 
   const score = Math.max(0, Math.min(100, 55 + notes.reduce((a, n) => a + n.delta, 0)));
@@ -316,7 +320,7 @@ export function evaluateCity(map: PlanMap, ctx: EvalContext = {}): CityVerdict {
     text: altarsOk ? (ctx.exempt?.has('sheji') ? '社稷坛因地形移置（有据）、山川坛在南、厉坛在北，合洪武之制' : '社稷坛在西北、山川坛在南、厉坛在北，合洪武之制') : `已设坛 ${altars.length} / 3，或方位未合`,
   });
 
-  const weight = (d: BuildingDef) => (d.id === 'wall' || d.id === 'moat' ? 0 : d.id === 'minju' ? 0.3 : 1);
+  const weight = (d: BuildingDef) => (d.id === 'wall' || d.id === 'moat' || d.id === 'qu' ? 0 : d.id === 'minju' ? 0.3 : 1);
   let sw = 0, ss = 0;
   for (const b of buildings) {
     const wgt = weight(b.def);

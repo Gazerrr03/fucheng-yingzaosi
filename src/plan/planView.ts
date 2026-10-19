@@ -284,7 +284,7 @@ export class PlanView {
     const top = this.corners(c, z);
     const jitter = 0.96 + (((c.q * 73856093) ^ (c.r * 19349663)) & 15) / 200;
     const lift = 1 + Math.min(0.12, (z - this.baseElev) / 3000);
-    const moat = map.at(c)?.waterish;
+    const moat = map.at(c)?.id === 'moat';
     const color = moat ? PLAN_TERRAIN.M.color : inside && c.terrain === 'T' ? PLAN_TERRAIN.B.color : def.color;
 
     // 侧面：南侧三条边下拉到地面
@@ -326,6 +326,7 @@ export class PlanView {
       ctx.fill();
     }
     if (detail) this.decorate(c, z);
+    if (map.at(c)?.id === 'qu') this.drawChannel(c, z);
     if (this.highlight.has(hexKey(c))) {
       ctx.fillStyle = 'rgba(184,50,42,0.22)';
       ctx.fill();
@@ -344,6 +345,39 @@ export class PlanView {
       ctx.lineTo(cx + s * 0.4, cy);
       ctx.stroke();
     }
+  }
+
+  /** 水渠：从格心向每个相邻的水面（江河湖塘、护城河、水渠、水门）画一段渠，孤立的一格画成小潭 */
+  private drawChannel(c: Cell, z: number): void {
+    const ctx = this.ctx;
+    const map = this.map;
+    const [cx, cy] = this.center(c, z);
+    const w = map.data.hexAcross * this.zoom * 0.34;
+    const ends: Vec2[] = [];
+    for (const d of HEX_DIRS) {
+      const n = { q: c.q + d.q, r: c.r + d.r };
+      if (!map.isWater(n) && map.at(n)?.id !== 'shuimen') continue;
+      const [nx, ny] = this.center(n, z);
+      ends.push([(cx + nx) / 2, (cy + ny) / 2]);
+    }
+    const stroke = (color: string, width: number) => {
+      ctx.strokeStyle = color;
+      ctx.fillStyle = color;
+      ctx.lineWidth = width;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      for (const [ex, ey] of ends) {
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(ex, ey);
+      }
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, width / 2, width / 2.6, 0, 0, Math.PI * 2);
+      ctx.fill();
+    };
+    stroke('rgba(110,92,68,0.55)', w * 1.35);
+    stroke(PLAN_TERRAIN.M.color, w);
+    ctx.lineCap = 'butt';
   }
 
   private center(c: Hex, z: number): Vec2 {

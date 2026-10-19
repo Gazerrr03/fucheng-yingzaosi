@@ -65,7 +65,7 @@ export interface PlanUI {
 }
 
 /** 可以按住拖动连续营建的构件 */
-const PAINT_TOOLS = new Set(['wall', 'moat']);
+const PAINT_TOOLS = new Set(['wall', 'moat', 'qu']);
 
 export function runPlan(session: PlanSession): PlanUI {
   const { map } = session;

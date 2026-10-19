@@ -11,7 +11,8 @@ export type Placement =
   | 'onWall' //      替换一段城墙（城门、角楼、水门）
   | 'nearGate' //    陆地，紧贴城门
   | 'nearWall' //    陆地，紧贴城墙
-  | 'shore'; //      陆地，紧贴江河湖塘
+  | 'shore' //       陆地，紧贴江河湖塘
+  | 'canal'; //      陆地，城内城外皆可（水渠）
 
 export interface BuildingDef {
   id: string;
@@ -81,6 +82,8 @@ export const BUILDINGS: BuildingDef[] = [
     about: '城墙上的过水门，引护城河水入城，兼通舟楫。' },
   { id: 'moat', name: '护城河', glyph: '濠', group: '水利', placement: 'nearWall', waterish: true, height: 0, roof: '#4f7f8f',
     about: '城外绕城的人工河道，与城墙合称「城池」。' },
+  { id: 'qu', name: '水渠', glyph: '渠', group: '水利', placement: 'canal', waterish: true, height: 0, roof: '#4f7f8f',
+    about: '人工开挖的渠道，城内称内河。按住拖动连续开挖；接上江河、湖塘、护城河才有活水。' },
 ];
 
 export const BUILDING_BY_ID = new Map(BUILDINGS.map((b) => [b.id, b]));
