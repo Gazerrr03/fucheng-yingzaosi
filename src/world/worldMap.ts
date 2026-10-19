@@ -13,10 +13,15 @@ export interface WorldJSON {
   elev: { step: number; rows: string[] };
   feature: string[];
   domain: string[];
-  rivers: { name: string; rank: number | 'canal'; path: [number, number][] }[];
-  cities: { name: string; hex: [number, number]; prov: string; capital?: boolean; known?: string }[];
+  /** path：河道经过的格；line：真实河道折线（公里，与格子同一平面坐标）。rank 4 为名城附近的小河 */
+  rivers: { name: string; rank: number | 'canal'; path: [number, number][]; line: [number, number][] }[];
+  /** xy：府城真实位置（公里） */
+  cities: { name: string; hex: [number, number]; prov: string; xy: [number, number]; capital?: boolean; known?: string }[];
   provinces: { name: string; hex: [number, number] }[];
-  lakes: { name: string; hex: [number, number] }[];
+  /** xy、r：湖心与东西、南北半轴（公里） */
+  lakes: { name: string; hex: [number, number]; xy: [number, number]; r: [number, number] }[];
+  /** 城边小湖：比一格小得多，不进栅格，放大时与城址生成时才画 */
+  pools: { name: string; xy: [number, number]; r: [number, number] }[];
   ranges: { name: string; hex: [number, number] }[];
   note?: string;
 }
@@ -44,7 +49,7 @@ export interface WorldCell extends Hex {
   feature: string;
   /** 是否在明朝疆域内 */
   domain: boolean;
-  /** 穿过本格的最大河流：1 大江大河、2 主要支流、3 一般河流、0 运河 */
+  /** 穿过本格的最大河流：1 大江大河、2 主要支流、3 一般河流、4 名城小河、0 运河 */
   river?: number;
   riverNames: string[];
   prov?: string;

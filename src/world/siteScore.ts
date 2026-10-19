@@ -21,7 +21,7 @@ export interface SiteVerdict {
   factors: SiteFactor[];
 }
 
-const RIVER_NAME: Record<number, string> = { 0: '运河', 1: '大江', 2: '大河', 3: '河' };
+const RIVER_NAME: Record<number, string> = { 0: '运河', 1: '大江', 2: '大河', 3: '河', 4: '小河' };
 
 export function gradeOf(total: number): SiteVerdict['grade'] {
   return total >= 80 ? '上上' : total >= 65 ? '上' : total >= 48 ? '中' : '下';
@@ -54,7 +54,7 @@ export function evaluateSite(map: WorldMap, h: Hex, opts: { taken?: Hex[] } = {}
   // 临水
   let water = 0, wtext = '四望无水，难以开濠通漕';
   if (c.river !== undefined) {
-    water = [22, 30, 24, 18][c.river];
+    water = [22, 30, 24, 18, 14][c.river];
     wtext = `${c.riverNames[0]}穿境而过（${RIVER_NAME[c.river]}）`;
   } else {
     const rv = near1.filter((n) => n.river !== undefined).sort((a, b) => (a.river || 9) - (b.river || 9))[0];

@@ -6,6 +6,9 @@
   python3 tools/build_world_map.py            # 默认 28 公里一格
   python3 tools/build_world_map.py --hex 24 --preview /tmp/world.png
 
+河流 rank：1 大江大河、2 主要支流、3 一般河流、4 名城附近的小河、canal 运河；每条河另存真实折线 line（公里）。
+城边小湖（SMALL_LAKES）不进栅格，存在 pools 里。
+
 地形代码：O 深海、Q 近海、W 湖、F 平原、H 丘陵、S 山地、X 雪山、P 高原、D 荒漠、C 草原
 地物代码：f 林、m 泽、. 无
 """
@@ -233,8 +236,10 @@ def main():
                     path.pop()
                     continue
                 path.append(h)
-        if len(path) >= 2:
-            rivers_out.append({"name": name, "rank": rank, "path": [list(h) for h in path]})
+        if path:
+            # line：真实河道折线（公里，与格子同一平面坐标），城址生成按它定江河方位与远近
+            rivers_out.append({"name": name, "rank": rank, "path": [list(h) for h in path],
+                               "line": [[round(x, 2), round(y, 2)] for x, y in line]})
             for h in path:
                 c = cells[h]
                 cur = c.get("river")
@@ -302,14 +307,19 @@ def main():
         if c["t"] in ("W", "Q", "O"):
             c["t"], c["land"] = "F", True
             c["elev"] = max(c["elev"], 20)
-        item = {"name": name, "hex": list(h), "prov": prov}
+        x, y = pj.fwd(lon, lat)
+        item = {"name": name, "hex": list(h), "prov": prov, "xy": [round(x, 2), round(y, 2)]}
         item.update(extra)
         cities_out.append(item)
 
     provinces_out = [{"name": n, "hex": list(cell_at(lon, lat))} for n, lon, lat in G.PROVINCES]
     lake_labels = []
     for name, cx, cy, rx, ry in lakes:
-        lake_labels.append({"name": name, "hex": list(hex_of(cx, cy))})
+        lake_labels.append({"name": name, "hex": list(hex_of(cx, cy)), "xy": [round(cx, 2), round(cy, 2)], "r": [rx, ry]})
+    pools_out = []
+    for name, (lon, lat), rx, ry in G.SMALL_LAKES:
+        x, y = pj.fwd(lon, lat)
+        pools_out.append({"name": name, "xy": [round(x, 2), round(y, 2)], "r": [rx, ry]})
     ridge_labels = []
     for name, line, h, w in ridges:
         if h < 1200:
@@ -344,6 +354,7 @@ def main():
         "cities": cities_out,
         "provinces": provinces_out,
         "lakes": lake_labels,
+        "pools": pools_out,
         "ranges": ridge_labels,
         "note": "地理底稿为手工整理的经纬度（tools/geo/china.py），示意级；河道取明代（黄河夺淮入海）。",
     }
