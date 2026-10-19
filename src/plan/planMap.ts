@@ -167,6 +167,21 @@ export class PlanMap {
     return ponds;
   }
 
+  /**
+   * 水门（或拟建水门的城墙格）两侧的水：outside 城外一侧临水；inner 城内一侧接着有水的内河。
+   * 城墙不过水，城内的渠只能经水门从城外得水。
+   */
+  sluice(h: Hex): { outside: boolean; inner: boolean } {
+    const inside = this.inside();
+    let outside = false, inner = false;
+    for (const n of neighbors(h)) {
+      if (this.isWallish(n) || !this.isWater(n)) continue;
+      if (inside.has(hexKey(n))) inner = true;
+      else outside = true;
+    }
+    return { outside, inner };
+  }
+
   /** 人工水面格（护城河、水渠）是否已接上水源 */
   isWet(h: Hex): boolean {
     return this.wet().has(hexKey(h));
@@ -236,7 +251,7 @@ export class PlanMap {
     const nb = neighbors(h);
     if (def.placement === 'onWall') {
       if (!cur || cur.id !== 'wall') return { ok: false, reason: `${def.name}要建在城墙上` };
-      if (def.id === 'shuimen' && !nb.some((n) => this.isWater(n))) return { ok: false, reason: '水门要临水' };
+      if (def.id === 'shuimen' && !this.sluice(h).outside) return { ok: false, reason: '水门要一侧临城外的水（江河、湖塘或有水的护城河）' };
       return { ok: true };
     }
     if (PLAN_TERRAIN[c.terrain]?.water) return { ok: false, reason: '不能建在水里' };

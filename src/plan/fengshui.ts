@@ -242,8 +242,10 @@ export function evaluate(map: PlanMap, h: Hex, def: BuildingDef, ctx: EvalContex
       if (nearest(map, h, 'shisi') <= 2) notes.push({ delta: 10, text: '市肆相依' });
       break;
     case 'shuimen': {
-      const waterSides = nb.filter((n) => map.isWater(n)).length;
-      notes.push({ delta: waterSides >= 1 ? 20 : -10, text: waterSides >= 1 ? '引水入城，兼通舟楫' : '水门不临水' });
+      const { outside, inner } = map.sluice(h);
+      if (!outside) notes.push({ delta: -10, text: '水门外无水' });
+      else if (inner) notes.push({ delta: 20, text: '引水入城，内河有源，兼通舟楫' });
+      else notes.push({ delta: 5, text: '临水而城内未开渠，水未入城' });
       break;
     }
     case 'moat':
