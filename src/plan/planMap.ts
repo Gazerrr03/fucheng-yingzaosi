@@ -133,14 +133,13 @@ export class PlanMap {
     return (Math.abs(a.q - b.q) + Math.abs(a.r - b.r) + Math.abs(a.q + a.r - b.q - b.r)) / 2;
   }
 
-  /** 是否水面：天然水，或有水的人工水面（干渠不算） */
+  /** 是否水面：天然水，或接上水源的人工水面（干濠、干渠不算） */
   isWater(h: Hex): boolean {
     const c = this.cell(h);
     if (!c) return false;
     if (PLAN_TERRAIN[c.terrain]?.water) return true;
     const b = this.at(h);
-    if (!b?.waterish) return false;
-    return b.id !== 'qu' || this.wet().has(hexKey(h));
+    return !!b?.waterish && this.wet().has(hexKey(h));
   }
 
   /** 池：三格水渠两两相邻（六边形最小三角）即汇成池，这三格都算池；拆掉一格就退回水渠 */

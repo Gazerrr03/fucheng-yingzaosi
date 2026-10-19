@@ -70,7 +70,7 @@ export const LESSONS: Lesson[] = [
     id: 'baoding', order: 1, ordinal: '一', cityName: '保定府', title: '平原上的堡垒',
     blurb: '无山可倚、无江可守，城防全靠人力。',
     source: { kind: 'level', city: 'baoding' }, keepWalls: false, showOldWalls: true,
-    palette: ['wall', 'gate', 'wengcheng', 'jiaolou', 'ditai', 'moat', 'fushu', 'gulou', 'shisi', 'minju'],
+    palette: ['wall', 'gate', 'wengcheng', 'jiaolou', 'ditai', 'moat', 'qu', 'fushu', 'gulou', 'shisi', 'minju'],
     intro: [
       '保定地处冀中平原，西望太行，东临白洋淀水网，城下一马平川。没有天险可借，一座城能不能守住，全看城墙、城门、瓮城、角楼、护城河这一整套人工防御做得是否周全。',
       '明代保定府城周回约十二里，四门各有瓮城，城外绕以护城河。浅红色的格子是旧城墙的基址，可以照着修，也可以自己另起炉灶。',
@@ -86,7 +86,7 @@ export const LESSONS: Lesson[] = [
         fourGates(map),
         { text: '每座城门外都有瓮城', done: gates.length >= 4 && guarded >= gates.length, hint: `已护 ${guarded} / ${gates.length} 门；瓮城建在城外、紧贴城门` },
         { text: '城墙转角建角楼四座', done: corners >= 4, hint: `已有 ${corners} / 4；角楼要建在城墙拐角处` },
-        { text: '城池相依：七成以上城墙外临水', done: pattern(v, 'moat'), hint: '在城墙外侧修护城河' },
+        { text: '城池相依：七成以上城墙外临水', done: pattern(v, 'moat'), hint: '在城墙外侧修护城河，并接上江河湖塘；离水远就挖水渠引水' },
         { text: '府署居城中，坐北朝南（得分 ≥ 80）', done: score(v, 'fushu') >= 80, hint: '府署放在罗盘中宫或略偏北' },
       ];
     },
@@ -128,7 +128,7 @@ export const LESSONS: Lesson[] = [
       const matou = all(map, 'matou');
       const shisiNearMatou = all(map, 'shisi').filter((s) => matou.some((m) => PlanMap.dist(s.hex, m.hex) <= 2)).length;
       return [
-        { text: '城池相依：七成以上城墙外临水', done: pattern(v, 'moat'), hint: '沿城墙外侧补护城河' },
+        { text: '城池相依：七成以上城墙外临水', done: pattern(v, 'moat'), hint: '沿城墙外侧补护城河，濠要与江湖相通才有水' },
         { text: '开水门一座', done: all(map, 'shuimen').length >= 1, hint: '水门建在临水的城墙上' },
         { text: '开城门不少于四座', done: all(map, 'gate').length >= 4, hint: `已开 ${all(map, 'gate').length} 座` },
         { text: '设码头，并在两格内设市肆', done: shisiNearMatou >= 1, hint: matou.length ? '在码头旁边放市肆' : '先在江河湖塘边设码头' },

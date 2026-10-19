@@ -289,7 +289,8 @@ export class PlanView {
     const lift = 1 + Math.min(0.12, (z - this.baseElev) / 3000);
     const moat = map.at(c)?.id === 'moat';
     const pond = map.isPond(c);
-    const color = pond ? (map.isWet(c) ? PLAN_TERRAIN.W.color : DRY_COLOR) : moat ? PLAN_TERRAIN.M.color : inside && c.terrain === 'T' ? PLAN_TERRAIN.B.color : def.color;
+    const wetMade = (moat || pond) && map.isWet(c);
+    const color = pond ? (wetMade ? PLAN_TERRAIN.W.color : DRY_COLOR) : moat ? (wetMade ? PLAN_TERRAIN.M.color : DRY_COLOR) : inside && c.terrain === 'T' ? PLAN_TERRAIN.B.color : def.color;
 
     // 侧面：南侧三条边下拉到地面
     if (z > this.baseElev + 0.5) {
@@ -339,7 +340,7 @@ export class PlanView {
       ctx.stroke();
     }
     // 水面高光
-    if ((def.water || moat || (pond && map.isWet(c))) && detail) {
+    if ((def.water || wetMade) && detail) {
       const [cx, cy] = this.center(c, z);
       ctx.strokeStyle = 'rgba(255,255,255,0.25)';
       ctx.lineWidth = 1;
