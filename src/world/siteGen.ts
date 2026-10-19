@@ -1,6 +1,6 @@
 // 城址生成：由天下舆图上的一格（约 28 公里）推演出城级营建地图（一格 200 米，约 11 × 8 公里）。
-// 本格有江河穿过 → 江从入口方向流向出口方向，偏开城心，让城坐在一岸（多取北岸，向阳）；
-// 邻格是江河、湖、海 → 在那一侧的图边画出水面；邻格是山、丘 → 那一侧起山。地形噪声按格子坐标定种子，同一格每次生成相同。
+// 江河、湖泊按天下舆图里的真实河道与湖岸投影过来（见 projectWaters），城压在河上就推到一岸；
+// 邻格是海 → 在那一侧的图边画出海面；邻格是山、丘 → 那一侧起山。地形噪声按格子坐标定种子，同一格每次生成相同。
 
 import { HEX_DIRS, type Hex } from '../scene/hex';
 import type { PlanMapJSON } from '../plan/planMap';
@@ -45,38 +45,128 @@ function polyDist(p: V2, line: V2[]): number {
   return d;
 }
 
-/** 方向单位向量 → 图边上的点（矩形 HALF_W × HALF_H，略出界） */
-function edgePoint([dx, dy]: V2): V2 {
-  const k = Math.min(HALF_W / Math.max(1e-6, Math.abs(dx)), HALF_H / Math.max(1e-6, Math.abs(dy))) * 1.08;
-  return [dx * k, dy * k];
-}
-
-/** 一条过图的河：入口 → 偏开城心的中段 → 出口，二次贝塞尔采样，带一点蜿蜒 */
-function riverLine(inDir: V2, outDir: V2, offset: V2, seed: number): V2[] {
-  const a = edgePoint(inDir), b = edgePoint(outDir);
-  const mid: V2 = [offset[0], offset[1]];
-  // 贝塞尔控制点：让曲线经过 mid
-  const ctrl: V2 = [2 * mid[0] - (a[0] + b[0]) / 2, 2 * mid[1] - (a[1] + b[1]) / 2];
-  const pts: V2[] = [];
-  const N = 48;
-  for (let i = 0; i <= N; i++) {
-    const t = i / N;
-    const x = (1 - t) * (1 - t) * a[0] + 2 * (1 - t) * t * ctrl[0] + t * t * b[0];
-    const y = (1 - t) * (1 - t) * a[1] + 2 * (1 - t) * t * ctrl[1] + t * t * b[1];
-    // 法向蜿蜒
-    const tx = 2 * (1 - t) * (ctrl[0] - a[0]) + 2 * t * (b[0] - ctrl[0]);
-    const ty = 2 * (1 - t) * (ctrl[1] - a[1]) + 2 * t * (b[1] - ctrl[1]);
-    const l = Math.hypot(tx, ty) || 1;
-    const w = (vnoise(t * 5, 0.5, seed) - 0.5) * 900 * Math.sin(Math.PI * t);
-    pts.push([x - (ty / l) * w, y + (tx / l) * w]);
-  }
-  return pts;
-}
+const DIR8 = ['北', '东北', '东', '东南', '南', '西南', '西', '西北'];
 
 const unit = (v: V2): V2 => {
   const l = Math.hypot(v[0], v[1]) || 1;
   return [v[0] / l, v[1] / l];
 };
+
+/** 投影时考虑的最远距离（米）：再远的江河不画进城址，留给图边来水口 */
+const REACH = 16000;
+const KM = 1000;
+const RIVER_HALF: Record<number, number> = { 0: 70, 1: 420, 2: 240, 3: 130, 4: 80 };
+
+export interface SiteWater {
+  line: V2[];
+  half: number;
+  code: 'R' | 'W';
+  name: string;
+  rank: number;
+  /** 城心到河的方向与真实距离（米） */
+  u: V2;
+  dist: number;
+}
+
+/** 城心沿方向 u 到图边的距离 */
+function edgeDist([ux, uy]: V2): number {
+  return Math.min(HALF_W / Math.max(1e-6, Math.abs(ux)), HALF_H / Math.max(1e-6, Math.abs(uy)));
+}
+
+/** 真实距离 g → 图上距离：太近推到 gMin（城坐一岸）；图内六成以内照实；更远的压缩到图边以内，次序不变 */
+function placeGap(g: number, u: V2, gMin: number): number {
+  const e = edgeDist(u);
+  const keep = Math.max(gMin, e * 0.6);
+  if (g < gMin) return gMin;
+  if (g <= keep) return g;
+  return keep + ((Math.min(g, REACH) - keep) / Math.max(1, REACH - keep)) * (e * 0.95 - keep);
+}
+
+/** 城址中心（米，天下舆图平面坐标）：府城真实位置，没有府城就取格心 */
+export function siteCenter(world: WorldMap, h: Hex): V2 {
+  const city = world.data.cities.find((ct) => ct.hex[0] === h.q && ct.hex[1] === h.r);
+  const [x, y] = city?.xy ?? world.world(h);
+  return [x * KM, y * KM];
+}
+
+/** 把天下舆图的真实河道、湖岸投影到城址局部坐标（米，城心为原点，y 向北） */
+export function projectWaters(world: WorldMap, h: Hex, seed: number): { waters: SiteWater[]; lakes: { c: V2; r: V2; name: string }[]; primaryU: V2 | null } {
+  const P = siteCenter(world, h);
+  const box = (p: V2) => Math.abs(p[0]) < HALF_W * 1.6 && Math.abs(p[1]) < HALF_H * 1.6;
+  const waters: SiteWater[] = [];
+  for (const rv of world.data.rivers) {
+    if (!rv.line?.length) continue;
+    const local: V2[] = rv.line.map(([x, y]) => [x * KM - P[0], y * KM - P[1]]);
+    // 最近点与该处走向
+    let g = Infinity, Q: V2 = local[0], tan: V2 = [1, 0];
+    for (let i = 0; i < local.length - 1; i++) {
+      const a = local[i], b = local[i + 1];
+      const dx = b[0] - a[0], dy = b[1] - a[1], L = dx * dx + dy * dy;
+      const t = L ? Math.max(0, Math.min(1, (-a[0] * dx - a[1] * dy) / L)) : 0;
+      const q: V2 = [a[0] + t * dx, a[1] + t * dy];
+      const d = Math.hypot(q[0], q[1]);
+      if (d < g) {
+        g = d;
+        Q = q;
+        tan = unit([dx, dy]);
+      }
+    }
+    if (g > REACH) continue;
+    const rank = rv.rank === 'canal' ? 0 : rv.rank;
+    const half = RIVER_HALF[rank] ?? 100;
+    // 城心几乎压在河上时不知道在哪岸，取南岸放河（城居北岸，向阳）
+    let u: V2 = g > 200 ? [Q[0] / g, Q[1] / g] : [-tan[1], tan[0]];
+    if (g <= 200 && u[1] > 0) u = [-u[0], -u[1]];
+    const gMin = (rank >= 3 || rank === 0 ? 1100 : 1500) + half;
+    const shift = placeGap(g, u, gMin) - g;
+    // 加密、平移、按弧长加蜿蜒，只留图附近的几段
+    let run: V2[] = [];
+    const runs: V2[][] = [];
+    let s = 0;
+    for (let i = 0; i < local.length - 1; i++) {
+      const a = local[i], b = local[i + 1];
+      const len = Math.hypot(b[0] - a[0], b[1] - a[1]);
+      const n = Math.max(1, Math.ceil(len / 150));
+      const nx = -(b[1] - a[1]) / (len || 1), ny = (b[0] - a[0]) / (len || 1);
+      for (let k = 0; k < n; k++) {
+        const t = k / n;
+        const w = (vnoise((s + len * t) / 2600, rank + 0.5, seed) - 0.5) * 600;
+        const p: V2 = [a[0] + (b[0] - a[0]) * t + u[0] * shift + nx * w, a[1] + (b[1] - a[1]) * t + u[1] * shift + ny * w];
+        if (box(p)) run.push(p);
+        else if (run.length) {
+          runs.push(run);
+          run = [];
+        }
+      }
+      s += len;
+    }
+    const last = local[local.length - 1];
+    const lp: V2 = [last[0] + u[0] * shift, last[1] + u[1] * shift];
+    if (box(lp)) run.push(lp);
+    if (run.length) runs.push(run);
+    for (const line of runs) {
+      if (line.length < 2) continue;
+      waters.push({ line, half, code: rank === 1 || rank === 2 ? 'R' : 'W', name: rv.name, rank, u, dist: g });
+    }
+  }
+  // 主次：大河在前，同级取近
+  waters.sort((a, b) => (a.rank || 9) - (b.rank || 9) || a.dist - b.dist);
+
+  const lakes: { c: V2; r: V2; name: string }[] = [];
+  for (const lk of [...world.data.lakes, ...(world.data.pools ?? [])]) {
+    if (!lk.xy) continue;
+    const c: V2 = [lk.xy[0] * KM - P[0], lk.xy[1] * KM - P[1]];
+    const r: V2 = [lk.r[0] * KM, lk.r[1] * KM];
+    const dc = Math.hypot(c[0], c[1]);
+    const k = Math.hypot(c[0] / r[0], c[1] / r[1]);
+    const g = k <= 1 ? 0 : dc * (1 - 1 / k);
+    if (g > REACH) continue;
+    const u: V2 = dc > 1 ? [c[0] / dc, c[1] / dc] : [0, -1];
+    const shift = placeGap(g, u, 900) - g;
+    lakes.push({ c: [c[0] + u[0] * shift, c[1] + u[1] * shift], r, name: lk.name });
+  }
+  return { waters, lakes, primaryU: waters[0]?.u ?? null };
+}
 
 export interface SiteInfo {
   name: string;
@@ -96,50 +186,13 @@ export function generateSite(world: WorldMap, h: Hex, id: string, info: SiteInfo
     .filter((n): n is WorldCell => !!n)
     .map((n) => ({ cell: n, dir: dirOf(n) }));
 
-  // ---- 水：穿境的河 ----
-  type Water = { line: V2[]; half: number; code: 'R' | 'W'; name: string };
-  const waters: Water[] = [];
-  let bankSide: V2 = [0, -1]; // 城在河的哪一岸：默认北岸（河在城南）
-  for (const rv of world.data.rivers) {
-    const i = rv.path.findIndex(([q, r]) => q === h.q && r === h.r);
-    if (i < 0) continue;
-    const prev = rv.path[i - 1], next = rv.path[i + 1];
-    const inDir: V2 = prev ? dirOf({ q: prev[0], r: prev[1] }) : next ? (dirOf({ q: next[0], r: next[1] }).map((v) => -v) as V2) : [-1, 0];
-    const outDir: V2 = next ? dirOf({ q: next[0], r: next[1] }) : ([-inDir[0], -inDir[1]] as V2);
-    // 河道方向的法线，取偏南的一侧放河，城在北岸
-    const flow = unit([outDir[0] - inDir[0], outDir[1] - inDir[1]]);
-    let nrm: V2 = [-flow[1], flow[0]];
-    if (nrm[1] > 0) nrm = [-nrm[0], -nrm[1]];
-    const rank = rv.rank === 'canal' ? 0 : rv.rank;
-    const half = rank === 1 ? 420 : rank === 2 ? 240 : 130;
-    const off = waters.length === 0 ? 1500 + half : 600;
-    const line = riverLine(inDir, outDir, [nrm[0] * off, nrm[1] * off], seed + waters.length * 17);
-    if (!waters.length) bankSide = nrm;
-    waters.push({ line, half, code: rank === 1 || rank === 2 ? 'R' : 'W', name: rv.name });
-  }
-  // 邻格的河（本格没有）：贴着那一侧图边走
-  if (!waters.length) {
-    const rvN = nbrs.filter((n) => n.cell.river !== undefined).sort((a, b) => (a.cell.river || 9) - (b.cell.river || 9))[0];
-    if (rvN) {
-      const d = rvN.dir;
-      const side: V2 = [-d[1], d[0]];
-      const base: V2 = [d[0] * HALF_W * 0.62, d[1] * HALF_H * 0.62];
-      const a: V2 = [base[0] + side[0] * HALF_W * 1.4, base[1] + side[1] * HALF_W * 1.4];
-      const b: V2 = [base[0] - side[0] * HALF_W * 1.4, base[1] - side[1] * HALF_W * 1.4];
-      const line: V2[] = [];
-      for (let i = 0; i <= 40; i++) {
-        const t = i / 40;
-        const w = (vnoise(t * 4, 2.5, seed) - 0.5) * 700;
-        line.push([a[0] + (b[0] - a[0]) * t + d[0] * w, a[1] + (b[1] - a[1]) * t + d[1] * w]);
-      }
-      const rank = rvN.cell.river!;
-      waters.push({ line, half: rank === 1 ? 380 : 200, code: rank === 1 || rank === 2 ? 'R' : 'W', name: rvN.cell.riverNames[0] });
-      bankSide = [-d[0], -d[1]];
-    }
-  }
+  // ---- 水：按真实河道、湖岸投影到城址 ----
+  // 城址中心取府城真实位置（无府城则取格心）；江河的方位、走向、远近都照实，只有两处收放：
+  // 城压在河上时把河推到岸边（城坐一岸），远在图外（REACH 以内）的河压缩到图边，好让城有水可引。
+  const { waters, lakes: waterLakes, primaryU } = projectWaters(world, h, seed);
+  const bankSide: V2 = primaryU ?? [0, -1];
 
-  // 湖、海：邻格方向的图边
-  const lakes = nbrs.filter((n) => n.cell.t === 'W').map((n) => n.dir);
+  // 海：邻格方向的图边（海岸线只到格子精度）
   const seas = nbrs.filter((n) => n.cell.t === 'Q' || n.cell.t === 'O').map((n) => n.dir);
   // 山、丘：邻格方向起山；本格是丘陵时城中也有冈阜
   const mts = nbrs.filter((n) => n.cell.t === 'S' || n.cell.t === 'X').map((n) => n.dir);
@@ -191,10 +244,9 @@ export function generateSite(world: WorldMap, h: Hex, id: string, info: SiteInfo
         const along = nx * d[0] + ny * d[1];
         if (along > 0.55 + (fbm(p.x / 1800, p.y / 1800, seed + 71) - 0.5) * 0.35) code = 'W';
       }
-      for (const d of lakes) {
-        const cx = d[0] * HALF_W * 0.95, cy = d[1] * HALF_H * 0.95;
-        const k = Math.hypot((p.x - cx) / (HALF_W * 0.55), (p.y - cy) / (HALF_H * 0.6));
-        if (k < 0.9 + (fbm(p.x / 1500, p.y / 1500, seed + 83) - 0.5) * 0.4) code = 'W';
+      for (const lk of waterLakes) {
+        const k = Math.hypot((p.x - lk.c[0]) / lk.r[0], (p.y - lk.c[1]) / lk.r[1]);
+        if (k < 1 + (fbm(p.x / 1500, p.y / 1500, seed + 83) - 0.5) * 0.25) code = 'W';
       }
       for (const w of waters) {
         if (polyDist(pt, w.line) < w.half) code = w.code;
@@ -265,10 +317,18 @@ export function generateSite(world: WorldMap, h: Hex, id: string, info: SiteInfo
     const fq = ((SQRT3 / 3) * x - y / 3) / size, fr = ((2 / 3) * y) / size;
     return [Math.round(fq), Math.round(fr)];
   };
+  // 每条河标一次，标在图内那段的中间；城边小湖标在湖心
+  const named = new Set<string>();
   waters.forEach((w, i) => {
-    const p = w.line[Math.floor(w.line.length * (0.3 + i * 0.25))];
-    if (Math.abs(p[0]) < HALF_W && Math.abs(p[1]) < HALF_H) labels.push({ hex: toHex(p), name: w.name });
+    if (named.has(w.name)) return;
+    const inside = w.line.filter((p) => Math.abs(p[0]) < HALF_W * 0.9 && Math.abs(p[1]) < HALF_H * 0.9);
+    if (!inside.length) return;
+    named.add(w.name);
+    labels.push({ hex: toHex(inside[Math.floor(inside.length * (0.35 + (i % 3) * 0.15))]), name: w.name });
   });
+  for (const lk of waterLakes) {
+    if (Math.abs(lk.c[0]) < HALF_W * 0.9 && Math.abs(lk.c[1]) < HALF_H * 0.9) labels.push({ hex: toHex(lk.c), name: lk.name });
+  }
   if (mts.length || hills.length) {
     let best: [number, number] | null = null, be = -1;
     for (const [k, e] of elev) if (e > be) {
@@ -290,6 +350,6 @@ export function generateSite(world: WorldMap, h: Hex, id: string, info: SiteInfo
     elev: { rows: elevRows, step },
     labels,
     terrainNames: waters[0] ? { R: waters[0].name } : undefined,
-    note: `城址地形由天下舆图所在格（${c.q}, ${c.r}）及六个邻格推演生成，示意级。${bankSide[1] < 0 ? '江河在城南，城居北岸。' : ''}`,
+    note: `城址地形由天下舆图所在格（${c.q}, ${c.r}）推演：江河湖泊按真实河道投影，山海按邻格方位，示意级。${waters[0] ? `${waters[0].name}在城${DIR8[Math.round(((Math.atan2(bankSide[0], bankSide[1]) * 180) / Math.PI + 360) / 45) % 8]}。` : ''}`,
   };
 }
