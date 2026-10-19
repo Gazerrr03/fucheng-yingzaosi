@@ -237,9 +237,9 @@ body.ready #map { opacity: 1; }
 .seal-actions .compare { background: var(--cinnabar); color: var(--paper); border-color: var(--cinnabar); }
 .seal-actions [hidden] { display: none; }
 
-.mute-toggle {
-  position: fixed; right: 18px; bottom: 16px; z-index: 40;
+.mute-toggle { position: fixed; right: 18px; bottom: 16px; z-index: 40; display: flex; gap: 6px; }
+.mute-toggle button {
   padding: 5px 10px; font-family: var(--serif); font-size: 12px; letter-spacing: 0.15em;
   color: var(--ink-soft); background: rgba(236, 226, 202, 0.85); border: 1px solid rgba(47, 36, 26, 0.25); cursor: pointer;
 }
-.mute-toggle:hover { color: var(--ink); }
+.mute-toggle button:hover { color: var(--ink); }

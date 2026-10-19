@@ -1,7 +1,11 @@
 // 音效：全部用 WebAudio 现场合成，不加载音频文件。
 // 浏览器要求用户先有一次交互才能出声，所以 AudioContext 在第一次点击 / 按键时才创建。
 
+import { Music, type Mood } from './music';
+
 const MUTE_KEY = 'sanfu.muted';
+const MUSIC_KEY = 'sanfu.music';
+const MUSIC_LEVEL = 0.9;
 
 type Ambient = 'wind' | 'river';
 
@@ -12,7 +16,11 @@ class Sound {
   private noise!: AudioBuffer;
   private wantAmbient: Ambient[] = [];
   private lastTick = 0;
+  private musicPlayer: Music | null = null;
+  private wantMood: Mood | null = null;
+  private ducked = 0;
   muted = localStorage.getItem(MUTE_KEY) === '1';
+  musicOn = localStorage.getItem(MUSIC_KEY) !== '0';
 
   constructor() {
     const unlock = () => {
@@ -38,6 +46,8 @@ class Sound {
     const d = this.noise.getChannelData(0);
     for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
     if (this.wantAmbient.length) this.startAmbient(this.wantAmbient);
+    this.musicPlayer = new Music(ctx, this.master);
+    if (this.wantMood && this.musicOn) this.startMusic();
     return ctx;
   }
 
@@ -45,6 +55,34 @@ class Sound {
     this.muted = m;
     localStorage.setItem(MUTE_KEY, m ? '1' : '0');
     if (this.ctx) this.master.gain.setTargetAtTime(m ? 0 : 0.8, this.ctx.currentTime, 0.1);
+  }
+
+  /** 配乐：每个页面按情绪选一种；浏览器解锁声音后才真正开始 */
+  music(mood: Mood): void {
+    this.wantMood = mood;
+    if (this.musicPlayer && this.musicOn) this.startMusic();
+  }
+
+  setMusicOn(on: boolean): void {
+    this.musicOn = on;
+    localStorage.setItem(MUSIC_KEY, on ? '1' : '0');
+    if (!this.musicPlayer) return;
+    if (on && this.wantMood) this.startMusic();
+    else {
+      this.musicPlayer.level(0, 0.6);
+      this.musicPlayer.stop();
+    }
+  }
+
+  /** 史书展开等需要安静的时候压低配乐；可以嵌套（卷宗里再展开一卷），按次数计 */
+  duck(on: boolean): void {
+    this.ducked = Math.max(0, this.ducked + (on ? 1 : -1));
+    this.musicPlayer?.level(this.ducked ? MUSIC_LEVEL * 0.25 : MUSIC_LEVEL, 0.8);
+  }
+
+  private startMusic(): void {
+    this.musicPlayer!.play(this.wantMood!);
+    this.musicPlayer!.level(this.ducked ? MUSIC_LEVEL * 0.25 : MUSIC_LEVEL, 4);
   }
 
   private noiseSource(loop = false): AudioBufferSourceNode {
@@ -180,18 +218,27 @@ class Sound {
 
 export const sound = new Sound();
 
-/** 右下角的静音开关（所有页面共用）。 */
+/** 右下角的配乐、声音开关（所有页面共用）。「声」管全部声音，「乐」只管配乐。 */
 export function mountMuteButton(): void {
-  const b = document.createElement('button');
-  b.className = 'mute-toggle';
+  const box = document.createElement('div');
+  box.className = 'mute-toggle';
+  const music = document.createElement('button');
+  const all = document.createElement('button');
   const render = () => {
-    b.textContent = sound.muted ? '声 · 关' : '声 · 开';
-    b.title = sound.muted ? '打开声音' : '关闭声音';
+    music.textContent = sound.musicOn ? '乐 · 开' : '乐 · 关';
+    music.title = sound.musicOn ? '关闭配乐' : '打开配乐';
+    all.textContent = sound.muted ? '声 · 关' : '声 · 开';
+    all.title = sound.muted ? '打开声音' : '关闭声音';
   };
   render();
-  b.addEventListener('click', () => {
+  music.addEventListener('click', () => {
+    sound.setMusicOn(!sound.musicOn);
+    render();
+  });
+  all.addEventListener('click', () => {
     sound.setMuted(!sound.muted);
     render();
   });
-  document.body.appendChild(b);
+  box.append(music, all);
+  document.body.appendChild(box);
 }

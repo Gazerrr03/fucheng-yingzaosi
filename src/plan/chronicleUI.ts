@@ -94,6 +94,7 @@ function scrollHtml(e: ChronicleEntry): string {
 export async function showScroll(root: HTMLElement, e: ChronicleEntry): Promise<void> {
   const modal = root.querySelector<HTMLElement>('.plan-modal')!;
   modal.classList.add('wide');
+  sound.duck(true);
   for (;;) {
     const btn = await openModal(root, scrollHtml(e), '收卷', '导出图片', '复制正文', ...(e.mode === 'custom' ? ['复制城池码'] : []));
     if (btn === 0) break;
@@ -102,6 +103,7 @@ export async function showScroll(root: HTMLElement, e: ChronicleEntry): Promise<
     if (btn === 3) await copy(root, encodeShare(e.mapId, e.layout, e.author), '城池码已复制，可以发给同好续修');
   }
   modal.classList.remove('wide');
+  sound.duck(false);
 }
 
 async function copy(root: HTMLElement, text: string, ok: string): Promise<void> {
@@ -123,6 +125,15 @@ function toastIn(root: HTMLElement, text: string) {
 
 /** 史书卷宗：按时间倒序列出所有记载 */
 export async function showBook(root: HTMLElement, filter?: (e: ChronicleEntry) => boolean): Promise<void> {
+  sound.duck(true);
+  try {
+    await bookLoop(root, filter);
+  } finally {
+    sound.duck(false);
+  }
+}
+
+async function bookLoop(root: HTMLElement, filter?: (e: ChronicleEntry) => boolean): Promise<void> {
   for (;;) {
     const book = loadBook().filter(filter ?? (() => true));
     const profile = loadProfile();

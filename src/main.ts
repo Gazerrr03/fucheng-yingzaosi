@@ -2,7 +2,7 @@ import './style.css';
 import './screens.css';
 import { CITIES } from './game/cities';
 import { Nav } from './screens/nav';
-import { mountMuteButton } from './audio/sound';
+import { mountMuteButton, sound } from './audio/sound';
 
 // 路由见 screens/nav.ts：默认主界面；?view=classic 经典舆图；?view=world 天下舆图。
 async function boot() {
@@ -11,6 +11,8 @@ async function boot() {
   await nav.start();
   const params = new URLSearchParams(location.search);
   const city = params.get('city');
+  // 配乐：营建页琴音疏落，天下舆图与寻访舒展些，其余（主界面、经典舆图）箫声为主
+  sound.music(params.get('lesson') || params.get('custom') || params.get('plan') ? 'plan' : params.get('view') === 'world' || city ? 'world' : 'title');
   if (params.get('lesson')) {
     const { runLesson } = await import('./plan/entry');
     await runLesson(params.get('lesson')!, nav);
