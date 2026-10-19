@@ -354,6 +354,22 @@ export class WorldView {
         ctx.fillText(text, sx, sy);
       }
     }
+    // 名城小河、城边小湖：近景
+    if (hexPx >= 70) {
+      ctx.font = `${Math.min(13, 8 + hexPx * 0.04)}px ${ff}`;
+      const water = [
+        ...this.map.data.rivers.filter((rv) => rv.rank === 4).map((rv) => ({ name: rv.name, xy: rv.line[Math.floor((rv.line.length - 1) / 2)] })),
+        ...this.map.data.pools.map((p) => ({ name: p.name, xy: [p.xy[0], p.xy[1] - p.r[1] - 1] as [number, number] })),
+      ];
+      for (const w of water) {
+        const [sx, sy] = this.project(w.xy[0], w.xy[1]);
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = 'rgba(220,235,235,0.75)';
+        ctx.strokeText(w.name, sx, sy + 8);
+        ctx.fillStyle = 'rgba(30,70,90,0.9)';
+        ctx.fillText(w.name, sx, sy + 8);
+      }
+    }
     // 山名、湖名：中景
     if (hexPx >= 16 && hexPx < 90) {
       ctx.font = `${Math.min(15, 9 + hexPx * 0.12)}px ${ff}`;
@@ -636,11 +652,28 @@ function paintTerrain(ctx: CanvasRenderingContext2D, map: WorldMap, rows: WorldC
     }
   }
 
-  // 5. 河流：过格心的平滑曲线
-  const rivers = [...map.data.rivers].sort((a, b) => rankOrder(b.rank) - rankOrder(a.rank));
+  // 5. 河流：过格心的平滑曲线；名城小河（rank 4）只在近景画，沿真实河道走，城边小湖同时画出
+  const fine = live && hexPx >= LIVE_HEX_PX;
+  if (fine) {
+    for (const p of map.data.pools) {
+      const [cx, cy] = proj(p.xy[0], p.xy[1]);
+      const [ex] = proj(p.xy[0] + p.r[0], p.xy[1]);
+      const [, ey] = proj(p.xy[0], p.xy[1] + p.r[1]);
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, Math.max(2, Math.abs(ex - cx)), Math.max(1.5, Math.abs(ey - cy)), 0, 0, Math.PI * 2);
+      ctx.fillStyle = WORLD_TERRAIN.W.color;
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(60,55,45,0.6)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+  }
+  const rivers = [...map.data.rivers].filter((rv) => rv.rank !== 4 || fine).sort((a, b) => rankOrder(b.rank) - rankOrder(a.rank));
   for (const rv of rivers) {
-    const pts = rv.path.map(([q, r]) => center({ q, r }));
-    const w = rv.rank === 1 ? 0.2 : rv.rank === 2 ? 0.13 : rv.rank === 'canal' ? 0.07 : 0.09;
+    const real = rv.rank === 4 || rv.path.length < 2;
+    if (real && !fine) continue;
+    const pts = real ? rv.line.map(([x, y]) => proj(x, y)) : rv.path.map(([q, r]) => center({ q, r }));
+    const w = rv.rank === 1 ? 0.2 : rv.rank === 2 ? 0.13 : rv.rank === 'canal' ? 0.07 : rv.rank === 4 ? 0.045 : 0.09;
     const width = Math.max(rv.rank === 1 ? 2.4 : 1.2, hexPx * w);
     ctx.lineJoin = 'round';
     if (rv.rank === 'canal') {
@@ -674,7 +707,7 @@ function paintTerrain(ctx: CanvasRenderingContext2D, map: WorldMap, rows: WorldC
 }
 
 function rankOrder(r: number | 'canal'): number {
-  return r === 'canal' ? 4 : r;
+  return r === 'canal' ? 5 : r;
 }
 
 /** Catmull-Rom → 贝塞尔 */
