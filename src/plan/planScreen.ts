@@ -228,6 +228,7 @@ export function runPlan(session: PlanSession): PlanUI {
   let paintBefore: ReturnType<PlanMap['snapshot']> | null = null;
   let paintPath: Hex[] = [];
   let paintCount = 0;
+  let pondsBefore = 0;
   function paintOne(h: Hex) {
     if (!tool) return;
     if (tool === 'remove') {
@@ -239,6 +240,7 @@ export function runPlan(session: PlanSession): PlanUI {
       paintBefore = map.snapshot();
       paintPath = [];
       paintCount = 0;
+      pondsBefore = map.ponds().size;
     }
     for (const h of hexes) {
       paintPath.push(h);
@@ -262,8 +264,10 @@ export function runPlan(session: PlanSession): PlanUI {
       history.push(paintBefore);
       sound.click();
       changed();
-      if (tool !== 'remove' && tool?.id === 'qu' && paintPath.some((h) => map.at(h)?.id === 'qu' && !map.isWet(h))) {
-        toast('此段渠尚未通水：要接上江河、湖塘或有水的护城河');
+      if (tool !== 'remove' && tool?.id === 'qu') {
+        const dry = paintPath.some((h) => map.at(h)?.id === 'qu' && !map.isWet(h));
+        if (map.ponds().size > pondsBefore) toast(dry ? '三渠相接汇为池，但尚未通水' : '三渠相接，汇为池塘');
+        else if (dry) toast('此段渠尚未通水：要接上江河、湖塘或有水的护城河');
       }
     } else if (paintBefore && tool && tool !== 'remove' && paintPath.length === 1) {
       toast(map.canPlace(tool, paintPath[0]).reason ?? '不能建在这里');

@@ -8,6 +8,9 @@ import { BUILDINGS, DIR_GUA, DIR_NAME, type BuildingDef, type Dir } from './buil
 import { PLAN_TERRAIN, type Cell, type PlanMap } from './planMap';
 import { BUILDING_MODELS, SPRITE_PX_PER_HEX, WALL_HALF, WALL_MODEL, drawSprite, planSprites, type Sprite, type SpriteSpec } from './sprites';
 
+/** 干渠、干塘的颜色 */
+const DRY_COLOR = '#b8a47f';
+
 const TILT = 0.62; //   y 方向压扁
 const ZK = 0.85; //     高度在屏幕上的比例
 
@@ -285,7 +288,8 @@ export class PlanView {
     const jitter = 0.96 + (((c.q * 73856093) ^ (c.r * 19349663)) & 15) / 200;
     const lift = 1 + Math.min(0.12, (z - this.baseElev) / 3000);
     const moat = map.at(c)?.id === 'moat';
-    const color = moat ? PLAN_TERRAIN.M.color : inside && c.terrain === 'T' ? PLAN_TERRAIN.B.color : def.color;
+    const pond = map.isPond(c);
+    const color = pond ? (map.isWet(c) ? PLAN_TERRAIN.W.color : DRY_COLOR) : moat ? PLAN_TERRAIN.M.color : inside && c.terrain === 'T' ? PLAN_TERRAIN.B.color : def.color;
 
     // 侧面：南侧三条边下拉到地面
     if (z > this.baseElev + 0.5) {
@@ -326,7 +330,7 @@ export class PlanView {
       ctx.fill();
     }
     if (detail) this.decorate(c, z);
-    if (map.at(c)?.id === 'qu') this.drawChannel(c, z);
+    if (map.at(c)?.id === 'qu' && !pond) this.drawChannel(c, z);
     if (this.highlight.has(hexKey(c))) {
       ctx.fillStyle = 'rgba(184,50,42,0.22)';
       ctx.fill();
@@ -335,7 +339,7 @@ export class PlanView {
       ctx.stroke();
     }
     // 水面高光
-    if ((def.water || moat) && detail) {
+    if ((def.water || moat || (pond && map.isWet(c))) && detail) {
       const [cx, cy] = this.center(c, z);
       ctx.strokeStyle = 'rgba(255,255,255,0.25)';
       ctx.lineWidth = 1;
@@ -378,7 +382,7 @@ export class PlanView {
     };
     const wet = map.isWet(c);
     stroke('rgba(110,92,68,0.55)', w * 1.35);
-    stroke(wet ? PLAN_TERRAIN.M.color : '#b8a47f', w);
+    stroke(wet ? PLAN_TERRAIN.M.color : DRY_COLOR, w);
     if (!wet) stroke('rgba(120,96,64,0.35)', w * 0.35);
     ctx.lineCap = 'butt';
   }

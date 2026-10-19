@@ -251,7 +251,8 @@ export function evaluate(map: PlanMap, h: Hex, def: BuildingDef, ctx: EvalContex
       if (nb.some((n) => map.isNaturalWater(n) || (map.at(n)?.id === 'moat' && n !== h))) notes.push({ delta: 10, text: '濠水相连成环' });
       break;
     case 'qu':
-      if (map.isWet(h)) notes.push({ delta: 10, text: '渠通活水' });
+      if (map.isPond(h)) notes.push(map.isWet(h) ? { delta: 15, text: '渠水汇为池塘' } : { delta: -10, text: '干塘一方，尚未引水' });
+      else if (map.isWet(h)) notes.push({ delta: 10, text: '渠通活水' });
       else notes.push({ delta: -10, text: '干渠一段，尚未接上江河湖塘' });
       break;
   }

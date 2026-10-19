@@ -65,6 +65,7 @@ export class PlanMap {
   readonly bounds: { qMin: number; qMax: number; rMin: number; rMax: number };
   private cache: { inside: Set<string>; center: Vec2; radius: number } | null = null;
   private wetCache: Set<string> | null = null;
+  private pondCache: Set<string> | null = null;
 
   constructor(readonly data: PlanMapJSON) {
     this.hexSize = data.hexAcross / Math.sqrt(3);
@@ -140,6 +141,31 @@ export class PlanMap {
     const b = this.at(h);
     if (!b?.waterish) return false;
     return b.id !== 'qu' || this.wet().has(hexKey(h));
+  }
+
+  /** 池：三格水渠两两相邻（六边形最小三角）即汇成池，这三格都算池；拆掉一格就退回水渠 */
+  isPond(h: Hex): boolean {
+    return this.ponds().has(hexKey(h));
+  }
+
+  ponds(): Set<string> {
+    if (this.pondCache) return this.pondCache;
+    const ponds = new Set<string>();
+    const isQu = (h: Hex) => this.at(h)?.id === 'qu';
+    for (const [k, id] of this.placed) {
+      if (id !== 'qu') continue;
+      const [q, r] = k.split(',').map(Number);
+      const nb = neighbors({ q, r });
+      // neighbors 按环序排列，相邻两个方向的邻格彼此也相邻
+      for (let i = 0; i < 6; i++) {
+        const a = nb[i], b = nb[(i + 1) % 6];
+        if (isQu(a) && isQu(b)) {
+          ponds.add(k).add(hexKey(a)).add(hexKey(b));
+        }
+      }
+    }
+    this.pondCache = ponds;
+    return ponds;
   }
 
   /** 人工水面格（护城河、水渠）是否已接上水源 */
@@ -232,6 +258,7 @@ export class PlanMap {
     this.placed.set(hexKey(h), def.id);
     this.cache = null;
     this.wetCache = null;
+    this.pondCache = null;
     return chk;
   }
 
@@ -244,6 +271,7 @@ export class PlanMap {
     else this.placed.delete(key);
     this.cache = null;
     this.wetCache = null;
+    this.pondCache = null;
     return true;
   }
 
@@ -322,6 +350,7 @@ export class PlanMap {
     }
     this.cache = null;
     this.wetCache = null;
+    this.pondCache = null;
   }
 
   private compute() {
