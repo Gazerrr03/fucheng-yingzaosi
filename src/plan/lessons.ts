@@ -123,13 +123,13 @@ export const LESSONS: Lesson[] = [
       '和襄阳「借天然之水」不同，荆州是「组织水」：把濠、江、湖连成一张网，既是防线，也是运输线。',
       '这一课城墙已经建好。补全护城河，开水门，在水边设码头和市肆，再把学宫放到东南文昌位。',
     ],
-    takeaway: '理水为城：濠池环城为防，水门通舟为用，码头与市肆相依，城与水共生。',
+    takeaway: '理水为城：濠池环城为防，水门引水入城为用，码头与市肆相依，城与水共生。',
     goals: (map, v) => {
       const matou = all(map, 'matou');
       const shisiNearMatou = all(map, 'shisi').filter((s) => matou.some((m) => PlanMap.dist(s.hex, m.hex) <= 2)).length;
       return [
         { text: '城池相依：七成以上城墙外临水', done: pattern(v, 'moat'), hint: '沿城墙外侧补护城河，濠要与江湖相通才有水' },
-        { text: '开水门一座', done: all(map, 'shuimen').length >= 1, hint: '水门建在临水的城墙上' },
+        { text: '水门引水：水门外临濠水、内接水渠，引活水入城', done: all(map, 'shuimen').some((s) => map.sluice(s.hex).outside && map.sluice(s.hex).inner), hint: '水门建在临水城墙上，城内挖水渠与水门相连以引水' },
         { text: '开城门不少于四座', done: all(map, 'gate').length >= 4, hint: `已开 ${all(map, 'gate').length} 座` },
         { text: '设码头，并在两格内设市肆', done: shisiNearMatou >= 1, hint: matou.length ? '在码头旁边放市肆' : '先在江河湖塘边设码头' },
         { text: '学宫设在城东南（得分 ≥ 85）', done: score(v, 'xuegong') >= 85, hint: '罗盘巽位，近水更好（泮池）' },

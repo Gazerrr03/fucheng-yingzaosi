@@ -151,6 +151,29 @@ function worksSentences(map: PlanMap, v: CityVerdict, isNew: boolean): string[] 
   if (gulou) civic.push(`钟鼓楼峙于${gulou}`);
   if (civic.length) out.push(`${civic.join('，')}。`);
 
+  const waters: string[] = [];
+  const quCount = count(map, 'qu');
+  const sluices = [...map.buildings()].filter((b) => b.def.id === 'shuimen');
+  const activeSluice = sluices.filter((b) => map.sluice(b.hex).outside && map.sluice(b.hex).inner);
+  const wetPonds = [...map.cells.values()].filter((c) => map.isPond(c) && map.isWet(c));
+
+  if (activeSluice.length) {
+    const sName = v.setting.waterName ?? '大江';
+    waters.push(`凿渠引${sName}入城`);
+  } else if (quCount && map.placed.size > 0) {
+    waters.push('凿渠通流');
+  }
+  if (wetPonds.length) {
+    waters.push('汇为池泽');
+  }
+  if (v.patterns.find((p) => p.id === 'yudai')?.ok) {
+    waters.push('内水环抱府署如玉带');
+  }
+  if (v.patterns.find((p) => p.id === 'mingtang')?.ok) {
+    waters.push('明堂聚水成池');
+  }
+  if (waters.length) out.push(`${waters.join('，')}。`);
+
   const rites: string[] = [];
   const xue = dirWord(map, 'xuegong');
   if (xue) rites.push(`学宫在${xue}，以兴文教`);
