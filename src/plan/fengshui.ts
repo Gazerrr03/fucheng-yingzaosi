@@ -324,6 +324,16 @@ export function evaluateCity(map: PlanMap, ctx: EvalContext = {}): CityVerdict {
     id: 'moat', name: '城池相依', ok: moatOk, bonus: 5,
     text: wallCells.length ? `城墙临水者十之${Math.round((wallWithWater / wallCells.length) * 10)}` : '尚无城墙',
   });
+  const tq = map.thoroughfare();
+  const tqOk = tq.fushu && tq.gates >= 2 && tq.linkedGates === tq.gates && tq.shisi;
+  patterns.push({
+    id: 'tongqu', name: '通衢', ok: tqOk, bonus: 4,
+    text: !map.roads.size ? '尚未铺路：以街道连通城门、府署、市肆'
+      : !tq.fushu ? '尚无府署，街道无所统'
+      : !tq.linked ? '府署门前尚未接路'
+      : tqOk ? `府署与 ${tq.gates} 门、市肆街道相通`
+      : `府署已通 ${tq.linkedGates} / ${tq.gates} 门${tq.shisi ? '，市肆相连' : '，市肆未通'}${tq.gates < 2 ? '（城门不足两座）' : ''}`,
+  });
   const altars = ['sheji', 'shanchuan', 'litan'].filter(has);
   const altarsOk = altars.length === 3 && altars.every((id) => buildings.find((b) => b.def.id === id)!.verdict.score >= 70);
   patterns.push({

@@ -267,6 +267,11 @@ export function runPlan(session: PlanSession): PlanUI {
       if (tool !== 'remove' && tool?.id === 'moat' && paintPath.some((h) => map.at(h)?.id === 'moat' && !map.isWet(h))) {
         toast('护城河尚未通水：要连到江河湖塘，或从来水口挖水渠引水');
       }
+      if (tool !== 'remove' && tool?.id === 'road') {
+        const tq = map.thoroughfare();
+        if (tq.fushu && tq.linked) toast(`通衢：府署已通 ${tq.linkedGates} / ${tq.gates} 门${tq.shisi ? '，市肆相连' : '，市肆未通'}`);
+        else if (tq.fushu) toast('道路尚未接到府署门前');
+      }
       if (tool !== 'remove' && tool?.id === 'qu') {
         const dry = paintPath.some((h) => map.at(h)?.id === 'qu' && !map.isWet(h));
         if (map.ponds().size > pondsBefore) toast(dry ? '三渠相接汇为池，但尚未通水' : '三渠相接，汇为池塘');

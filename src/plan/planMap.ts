@@ -246,6 +246,52 @@ export class PlanMap {
     return this.hasRoad(h) && !!this.at(h)?.waterish;
   }
 
+  /**
+   * 通衢：以府署所在的道路网为准，数它连到几座城门、是否连到市肆。
+   * 构件格的相邻格有道路即算接上路网（城门内外两侧都算）。
+   */
+  thoroughfare(): { fushu: boolean; linked: boolean; gates: number; linkedGates: number; shisi: boolean } {
+    // 道路连通分量
+    const comp = new Map<string, number>();
+    let id = 0;
+    for (const start of this.roads) {
+      if (comp.has(start)) continue;
+      const stack = [start];
+      comp.set(start, id);
+      while (stack.length) {
+        const [q, r] = stack.pop()!.split(',').map(Number);
+        for (const n of neighbors({ q, r })) {
+          const k = hexKey(n);
+          if (this.roads.has(k) && !comp.has(k)) {
+            comp.set(k, id);
+            stack.push(k);
+          }
+        }
+      }
+      id++;
+    }
+    const reach = (h: Hex) => {
+      const s = new Set<number>();
+      for (const n of [h, ...neighbors(h)]) {
+        const c = comp.get(hexKey(n));
+        if (c !== undefined) s.add(c);
+      }
+      return s;
+    };
+    const all = [...this.buildings()];
+    const fushu = all.find((b) => b.def.id === 'fushu');
+    const gates = all.filter((b) => b.def.id === 'gate');
+    const net = fushu ? reach(fushu.hex) : new Set<number>();
+    const touches = (h: Hex) => [...reach(h)].some((c) => net.has(c));
+    return {
+      fushu: !!fushu,
+      linked: net.size > 0,
+      gates: gates.length,
+      linkedGates: gates.filter((g) => touches(g.hex)).length,
+      shisi: all.some((b) => b.def.id === 'shisi' && touches(b.hex)),
+    };
+  }
+
   count(id: string): number {
     if (id === 'road') return this.roads.size;
     let n = 0;
