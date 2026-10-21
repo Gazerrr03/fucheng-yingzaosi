@@ -54,6 +54,10 @@ const unit = (v: V2): V2 => {
 
 /** 投影时考虑的最远距离（米）：再远的江河不画进城址，留给图边来水口 */
 const REACH = 16000;
+/** 来水口：REACH 以外、这个距离以内的江河湖泊，在图边朝它的方向开一个来水口，可以从那里挖渠引水 */
+const INLET_REACH = 40000;
+/** 明代一里约 576 米 */
+const LI_M = 576;
 const KM = 1000;
 const RIVER_HALF: Record<number, number> = { 0: 70, 1: 420, 2: 240, 3: 130, 4: 80 };
 
@@ -90,8 +94,16 @@ export function siteCenter(world: WorldMap, h: Hex): V2 {
 }
 
 /** 把天下舆图的真实河道、湖岸投影到城址局部坐标（米，城心为原点，y 向北） */
-export function projectWaters(world: WorldMap, h: Hex, seed: number): { waters: SiteWater[]; lakes: { c: V2; r: V2; name: string }[]; primaryU: V2 | null } {
+export interface SiteInlet {
+  name: string;
+  /** 城心朝来水的方向、真实距离（米） */
+  u: V2;
+  dist: number;
+}
+
+export function projectWaters(world: WorldMap, h: Hex, seed: number): { waters: SiteWater[]; lakes: { c: V2; r: V2; name: string }[]; inlets: SiteInlet[]; primaryU: V2 | null } {
   const P = siteCenter(world, h);
+  const far: SiteInlet[] = [];
   const box = (p: V2) => Math.abs(p[0]) < HALF_W * 1.6 && Math.abs(p[1]) < HALF_H * 1.6;
   const waters: SiteWater[] = [];
   for (const rv of world.data.rivers) {
@@ -111,7 +123,10 @@ export function projectWaters(world: WorldMap, h: Hex, seed: number): { waters: 
         tan = unit([dx, dy]);
       }
     }
-    if (g > REACH) continue;
+    if (g > REACH) {
+      if (g <= INLET_REACH) far.push({ name: rv.name, u: [Q[0] / g, Q[1] / g], dist: g });
+      continue;
+    }
     const rank = rv.rank === 'canal' ? 0 : rv.rank;
     const half = RIVER_HALF[rank] ?? 100;
     // 城心几乎压在河上时不知道在哪岸，取南岸放河（城居北岸，向阳）
@@ -160,12 +175,23 @@ export function projectWaters(world: WorldMap, h: Hex, seed: number): { waters: 
     const dc = Math.hypot(c[0], c[1]);
     const k = Math.hypot(c[0] / r[0], c[1] / r[1]);
     const g = k <= 1 ? 0 : dc * (1 - 1 / k);
-    if (g > REACH) continue;
     const u: V2 = dc > 1 ? [c[0] / dc, c[1] / dc] : [0, -1];
+    if (g > REACH) {
+      if (g <= INLET_REACH) far.push({ name: lk.name, u, dist: g });
+      continue;
+    }
     const shift = placeGap(g, u, 900) - g;
     lakes.push({ c: [c[0] + u[0] * shift, c[1] + u[1] * shift], r, name: lk.name });
   }
-  return { waters, lakes, primaryU: waters[0]?.u ?? null };
+  // 来水口：同名只留最近的一处，方向相近（45° 以内）的只留近的，最多三处
+  far.sort((a, b) => a.dist - b.dist);
+  const inlets: SiteInlet[] = [];
+  for (const f of far) {
+    if (inlets.length >= 3) break;
+    if (inlets.some((x) => x.name === f.name || x.u[0] * f.u[0] + x.u[1] * f.u[1] > Math.SQRT1_2)) continue;
+    inlets.push(f);
+  }
+  return { waters, lakes, inlets, primaryU: waters[0]?.u ?? null };
 }
 
 export interface SiteInfo {
@@ -189,7 +215,7 @@ export function generateSite(world: WorldMap, h: Hex, id: string, info: SiteInfo
   // ---- 水：按真实河道、湖岸投影到城址 ----
   // 城址中心取府城真实位置（无府城则取格心）；江河的方位、走向、远近都照实，只有两处收放：
   // 城压在河上时把河推到岸边（城坐一岸），远在图外（REACH 以内）的河压缩到图边，好让城有水可引。
-  const { waters, lakes: waterLakes, primaryU } = projectWaters(world, h, seed);
+  const { waters, lakes: waterLakes, inlets, primaryU } = projectWaters(world, h, seed);
   const bankSide: V2 = primaryU ?? [0, -1];
 
   // 海：邻格方向的图边（海岸线只到格子精度）
@@ -201,6 +227,16 @@ export function generateSite(world: WorldMap, h: Hex, id: string, info: SiteInfo
 
   // ---- 栅格 ----
   const size = HEX_M / SQRT3;
+  /** 平面坐标（米）→ 所在格（立方坐标取整） */
+  const toHexXY = ([x, y]: V2): [number, number] => {
+    const fq = ((SQRT3 / 3) * x - y / 3) / size, fr = ((2 / 3) * y) / size, fs = -fq - fr;
+    let q = Math.round(fq), r = Math.round(fr);
+    const s = Math.round(fs);
+    const dq = Math.abs(q - fq), dr = Math.abs(r - fr), ds = Math.abs(s - fs);
+    if (dq > dr && dq > ds) q = -r - s;
+    else if (dr > ds) r = -q - s;
+    return [q, r];
+  };
   const rMax = Math.floor(HALF_H / (1.5 * size));
   const rows: string[] = [], elevRows: string[] = [];
   let qMin = Infinity;
@@ -288,6 +324,24 @@ export function generateSite(world: WorldMap, h: Hex, id: string, info: SiteInfo
     }
   }
 
+  // 来水口：沿方向 u 从城心走到图边，取最外一格（不是水面才开），地形记作 I（天然水源，见 PLAN_TERRAIN）
+  const inletLabels: { hex: [number, number]; name: string }[] = [];
+  for (const inl of inlets) {
+    const e = edgeDist(inl.u);
+    let hit: { q: number; r: number } | null = null;
+    for (let t = e * 0.6; t <= e * 1.1; t += size * 0.5) {
+      const [q, r] = toHexXY([inl.u[0] * t, inl.u[1] * t]);
+      if (terrain.has(`${q},${r}`)) hit = { q, r };
+      else if (hit) break;
+    }
+    if (!hit) continue;
+    const k = `${hit.q},${hit.r}`;
+    if (terrain.get(k) === 'R' || terrain.get(k) === 'W') continue;
+    terrain.set(k, 'I');
+    elev.set(k, 0);
+    inletLabels.push({ hex: [hit.q, hit.r], name: `${inl.name}来水 · ${Math.round(inl.dist / LI_M)} 里` });
+  }
+
   const eMax = Math.max(...elev.values());
   const step = Math.max(2, Math.ceil(eMax / 35));
   for (const row of cells) {
@@ -312,7 +366,7 @@ export function generateSite(world: WorldMap, h: Hex, id: string, info: SiteInfo
   }
 
   // 地名：河名标在河道中段；山标在山最高处
-  const labels: PlanMapJSON['labels'] = [];
+  const labels: PlanMapJSON['labels'] = [...inletLabels];
   const toHex = ([x, y]: V2): [number, number] => {
     const fq = ((SQRT3 / 3) * x - y / 3) / size, fr = ((2 / 3) * y) / size;
     return [Math.round(fq), Math.round(fr)];

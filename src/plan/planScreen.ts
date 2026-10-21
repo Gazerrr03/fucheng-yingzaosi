@@ -265,12 +265,12 @@ export function runPlan(session: PlanSession): PlanUI {
       sound.click();
       changed();
       if (tool !== 'remove' && tool?.id === 'moat' && paintPath.some((h) => map.at(h)?.id === 'moat' && !map.isWet(h))) {
-        toast('护城河尚未通水：要连到江河湖塘，或挖水渠引水');
+        toast('护城河尚未通水：要连到江河湖塘，或从来水口挖水渠引水');
       }
       if (tool !== 'remove' && tool?.id === 'qu') {
         const dry = paintPath.some((h) => map.at(h)?.id === 'qu' && !map.isWet(h));
         if (map.ponds().size > pondsBefore) toast(dry ? '三渠相接汇为池，但尚未通水' : '三渠相接，汇为池塘');
-        else if (dry) toast('此段渠尚未通水：要接上江河、湖塘或有水的护城河');
+        else if (dry) toast('此段渠尚未通水：要接上江河、湖塘、来水口或有水的护城河');
       }
     } else if (paintBefore && tool && tool !== 'remove' && paintPath.length === 1) {
       toast(map.canPlace(tool, paintPath[0]).reason ?? '不能建在这里');

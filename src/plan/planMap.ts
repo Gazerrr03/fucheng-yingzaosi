@@ -6,11 +6,13 @@ import type { Vec2 } from '../scene/homography';
 import type { TerrainJSON } from '../game/terrain';
 import { BUILDING_BY_ID, type BuildingDef, type Dir } from './buildings';
 
-/** 营建用的地形。R/W/M 为水；S 山、H 丘；T 田、G 村、B 城内地面。 */
+/** 营建用的地形。R/W/M/I 为水；S 山、H 丘；T 田、G 村、B 城内地面。 */
 export const PLAN_TERRAIN: Record<string, { name: string; color: string; water?: boolean }> = {
   R: { name: '大江', color: '#5d8ea0', water: true },
   W: { name: '湖塘', color: '#78a5ac', water: true },
   M: { name: '护城河', color: '#6c9ba3', water: true },
+  /** 来水口：图外近处有江河，图边开一口，可从这里挖渠引水（城址生成时放在朝向那条河的图边） */
+  I: { name: '来水口', color: '#6f9aa6', water: true },
   S: { name: '山', color: '#7f8a5a' },
   H: { name: '丘', color: '#a8a26a' },
   T: { name: '田野', color: '#cdb98a' },
@@ -258,7 +260,7 @@ export class PlanMap {
     if (cur) return { ok: false, reason: `此处已有${cur.name}` };
     if (def.placement === 'nearGate' && !nb.some((n) => this.at(n)?.id === 'gate')) return { ok: false, reason: '瓮城要紧贴城门' };
     if (def.placement === 'nearWall' && !nb.some((n) => this.isWallish(n))) return { ok: false, reason: `${def.name}要紧贴城墙` };
-    if (def.placement === 'shore' && !nb.some((n) => this.isNaturalWater(n))) return { ok: false, reason: '码头要临江河湖塘' };
+    if (def.placement === 'shore' && !nb.some((n) => this.isNaturalWater(n) && this.cell(n)!.terrain !== 'I')) return { ok: false, reason: '码头要临江河湖塘' };
     if (def.placement === 'nearGate' || def.placement === 'nearWall') {
       // 瓮城、敌台、护城河在城外
       if (this.inside().has(key)) return { ok: false, reason: `${def.name}要在城外` };
