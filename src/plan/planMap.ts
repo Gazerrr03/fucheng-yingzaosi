@@ -60,6 +60,8 @@ export class PlanMap {
   readonly cells = new Map<string, Cell>();
   readonly placed = new Map<string, string>();
   readonly locked = new Set<string>();
+  /** 道路另成一层：与水渠、护城河同格即为桥 */
+  readonly roads = new Set<string>();
   /** 预置构件（锁定的城墙可以升级成城门、角楼、水门，拆除时退回城墙） */
   private readonly preset = new Map<string, string>();
   readonly labels = new Map<string, string>();
@@ -235,7 +237,17 @@ export class PlanMap {
     return !!c && (c.terrain === 'S' || c.terrain === 'H');
   }
 
+  hasRoad(h: Hex): boolean {
+    return this.roads.has(hexKey(h));
+  }
+
+  /** 道路与水渠、护城河同格：桥 */
+  isBridge(h: Hex): boolean {
+    return this.hasRoad(h) && !!this.at(h)?.waterish;
+  }
+
   count(id: string): number {
+    if (id === 'road') return this.roads.size;
     let n = 0;
     for (const b of this.placed.values()) if (b === id) n++;
     return n;
@@ -251,6 +263,13 @@ export class PlanMap {
     if (def.max && this.count(def.id) >= def.max && this.placed.get(key) !== def.id) return { ok: false, reason: `${def.name}最多 ${def.max} 座` };
     const cur = this.at(h);
     const nb = neighbors(h);
+    if (def.placement === 'road') {
+      if (this.roads.has(key)) return { ok: false, reason: '此处已有道路' };
+      if (PLAN_TERRAIN[c.terrain]?.water) return { ok: false, reason: '江河湖塘上不能铺路' };
+      if (cur && !cur.waterish) return { ok: false, reason: `此处已有${cur.name}` };
+      return { ok: true };
+    }
+    if (this.roads.has(key) && !def.waterish) return { ok: false, reason: '此处有道路，先拆除道路' };
     if (def.placement === 'onWall') {
       if (!cur || cur.id !== 'wall') return { ok: false, reason: `${def.name}要建在城墙上` };
       if (def.id === 'shuimen' && !this.sluice(h).outside) return { ok: false, reason: '水门要一侧临城外的水（江河、湖塘或有水的护城河）' };
@@ -271,6 +290,10 @@ export class PlanMap {
   place(def: BuildingDef, h: Hex): PlaceCheck {
     const chk = this.canPlace(def, h);
     if (!chk.ok) return chk;
+    if (def.placement === 'road') {
+      this.roads.add(hexKey(h));
+      return chk;
+    }
     this.placed.set(hexKey(h), def.id);
     this.cache = null;
     this.wetCache = null;
@@ -278,9 +301,10 @@ export class PlanMap {
     return chk;
   }
 
-  /** 拆除：城门、角楼、水门拆了退回城墙。 */
+  /** 拆除：有道路先拆道路（桥拆了渠还在）；城门、角楼、水门拆了退回城墙。 */
   remove(h: Hex): boolean {
     const key = hexKey(h);
+    if (this.roads.delete(key)) return true;
     const cur = this.at(h);
     if (!cur || (this.locked.has(key) && cur.id === this.preset.get(key))) return false;
     if (cur.placement === 'onWall') this.placed.set(key, 'wall');
@@ -352,15 +376,25 @@ export class PlanMap {
 
   /** 修改记录用：当前构件的紧凑列表 */
   snapshot(): [number, number, string][] {
-    return [...this.buildings()].filter((b) => this.preset.get(b.key) !== b.def.id).map((b) => [b.hex.q, b.hex.r, b.def.id]);
+    const out: [number, number, string][] = [...this.buildings()].filter((b) => this.preset.get(b.key) !== b.def.id).map((b) => [b.hex.q, b.hex.r, b.def.id]);
+    for (const k of this.roads) {
+      const [q, r] = k.split(',').map(Number);
+      out.push([q, r, 'road']);
+    }
+    return out;
   }
 
   restore(list: [number, number, string][]): void {
     this.placed.clear();
+    this.roads.clear();
     for (const [k, id] of this.preset) this.placed.set(k, id);
     for (const [q, r, id] of list) {
       const key = hexKey({ q, r });
       if (!this.cells.has(key) || !BUILDING_BY_ID.has(id)) continue;
+      if (id === 'road') {
+        this.roads.add(key);
+        continue;
+      }
       if (this.locked.has(key) && BUILDING_BY_ID.get(id)!.placement !== 'onWall') continue;
       this.placed.set(key, id);
     }

@@ -65,7 +65,7 @@ export interface PlanUI {
 }
 
 /** 可以按住拖动连续营建的构件 */
-const PAINT_TOOLS = new Set(['wall', 'moat', 'qu']);
+const PAINT_TOOLS = new Set(['wall', 'moat', 'qu', 'road']);
 
 export function runPlan(session: PlanSession): PlanUI {
   const { map } = session;
@@ -173,7 +173,7 @@ export function runPlan(session: PlanSession): PlanUI {
 
   function selectTool(t: BuildingDef | 'remove' | null) {
     tool = tool === t ? null : t;
-    aboutEl.textContent = tool && tool !== 'remove' ? tool.about : tool === 'remove' ? '点击或按住拖动拆除；城门、角楼、水门拆除后退回城墙。' : '';
+    aboutEl.textContent = tool && tool !== 'remove' ? tool.about : tool === 'remove' ? '点击或按住拖动拆除；有道路先拆道路；城门、角楼、水门拆除后退回城墙。' : '';
     canvas.classList.toggle('placing', !!tool);
     renderItems();
     updateGhost();
@@ -290,7 +290,8 @@ export function runPlan(session: PlanSession): PlanUI {
     if (!map.canPlace(def, h).ok) return null;
     map.place(def, h);
     const v = evaluate(map, h, def, ctx());
-    map.remove(h);
+    if (def.id === 'road') map.roads.delete(`${h.q},${h.r}`);
+    else map.remove(h);
     return v;
   }
 

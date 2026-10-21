@@ -12,7 +12,8 @@ export type Placement =
   | 'nearGate' //    陆地，紧贴城门
   | 'nearWall' //    陆地，紧贴城墙
   | 'shore' //       陆地，紧贴江河湖塘
-  | 'canal'; //      陆地，城内城外皆可（水渠）
+  | 'canal' //       陆地，城内城外皆可（水渠）
+  | 'road'; //       道路：另成一层，可跨水渠、护城河（成桥），不占构件格
 
 export interface BuildingDef {
   id: string;
@@ -73,6 +74,8 @@ export const BUILDINGS: BuildingDef[] = [
   // 市井
   { id: 'shisi', name: '市肆', glyph: '市', group: '市井', placement: 'land', height: 0.55, roof: '#6d5640',
     about: '商铺集市。《考工记》说「面朝后市」；明清府城的市多依城门、码头与水路。' },
+  { id: 'road', name: '道路', glyph: '路', group: '市井', placement: 'road', height: 0, roof: '#b59b6e',
+    about: '街巷道路，按住拖动连续铺设。跨水渠、护城河处自动架桥；连到城门即通城外。' },
   { id: 'minju', name: '民居坊', glyph: '坊', group: '市井', placement: 'land', height: 0.45, roof: '#5d5a55',
     about: '坊巷民居，宜连片、避水患，不宜上陡山。' },
   // 水利

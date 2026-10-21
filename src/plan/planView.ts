@@ -332,6 +332,7 @@ export class PlanView {
     }
     if (detail) this.decorate(c, z);
     if (map.at(c)?.id === 'qu' && !pond) this.drawChannel(c, z);
+    if (map.hasRoad(c)) this.drawRoad(c, z);
     if (this.highlight.has(hexKey(c))) {
       ctx.fillStyle = 'rgba(184,50,42,0.22)';
       ctx.fill();
@@ -385,6 +386,59 @@ export class PlanView {
     stroke('rgba(110,92,68,0.55)', w * 1.35);
     stroke(wet ? PLAN_TERRAIN.M.color : DRY_COLOR, w);
     if (!wet) stroke('rgba(120,96,64,0.35)', w * 0.35);
+    ctx.lineCap = 'butt';
+  }
+
+  /** 道路：从格心向相邻的道路、城门各画一段；同格有水渠、护城河就画成石桥（桥面 + 两道栏杆） */
+  private drawRoad(c: Cell, z: number): void {
+    const ctx = this.ctx;
+    const map = this.map;
+    const [cx, cy] = this.center(c, z);
+    const w = map.data.hexAcross * this.zoom * 0.26;
+    const ends: Vec2[] = [];
+    for (const d of HEX_DIRS) {
+      const n = { q: c.q + d.q, r: c.r + d.r };
+      if (!map.hasRoad(n) && map.at(n)?.id !== 'gate') continue;
+      const [nx, ny] = this.center(n, z);
+      ends.push([(cx + nx) / 2, (cy + ny) / 2]);
+    }
+    const bridge = map.isBridge(c);
+    const path = () => {
+      ctx.beginPath();
+      if (!ends.length) {
+        ctx.moveTo(cx - w * 0.3, cy);
+        ctx.lineTo(cx + w * 0.3, cy);
+      }
+      for (const [ex, ey] of ends) {
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(ex, ey);
+      }
+    };
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    path();
+    ctx.strokeStyle = bridge ? 'rgba(70,60,50,0.75)' : 'rgba(120,96,64,0.45)';
+    ctx.lineWidth = w * (bridge ? 1.45 : 1.25);
+    ctx.stroke();
+    ctx.strokeStyle = bridge ? '#b9b2a2' : '#cbb487';
+    ctx.lineWidth = w;
+    ctx.stroke();
+    if (bridge) {
+      // 栏杆：沿每段路两侧的细线
+      ctx.strokeStyle = 'rgba(70,60,50,0.8)';
+      ctx.lineWidth = Math.max(1, w * 0.09);
+      ctx.lineCap = 'butt';
+      for (const [ex, ey] of ends.length ? ends : [[cx + w * 0.6, cy] as Vec2]) {
+        const dx = ex - cx, dy = ey - cy, l = Math.hypot(dx, dy) || 1;
+        const ox = (-dy / l) * w * 0.42, oy = (dx / l) * w * 0.42;
+        ctx.beginPath();
+        ctx.moveTo(cx + ox, cy + oy);
+        ctx.lineTo(ex + ox, ey + oy);
+        ctx.moveTo(cx - ox, cy - oy);
+        ctx.lineTo(ex - ox, ey - oy);
+        ctx.stroke();
+      }
+    }
     ctx.lineCap = 'butt';
   }
 
@@ -606,7 +660,7 @@ export class PlanView {
   private drawGhost(c: Cell): void {
     const g = this.ghost!;
     const color = g.ok ? 'rgba(60,140,80,0.9)' : 'rgba(184,50,42,0.95)';
-    if (g.def && g.ok && !g.def.waterish) this.drawBuilding(c, g.def, 0.6, true);
+    if (g.def && g.ok && !g.def.waterish && g.def.placement !== 'road') this.drawBuilding(c, g.def, 0.6, true);
     this.outline(c, color, 2.5);
   }
 
