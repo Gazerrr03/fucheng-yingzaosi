@@ -103,6 +103,26 @@ function nearWaterWithin(map: PlanMap, h: Hex, n: number): boolean {
   return false;
 }
 
+function nearPondWithin(map: PlanMap, h: Hex, n: number): boolean {
+  for (let dq = -n; dq <= n; dq++) {
+    for (let dr = Math.max(-n, -dq - n); dr <= Math.min(n, -dq + n); dr++) {
+      const hex = { q: h.q + dq, r: h.r + dr };
+      if ((map.isPond(hex) && map.isWet(hex)) || (map.cell(hex)?.terrain === 'W' && map.isWater(hex))) return true;
+    }
+  }
+  return false;
+}
+
+function nearCanalWithin(map: PlanMap, h: Hex, n: number): boolean {
+  for (let dq = -n; dq <= n; dq++) {
+    for (let dr = Math.max(-n, -dq - n); dr <= Math.min(n, -dq + n); dr++) {
+      const hex = { q: h.q + dq, r: h.r + dr };
+      if (map.at(hex)?.id === 'qu' && map.isWet(hex)) return true;
+    }
+  }
+  return false;
+}
+
 function avgNeighborElev(map: PlanMap, h: Hex): number {
   const es = neighbors(h).map((n) => map.cell(n)?.elev).filter((e): e is number => e !== undefined);
   return es.length ? es.reduce((a, b) => a + b, 0) / es.length : 0;
@@ -157,7 +177,13 @@ export function evaluate(map: PlanMap, h: Hex, def: BuildingDef, ctx: EvalContex
     case 'xuegong':
       wantInside('学宫例在城内');
       dirPref(map, h, 'SE', 25, '东南巽方主文运，方志多记「学宫在治东南」', notes);
-      if (nearWaterWithin(map, h, 1)) notes.push({ delta: 10, text: '近水，可引为泮池' });
+      if (nearPondWithin(map, h, 1)) {
+        notes.push({ delta: 15, text: '临聚水之池为泮池，辟雍泮水，士林文运蔚然（泮池吉）' });
+      } else if (nearWaterWithin(map, h, 1)) {
+        notes.push({ delta: 10, text: '近水，可引为泮池' });
+      } else if (nb.some((n) => map.at(n)?.waterish && !map.isWet(n))) {
+        notes.push({ delta: -5, text: '临干沟干濠，未通活水，难成泮池' });
+      }
       break;
     case 'chenghuang':
       wantInside('城隍守一城');
@@ -177,7 +203,13 @@ export function evaluate(map: PlanMap, h: Hex, def: BuildingDef, ctx: EvalContex
       break;
     case 'shuyuan':
       if (['SE', 'E', 'S'].includes(dir)) notes.push({ delta: 10, text: '在城之东南一带，文气所钟' });
-      if (nearWaterWithin(map, h, 2) || nb.some((n) => map.isMountain(n))) notes.push({ delta: 15, text: '依山近水，清幽宜于讲学' });
+      if (nearCanalWithin(map, h, 2)) {
+        notes.push({ delta: 15, text: '近清渠活水，书声与水声相应，清幽宜于讲学' });
+      } else if (nearWaterWithin(map, h, 2) || nb.some((n) => map.isMountain(n))) {
+        notes.push({ delta: 15, text: '依山近水，清幽宜于讲学' });
+      } else if (nb.some((n) => map.at(n)?.waterish && !map.isWet(n))) {
+        notes.push({ delta: 0, text: '近旁有渠但水未至（干沟不计），难助清幽之气' });
+      }
       if (nearest(map, h, 'xuegong') <= 5) notes.push({ delta: 5, text: '与学宫相近' });
       break;
     case 'kuixing':
@@ -339,6 +371,96 @@ export function evaluateCity(map: PlanMap, ctx: EvalContext = {}): CityVerdict {
   patterns.push({
     id: 'altars', name: '三坛合制', ok: altarsOk, bonus: 6,
     text: altarsOk ? (ctx.exempt?.has('sheji') ? '社稷坛因地形移置（有据）、山川坛在南、厉坛在北，合洪武之制' : '社稷坛在西北、山川坛在南、厉坛在北，合洪武之制') : `已设坛 ${altars.length} / 3，或方位未合`,
+  });
+
+  // 玉带环抱：府署前有活水内河弯绕环抱
+  const fushu = buildings.find((b) => b.def.id === 'fushu');
+  let yudaiOk = false;
+  let yudaiText = '尚无府署，玉带无所统';
+  if (fushu) {
+    const [fx, fy] = hexToWorld(fushu.hex, map.hexSize);
+    const frontWater = [...map.cells.values()].filter((c) => {
+      const d = PlanMap.dist(fushu.hex, c);
+      if (d < 1 || d > 4) return false;
+      const [, y] = hexToWorld(c, map.hexSize);
+      return y < fy && map.isWater(c);
+    });
+    const westWater = frontWater.some((c) => hexToWorld(c, map.hexSize)[0] < fx - map.hexSize * 0.4);
+    const eastWater = frontWater.some((c) => hexToWorld(c, map.hexSize)[0] > fx + map.hexSize * 0.4);
+    const midWater = frontWater.some((c) => Math.abs(hexToWorld(c, map.hexSize)[0] - fx) <= map.hexSize * 0.8);
+    const frontDitch = [...map.placed.entries()].filter(([k, id]) => {
+      if (id !== 'qu' && id !== 'moat') return false;
+      const [q, r] = k.split(',').map(Number);
+      const d = PlanMap.dist(fushu.hex, { q, r });
+      if (d < 1 || d > 4) return false;
+      const [, y] = hexToWorld({ q, r }, map.hexSize);
+      return y < fy && !map.isWet({ q, r });
+    });
+
+    if (frontWater.length >= 3 && ((westWater && eastWater) || (midWater && (westWater || eastWater)))) {
+      yudaiOk = true;
+      yudaiText = '府署前有内河弯绕环抱，宛若玉带缠腰（吉）';
+    } else if (frontDitch.length >= 2) {
+      yudaiText = '府署前有渠环绕，但尚未引来活水（干沟不计）';
+    } else {
+      yudaiText = '府署门前尚未见活水内河弯绕环抱';
+    }
+  }
+  patterns.push({
+    id: 'yudai', name: '玉带环抱', ok: yudaiOk, bonus: 4,
+    text: yudaiText,
+  });
+
+  // 明堂聚水：府署南面聚汇成池
+  let mingtangOk = false;
+  let mingtangText = '尚无府署，未立明堂';
+  if (fushu) {
+    const [fx, fy] = hexToWorld(fushu.hex, map.hexSize);
+    const frontCells = [...map.cells.values()].filter((c) => {
+      const d = PlanMap.dist(fushu.hex, c);
+      if (d < 1 || d > 4) return false;
+      const [x, y] = hexToWorld(c, map.hexSize);
+      return y < fy && Math.abs(x - fx) <= map.hexSize * 2.5;
+    });
+    const hasPond = frontCells.some((c) => map.isPond(c) || c.terrain === 'W');
+    const hasWetPond = frontCells.some((c) => (map.isPond(c) && map.isWet(c)) || (c.terrain === 'W' && map.isWater(c)));
+    if (hasWetPond) {
+      mingtangOk = true;
+      mingtangText = '府署明堂聚汇为池，藏风纳气聚财聚福';
+    } else if (hasPond) {
+      mingtangText = '明堂有池塘之形，然水网未通，尚为干塘';
+    } else {
+      mingtangText = '府署正南明堂未设聚水池塘';
+    }
+  }
+  patterns.push({
+    id: 'mingtang', name: '明堂聚水', ok: mingtangOk, bonus: 4,
+    text: mingtangText,
+  });
+
+  // 水口：水从东南出城，东南城墙开有通水之水门
+  const sluices = buildings.filter((b) => b.def.id === 'shuimen');
+  const seSluices = sluices.filter((b) => {
+    const { dir } = map.dirOf(b.hex);
+    return dir === 'SE' || dir === 'E' || dir === 'S';
+  });
+  const activeSESluice = seSluices.find((b) => {
+    const sl = map.sluice(b.hex);
+    return sl.outside && sl.inner;
+  });
+  let shuikouOk = false;
+  let shuikouText = '城池未在东南巽位设水门作为水口';
+  if (activeSESluice) {
+    shuikouOk = true;
+    shuikouText = '东南巽位设水门关锁水口，水气内蓄，合风水大局';
+  } else if (seSluices.length > 0) {
+    shuikouText = '东南水门尚未引通城内水网';
+  } else if (sluices.some((b) => map.sluice(b.hex).outside && map.sluice(b.hex).inner)) {
+    shuikouText = '虽有水门通水，但未开于东南吉位（水口宜在巽位）';
+  }
+  patterns.push({
+    id: 'shuikou', name: '水口', ok: shuikouOk, bonus: 4,
+    text: shuikouText,
   });
 
   const weight = (d: BuildingDef) => (d.id === 'wall' || d.id === 'moat' || d.id === 'qu' ? 0 : d.id === 'minju' ? 0.3 : 1);
