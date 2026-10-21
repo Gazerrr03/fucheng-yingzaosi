@@ -2,7 +2,7 @@
 // 构件贴 glb 模型离屏渲染出的精灵（见 sprites.ts）；精灵还没生成或没有对应模型时画程序小屋。
 // 只在有变化时重画；按行从北到南画，保证前面的山能挡住后面的东西。
 
-import { HEX_DIRS, hexKey, hexToWorld, worldToHex, type Hex } from '../scene/hex';
+import { HEX_DIRS, hexKey, hexToWorld, worldToHex, neighbors, type Hex } from '../scene/hex';
 import type { Vec2 } from '../scene/homography';
 import { BUILDINGS, DIR_GUA, DIR_NAME, type BuildingDef, type Dir } from './buildings';
 import { PLAN_TERRAIN, type Cell, type PlanMap } from './planMap';
@@ -226,7 +226,10 @@ export class PlanView {
     if (this.map.data.ring) this.drawRing();
     if (this.showCompass) this.drawCompass();
     this.drawLabels(detail);
-    if (this.lens) this.drawLensNumbers(hexPx);
+    if (this.lens) {
+      this.drawLensNumbers(hexPx);
+      this.drawLensWater(hexPx);
+    }
     if (this.hover && !this.ghost) this.outline(this.hover, 'rgba(47,36,26,0.8)', 2);
     this.lastDrawMs = performance.now() - t0;
   }
@@ -818,6 +821,119 @@ export class PlanView {
       ctx.strokeText(String(v), x, y);
       ctx.fillStyle = v >= 80 ? '#e6f6dc' : v >= 60 ? '#fbf0cf' : '#fbd9cf';
       ctx.fillText(String(v), x, y);
+    }
+  }
+
+  /** 风水透镜水网图层：标出水流方向、干沟、水门进出水 */
+  private drawLensWater(hexPx: number): void {
+    if (hexPx < 18) return;
+    const ctx = this.ctx;
+    const fs = Math.max(9, Math.min(13, hexPx * 0.22));
+    ctx.font = `bold ${fs}px ${this.fontFamily()}`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    // 1. 水流 BFS 追踪：从天然水源流向各人工水网格
+    const flowFrom = new Map<string, Hex>();
+    const queue: Hex[] = [];
+    const seen = new Set<string>();
+    for (const c of this.map.cells.values()) {
+      if (PLAN_TERRAIN[c.terrain]?.water) {
+        seen.add(hexKey(c));
+        queue.push(c);
+      }
+    }
+    const conduit = (b: BuildingDef | undefined) => !!b && (b.waterish || b.id === 'shuimen');
+    while (queue.length) {
+      const curr = queue.shift()!;
+      for (const n of neighbors(curr)) {
+        const k = hexKey(n);
+        if (seen.has(k)) continue;
+        const b = this.map.at(n);
+        if (!conduit(b)) continue;
+        seen.add(k);
+        flowFrom.set(k, curr);
+        queue.push(n);
+      }
+    }
+
+    // 2. 标出活水渠道的水流箭头
+    for (const [k, from] of flowFrom) {
+      const [q, r] = k.split(',').map(Number);
+      const c = this.map.cell({ q, r });
+      if (!c) continue;
+      const b = this.map.at(c);
+      if (!b || !b.waterish || !this.map.isWet(c)) continue;
+      const fromCell = this.map.cell(from);
+      const [x1, y1] = this.center(from, fromCell ? this.z(fromCell) : this.baseElev);
+      const [x2, y2] = this.center(c, this.z(c));
+      const dx = x2 - x1, dy = y2 - y1;
+      const len = Math.hypot(dx, dy);
+      if (len < 1) continue;
+      const ux = dx / len, uy = dy / len;
+
+      ctx.save();
+      ctx.translate(x2, y2);
+      ctx.rotate(Math.atan2(uy, ux));
+      ctx.fillStyle = 'rgba(230, 245, 255, 0.9)';
+      ctx.strokeStyle = 'rgba(20, 70, 110, 0.85)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      const sz = Math.min(10, hexPx * 0.2);
+      ctx.moveTo(sz, 0);
+      ctx.lineTo(-sz * 0.7, -sz * 0.6);
+      ctx.lineTo(-sz * 0.3, 0);
+      ctx.lineTo(-sz * 0.7, sz * 0.6);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // 3. 标出干沟（未接通活水的人工水渠/护城河/干塘）
+    for (const [k, id] of this.map.placed) {
+      if (id !== 'qu' && id !== 'moat') continue;
+      const [q, r] = k.split(',').map(Number);
+      const c = this.map.cell({ q, r });
+      if (!c || this.map.isWet(c)) continue;
+      const [x, y] = this.center(c, this.z(c));
+      if (x < -40 || y < -40 || x > this.vw + 40 || y > this.vh + 40) continue;
+
+      const isPond = this.map.isPond(c);
+      const tag = isPond ? '干塘' : id === 'moat' ? '干濠' : '干沟';
+      const w = ctx.measureText(tag).width + 8;
+      const h = fs * 1.5;
+      ctx.fillStyle = 'rgba(168, 72, 52, 0.9)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.rect(x - w / 2, y - h / 2, w, h);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#fff';
+      ctx.fillText(tag, x, y);
+    }
+
+    // 4. 水门进出水标注
+    for (const b of this.map.buildings()) {
+      if (b.def.id !== 'shuimen') continue;
+      const bCell = this.map.cell(b.hex);
+      const [x, y] = this.center(b.hex, bCell ? this.z(bCell) : this.baseElev);
+      if (x < -40 || y < -40 || x > this.vw + 40 || y > this.vh + 40) continue;
+      const sl = this.map.sluice(b.hex);
+      const text = sl.outside && sl.inner ? '水门引水' : sl.outside ? '水阻门外' : '外无活水';
+      const bg = sl.outside && sl.inner ? 'rgba(38, 128, 88, 0.92)' : sl.outside ? 'rgba(184, 115, 36, 0.92)' : 'rgba(110, 105, 100, 0.9)';
+      const w = ctx.measureText(text).width + 8;
+      const h = fs * 1.5;
+      ctx.fillStyle = bg;
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.rect(x - w / 2, y - h * 1.2, w, h);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText(text, x, y - h * 1.2 + h / 2);
     }
   }
 
